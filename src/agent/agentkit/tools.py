@@ -163,7 +163,7 @@ async def update_user_profile_db(
                     existing_prefs = set(json.loads(row[0])) if row[0].startswith("[") else set(row[0].split(","))
                 except Exception:
                     existing_prefs = set(row[0].split(","))
-
+        
         # Apply changes
         for p in add_preferences:
             if p:
