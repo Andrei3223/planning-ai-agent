@@ -1,8 +1,25 @@
-import requests
+import requests, json
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
 
 def search_events_tomorrow():
+
+    def get_description(url: str) -> str:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                        "AppleWebKit/537.36 (KHTML, like Gecko) "
+                        "Chrome/120.0 Safari/537.36"
+        }
+
+        response = requests.get(url, headers=headers)
+
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        for script in soup.find_all("script", type="application/ld+json"):
+            event_data = json.loads(script.string)
+            if "description" in event_data:
+                return event_data["description"]
+
+        return ""
 
     def func(url: str, event_ids: set, event_info: dict):
         headers = {
@@ -55,14 +72,14 @@ def search_events_tomorrow():
                 if time == "":
                     continue
                 event_ids.add(id)
-                event_info[id] = {"url": href, "title": title, "time": time}
+                description = get_description(href)
+                event_info[id] = {"url": href, "title": title, "description": description, "time": time}
 
     event_ids = set()
     event_info = dict()
 
-    for i in range(1, 3):
-        url = f"https://www.eventbrite.com/d/netherlands--amsterdam/free--events--tomorrow/?page={i}&lang=en"
-        func(url, event_ids, event_info)
+    url = f"https://www.eventbrite.com/d/netherlands--amsterdam/free--events--tomorrow/?lang=en"
+    func(url, event_ids, event_info)
 
     assert len(event_info) == len(event_ids)
     return event_ids, event_info
