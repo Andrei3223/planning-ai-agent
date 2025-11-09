@@ -9,20 +9,9 @@ def dict_to_langchain_document(data_dict: dict) -> Document:
     """
     Converts a single dictionary record into a LangChain Document.
     """
-    description = data_dict.get('description', 'N/A').strip()
-    time = data_dict.get('time', 'N/A').strip()
-
-    page_content = (
-        f"Title: {title}. "
-        f"Description: {description}. "
-        f"Time: {time}. "
-        f"URL: {url}"
-    )
-
     page_content = (
         f"Title: {data_dict.get('title', 'N/A')}. "
-        f"Date: {time}. "
-        f"Description: {description}. "
+        f"Date: {data_dict.get('date', 'N/A')}. "
         f"URL: {data_dict.get('url', 'N/A')}"
     )
     
@@ -35,7 +24,7 @@ def dict_to_langchain_document(data_dict: dict) -> Document:
     return Document(page_content=page_content, metadata=metadata)
 
 
-def create_chromium_db(file_path: str = "src/rag/data/data_desription.txt", persist_directory: str = "DBs/RAG"):
+def create_chromium_db(file_path: str = "src/rag/data/data.txt", persist_directory: str = "DBs/RAG"):
     """
     Reads a text file containing one or more Python-style dictionaries,
     converts them into LangChain Documents, and stores them in a Chroma DB.
