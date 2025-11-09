@@ -127,6 +127,8 @@ GET_ALL_PREFS_NONEMPTY_SQL = "SELECT telegram_id, preferences FROM users WHERE p
 
 async def init_db():
     """Initializes the SQLite databases and tables."""
+    os.makedirs("DBs", exist_ok=True)
+
     async with aiosqlite.connect(DB_PATH_TEAMS) as db:
         await db.execute(CREATE_TEAMS_SQL)
         await db.commit()
