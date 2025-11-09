@@ -71,7 +71,7 @@ def team_root_kb() -> types.ReplyKeyboardMarkup:
         keyboard=[
             [types.KeyboardButton(text="Create Team"), types.KeyboardButton(text="Assign Team")],
             [types.KeyboardButton(text="Find Team Events"), types.KeyboardButton(text="Find my Events")],
-            [types.KeyboardButton(text="⬅️ Back")]
+            [types.KeyboardButton(text="Team info"), types.KeyboardButton(text="⬅️ Back")]
         ]
     )
 
@@ -297,14 +297,12 @@ async def on_start(message: types.Message, state: FSMContext):
 
     prefs = user[2]  # preferences
     if not prefs:
-        await message.answer(WELCOME_TEXT)  # no reply_markup here -> menu stays
+        await message.answer(WELCOME_TEXT + "\n"
+                       "If you want to create or find a team, click the button below", reply_markup=main_menu_kb())
     else:
-        await message.answer(
-            f"Welcome back! Your current preferences are:\n\n“{prefs}”"
-        )
+        await message.answer(f"Welcome back! Your current preferences are:\n\n“{prefs}”"
+            "If you want to create or find a team, click the button below", reply_markup=main_menu_kb())
     
-    # 👇 Ensure the reply keyboard is shown and stays until you change it
-    await message.answer("If you want to create or find a team, click the button below", reply_markup=main_menu_kb())
 
 # ------------- MENU / TEAM KEYBOARD SWITCHING -------------
 
@@ -324,19 +322,26 @@ async def on_create_team(message: types.Message, state: FSMContext):
     tg_id = message.from_user.id
     try:
         team_code = await create_team_and_assign(tg_id)
+
         await message.answer(
-            f"✅ Team created!\n\n"
-            f"Your team code is: **{team_code}**\n"
-            f"Share this 6-digit code with your friends so they can join.\n\n"
-            f"You have been assigned to this team.",
+            "✅ Team created!\n\n"
+            "Share this 6-digit code with your friends so they can join.\n\n"
+            "You have been assigned to this team.",
             reply_markup=team_root_kb(),
             parse_mode="Markdown"
         )
+
+        await message.answer(
+            f"🔑 *Team Code:* `{team_code}`",
+            parse_mode="Markdown"
+        )
+
         await state.clear()
+
     except Exception as e:
         log.exception("Create team failed: %s", e)
         await message.answer(
-            "Sorry, something went wrong while creating the team. Please try again.",
+            "❌ Sorry, something went wrong while creating the team. Please try again.",
             reply_markup=team_root_kb()
         )
 
@@ -395,7 +400,90 @@ async def on_assign_team_code_input(message: types.Message, state: FSMContext):
         )
 
 
+@dp.message(F.text == "Team info")
+async def on_team_info(message: types.Message):
+    print("Team info requested")
+    tg_id = message.from_user.id
 
+    # 1) Find the user's team_row_id from users.sqlite
+    async with aiosqlite.connect(DB_PATH_USERS) as udb:
+        async with udb.execute(
+            "SELECT team_id FROM users WHERE telegram_id = ?;",
+            (tg_id,)
+        ) as cur:
+            row = await cur.fetchone()
+
+    if not row or row[0] is None:
+        await message.answer(
+            "ℹ️ You are not assigned to any team yet.\n"
+            "Use **Create Team** or **Assign Team**.",
+            reply_markup=team_root_kb(),
+            parse_mode="Markdown"
+        )
+        return
+
+    team_row_id = row[0]
+
+    # 2) Resolve the public 6-digit team code from teams.sqlite
+    async with aiosqlite.connect(DB_PATH_TEAMS) as tdb:
+        async with tdb.execute(
+            "SELECT team_id FROM teams WHERE id = ?;",
+            (team_row_id,)
+        ) as cur:
+            trow = await cur.fetchone()
+
+    if not trow:
+        await message.answer(
+            "⚠️ Your team record could not be found. Please try again.",
+            reply_markup=team_root_kb()
+        )
+        return
+
+    team_code = trow[0]
+
+    # 3) Fetch all team members (telegram_ids) from users.sqlite
+    async with aiosqlite.connect(DB_PATH_USERS) as udb:
+        async with udb.execute(
+            "SELECT telegram_id FROM users WHERE team_id = ? ORDER BY telegram_id;",
+            (team_row_id,)
+        ) as cur:
+            member_rows = await cur.fetchall()
+
+    member_ids = [r[0] for r in member_rows] if member_rows else []
+
+    # 4) Resolve display names via Telegram (best-effort)
+    members_pretty = []
+    for uid in member_ids:
+        try:
+            chat = await bot.get_chat(uid)
+            name_parts = [chat.first_name or "", chat.last_name or ""]
+            display = " ".join(p for p in name_parts if p).strip() or (chat.username and f"@{chat.username}") or f"ID {uid}"
+        except Exception:
+            display = f"ID {uid}"
+        if uid == tg_id:
+            display = f"{display} (you)"
+        members_pretty.append(display)
+
+    # 5) Build and send the info
+    members_block = "\n".join(f"• {m}" for m in members_pretty) if members_pretty else "— none yet —"
+
+    # First: general info
+    await message.answer(
+        "📋 *Team Info*\n"
+        "Here’s your current team code and members:",
+        parse_mode="Markdown"
+    )
+    # Second: easy-to-copy code
+    await message.answer(
+        f"🔑 *Team Code:* `{team_code}`",
+        parse_mode="Markdown"
+    )
+    # Third: members list
+    await message.answer(
+        f"👥 *Members:*\n{members_block}",
+        reply_markup=team_root_kb(),
+        parse_mode="Markdown"
+    )
 
 
 
