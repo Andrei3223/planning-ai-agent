@@ -316,30 +316,52 @@ async def get_joint_event_suggestions_db(
       4. Retrieve matching events from Chroma RAG store.
       5. Group events by date and return structured output.
     """
+    # Step 1: Get the user's team_id (FK to teams.id)
     async with aiosqlite.connect(DB_PATH_USERS) as conn:
         async with conn.execute(
             "SELECT team_id FROM users WHERE telegram_id = ?;",
             (telegram_id,)
         ) as cur:
-            team_id = await cur.fetchone()
+            result = await cur.fetchone()
+    
+    if not result or result[0] is None:
+        return {
+            "error": f"User {telegram_id} is not in a team",
+            "telegram_ids": [telegram_id],
+            "shared_preferences": [],
+            "shared_availability_days": [],
+            "query_used": "",
+            "grouped_events": {}
+        }
+    
+    team_internal_id = result[0]  # ✅ Extract integer from tuple
 
-    async with conn.execute(
-        "SELECT telegram_id FROM users WHERE team_id = ?;",
-        (team_id,)
-    ) as cur:
-        telegram_ids = await cur.fetchall()
+    # Step 2: Get all telegram_ids in the same team
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
+        async with conn.execute(
+            "SELECT telegram_id FROM users WHERE team_id = ?;",
+            (team_internal_id,)  # ✅ Use the integer, not the tuple
+        ) as cur:
+            telegram_ids = [row[0] for row in await cur.fetchall()]
 
-    telegram_ids = [r[0] for r in telegram_ids]
+    if not telegram_ids:
+        return {
+            "error": "No team members found",
+            "telegram_ids": [],
+            "shared_preferences": [],
+            "shared_availability_days": [],
+            "query_used": "",
+            "grouped_events": {}
+        }
 
-
-
-    # if len(telegram_ids) < 2:
-    #     return {"error": "Provide at least two telegram_ids to get joint suggestions."}
-
+    # Step 3: Load preferences for all team members
     async with aiosqlite.connect(DB_PATH_USERS) as conn:
         prefs_sets: List[Set[str]] = []
         for uid in telegram_ids:
-            async with conn.execute("SELECT preferences FROM users WHERE telegram_id = ?", (uid,)) as cur:
+            async with conn.execute(
+                "SELECT preferences FROM users WHERE telegram_id = ?", 
+                (uid,)
+            ) as cur:
                 row = await cur.fetchone()
                 prefs = set()
                 if row and row[0]:
@@ -349,11 +371,14 @@ async def get_joint_event_suggestions_db(
                         prefs = set(row[0].split(","))
                 prefs_sets.append(prefs)
 
+    # Step 4: Compute shared preferences
     shared_prefs = set.intersection(*prefs_sets) if all(prefs_sets) else set()
 
-    async with aiosqlite.connect(DB_PATH_USERS) as conn:
+    # Step 5: Find common availability
+    async with aiosqlite.connect(DB_PATH_BUSYHOURS) as conn:
         common_av = await find_common_availability(conn, telegram_ids)
 
+    # Step 6: Build query for RAG
     prefs_text = ", ".join(sorted(shared_prefs)) if shared_prefs else "general interests"
     query = f"Find upcoming events related to {prefs_text}"
 
@@ -361,10 +386,10 @@ async def get_joint_event_suggestions_db(
         earliest_day = sorted(common_av.keys())[0]
         query += f" preferably after {earliest_day}."
 
-
+    # Step 7: Query RAG for events
     rag_results = get_nearest_events(query, persist_directory=DB_PATH_EVENTS)
 
-    # Use a dict to deduplicate by (event_title, event_date)
+    # Step 8: Deduplicate and group events
     unique_events: Dict[tuple, Dict] = {}
 
     for result in rag_results:
@@ -373,7 +398,6 @@ async def get_joint_event_suggestions_db(
         event_date = meta.get("event_date", "Unknown Date")
         key = (event_title.strip().lower(), event_date.strip().lower())
 
-        # Keep the highest similarity version if duplicate
         score = round(result.get("score", 0), 4)
         if key not in unique_events or score > unique_events[key]["similarity_score"]:
             unique_events[key] = {
@@ -384,28 +408,23 @@ async def get_joint_event_suggestions_db(
                 "similarity_score": score,
             }
 
-    # Convert back to list
     deduped_events = list(unique_events.values())
-
-    # Sort by similarity descending, then by date (lexicographically)
     deduped_events.sort(
         key=lambda x: (-x["similarity_score"], x["event_date"])
     )
 
-    # Group by event_date
     grouped_events: Dict[str, List[Dict]] = {}
     for ev in deduped_events:
         grouped_events.setdefault(ev["event_date"], []).append(ev)
 
-    # Sort event_date keys
     grouped_events = dict(sorted(grouped_events.items(), key=lambda x: x[0]))
-
+    
     return {
         "telegram_ids": telegram_ids,
         "shared_preferences": sorted(shared_prefs),
         "shared_availability_days": sorted(common_av.keys()),
         "query_used": query,
-        "grouped_events": grouped_events,  # deduplicated + grouped by date
+        "grouped_events": grouped_events,
     }
 
 

@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 import random
 import re
 import json
+from typing import Dict
 
 
 # OpenAI (async)
@@ -504,54 +505,204 @@ async def on_team_info(message: types.Message):
 
 
 
-@dp.message(F.text)
-async def on_free_text(message: types.Message, state: FSMContext):
+# @dp.message(F.text)
+# async def on_free_text(message: types.Message, state: FSMContext):
 
-    # Only handle genuine free-typed text (callbacks come via @dp.callback_query)
-    text = (message.text or "").strip()
-    if not text:
-        await message.answer("Please send a text message 🙂")
+#     # Only handle genuine free-typed text (callbacks come via @dp.callback_query)
+#     text = (message.text or "").strip()
+#     if not text:
+#         await message.answer("Please send a text message 🙂")
+#         return
+
+#     # Build the agent payload
+#     payload = {
+#         "messages": [HumanMessage(content=text)],
+#         "telegram_id": str(message.from_user.id),
+#         "llm_calls": 0,  # change this if you track per-user LLM usage
+#     }
+
+#     # Call your agent (works for both sync .invoke and async .ainvoke)
+#     try:
+#         if hasattr(agent, "ainvoke"):
+#             result = await agent.ainvoke(payload)
+#         else:
+#             loop = asyncio.get_running_loop()
+#             result = await loop.run_in_executor(None, agent.invoke, payload)
+#     except Exception as e:
+#         log.exception("Agent error: %s", e)
+#         await message.answer("Sorry, I couldn't process that just now. Please try again.")
+#         return
+
+#     # Extract a reasonable text reply from agent result
+#     # (Adjust if your agent returns a different structure)
+#     reply_text = None
+#     if isinstance(result, str):
+#         reply_text = result
+#     elif isinstance(result, dict):
+#         # Common patterns: result["output"], result["answer"], result["messages"][-1].content, etc.
+#         reply_text = (
+#             result.get("output")
+#             or result.get("answer")
+#             or (result.get("messages", [])[-1].content if result.get("messages") else None)
+#         )
+
+#     if not reply_text:
+#         reply_text = "I processed your message, but didn't get a readable answer. Try rephrasing?"
+
+#     await message.answer(reply_text)
+
+async def broadcast_team_events(bot: Bot, result: Dict, requesting_user_id: int):
+    """
+    Parse agent result containing joint event suggestions and broadcast to all team members.
+    
+    Args:
+        bot: Telegram bot instance
+        result: Agent result dict containing tool outputs
+        requesting_user_id: The user who requested the suggestions
+    """
+    # Extract the tool result from agent output
+    if not isinstance(result, dict) or "messages" not in result:
         return
+    
+    # Find the tool message with joint event suggestions
+    tool_result = None
+    for msg in result.get("messages", []):
+        if hasattr(msg, "content"):
+            try:
+                content = json.loads(msg.content) if isinstance(msg.content, str) else msg.content
+                if isinstance(content, dict) and "telegram_ids" in content and "grouped_events" in content:
+                    tool_result = content
+                    break
+            except:
+                continue
+    
+    if not tool_result:
+        log.warning("No joint event suggestions found in agent result")
+        return
+    
+    # Extract team members and events
+    team_members = tool_result.get("telegram_ids", [])
+    grouped_events = tool_result.get("grouped_events", {})
+    shared_prefs = tool_result.get("shared_preferences", [])
+    
+    if not grouped_events:
+        message = "🤷 No matching events found for your team's preferences."
+    else:
+        # Format the message
+        message = "🎉 **Joint Event Suggestions for Your Team** 🎉\n\n"
+        message += f"👥 Team size: {len(team_members)} members\n"
+        if shared_prefs:
+            message += f"🎯 Shared interests: {', '.join(shared_prefs)}\n"
+        
+        event_count = 0
+        for date, events in grouped_events.items():
+            message += f"📅 **{date}**\n\n"
+            for event in events[:3]:  # Limit to top 3 per date
+                event_count += 1
+                message += f"🎪 **{event['event_title']}**\n"
+                if event.get('description'):
+                    desc = event['description'][:150] + "..." if len(event['description']) > 150 else event['description']
+                    message += f"   {desc}\n"
+                if event.get('source_url'):
+                    message += f"   🔗 {event['source_url']}\n"
+                message += "\n"
+            
+            if len(events) > 3:
+                message += f"   _...and {len(events) - 3} more events on this date_\n\n"
+        
+        message += f"\n📊 Total: {event_count} top suggestions\n"
+    
+    # Broadcast to all team members
+    success_count = 0
+    for member_id in team_members:
+        try:
+            await bot.send_message(
+                chat_id=member_id,
+                text=message,
+                parse_mode="Markdown"
+            )
+            success_count += 1
+        except Exception as e:
+            log.error(f"Failed to send team event suggestions to {member_id}: {e}")
+    
+    log.info(f"Broadcasted team events to {success_count}/{len(team_members)} members (requested by {requesting_user_id})")
 
-    # Build the agent payload
+
+@dp.message(F.text)
+async def handle_chat(message: types.Message):
+    """General conversation with the LangGraph agent."""
+    print("the message handler has started")
+    tg_id = message.from_user.id
+    user_text = message.text.strip()
+
+    log.info(f"User {tg_id}: {user_text}")
+
+    # Prepare payload for LangGraph agent
     payload = {
-        "messages": [HumanMessage(content=text)],
-        "telegram_id": str(message.from_user.id),
-        "llm_calls": 0,  # change this if you track per-user LLM usage
+        "messages": [HumanMessage(content=user_text)],
+        "telegram_id": str(tg_id),
+        "llm_calls": 0,
     }
 
-    # Call your agent (works for both sync .invoke and async .ainvoke)
     try:
+        # Invoke agent
         if hasattr(agent, "ainvoke"):
             result = await agent.ainvoke(payload)
         else:
             loop = asyncio.get_running_loop()
             result = await loop.run_in_executor(None, agent.invoke, payload)
+        
+        print(result)
+        log.info(f"Agent result type: {type(result)}")
+        log.info(f"Agent result: {result}")
+
+        # Check if this is a joint event suggestion request
+        found_team_event = False
+        if isinstance(result, dict) and "messages" in result:
+            for msg in result.get("messages", []):
+                # Check if it's a ToolMessage (look at the type)
+                if msg.__class__.__name__ == "ToolMessage":
+                    try:
+                        # Parse the tool result content
+                        content = json.loads(msg.content) if isinstance(msg.content, str) else msg.content
+                        
+                        # Check if it contains team event data
+                        if isinstance(content, dict) and "telegram_ids" in content and "grouped_events" in content:
+                            log.info(f"Found team event tool result: {content.keys()}")
+                            await broadcast_team_events(bot, result, tg_id)
+                            await message.answer("✅ Team event suggestions sent to all members!")
+                            found_team_event = True
+                            break
+                    except Exception as e:
+                        log.error(f"Error parsing tool message: {e}")
+                        continue
+        
+        if found_team_event:
+            return
+
+        # Extract reply from the agent's final state
+        reply_text = None
+        if isinstance(result, dict) and "messages" in result:
+            messages = result["messages"]
+            if messages:
+                last_msg = messages[-1]
+                if hasattr(last_msg, "content"):
+                    reply_text = last_msg.content
+                elif isinstance(last_msg, dict):
+                    reply_text = last_msg.get("content")
+
+        if not reply_text:
+            reply_text = "I processed your message, but didn't get a readable answer. Try rephrasing?"
+
+        await message.answer(reply_text)
+
     except Exception as e:
-        log.exception("Agent error: %s", e)
-        await message.answer("Sorry, I couldn't process that just now. Please try again.")
-        return
-
-    # Extract a reasonable text reply from agent result
-    # (Adjust if your agent returns a different structure)
-    reply_text = None
-    if isinstance(result, str):
-        reply_text = result
-    elif isinstance(result, dict):
-        # Common patterns: result["output"], result["answer"], result["messages"][-1].content, etc.
-        reply_text = (
-            result.get("output")
-            or result.get("answer")
-            or (result.get("messages", [])[-1].content if result.get("messages") else None)
-        )
-
-    if not reply_text:
-        reply_text = "I processed your message, but didn't get a readable answer. Try rephrasing?"
-
-    await message.answer(reply_text)
+        log.exception(f"Error in agent invocation for user {tg_id}")
+        await message.answer(f"⚠️ Error: {e}")
 
 
-# ------------- MAIN -------------
+
+    # ------------- MAIN -------------
 async def main():
     await init_db()
     log.info("DB ready at %s", DB_PATH_USERS)
