@@ -9,10 +9,17 @@ from langchain.tools import tool
 from pydantic import BaseModel
 import os
 
-# Database path from environment
-DB_PATH = os.getenv("DB_PATH_USERS", "users.sqlite")
+# Database paths from environment
+DB_PATH_EVENTS = os.getenv("DB_PATH_EVENTS", "events.sqlite")
+DB_PATH_BUSYHOURS = os.getenv("DB_PATH_BUSYHOURS", "busyhours.sqlite")
+DB_PATH_USERS = os.getenv("DB_PATH_USERS", "users.sqlite")
 
 
+
+class Slot(BaseModel):
+    date: str  # ISO date, e.g. "2025-11-10"
+    start: str  # "HH:MM"
+    duration: str    # "HH:MM"
 
 
 #     !!!!!!!!!     ###################################################
@@ -61,7 +68,7 @@ async def get_user_free_slots(conn: aiosqlite.Connection, telegram_id: int) -> D
     query = """
         SELECT start, duration
         FROM busy_hours
-        WHERE user_id = ?
+        WHERE telegram_id = ?
     """
     result: Dict[str, List[List[str]]] = {}
 
@@ -83,21 +90,21 @@ async def get_user_free_slots(conn: aiosqlite.Connection, telegram_id: int) -> D
     return free_by_day
 
 
-async def find_common_availability(conn: aiosqlite.Connection, user_ids: List[int]) -> Dict[str, List[List[str]]]:
+async def find_common_availability(conn: aiosqlite.Connection, telegram_ids: List[int]) -> Dict[str, List[List[str]]]:
     """
     Compute intersection of FREE availability across all given users.
     Returns:
         {date: [[start,end], ...]} representing common free intervals.
     """
-    if not user_ids:
+    if not telegram_ids:
         return {}
 
     # Load first user's free slots
-    base_av = await get_user_free_slots(conn, user_ids[0])
+    base_av = await get_user_free_slots(conn, telegram_ids[0])
     common: Dict[str, List[List[str]]] = {d: [s[:] for s in slots] for d, slots in base_av.items()}
 
     # Intersect with each additional user
-    for uid in user_ids[1:]:
+    for uid in telegram_ids[1:]:
         av = await get_user_free_slots(conn, uid)
         new_common: Dict[str, List[List[str]]] = {}
         for day in set(common) & set(av):
@@ -113,11 +120,6 @@ async def find_common_availability(conn: aiosqlite.Connection, user_ids: List[in
 
 
 
-class Slot(BaseModel):
-    date: str  # ISO date, e.g. "2025-11-10"
-    start: str  # "HH:MM"
-    duration: str    # "HH:MM"
-
 
 @tool
 async def update_user_profile_db(
@@ -130,14 +132,11 @@ async def update_user_profile_db(
     """
     Update a user's preferences and availability using aiosqlite database tables:
       - users
-      - busy_hours
 
     Args:
         telegram_id: user's Telegram ID
         add_preferences: list of new tags to add
         remove_preferences: list of tags to remove
-        add_availability: list of Slot(date, start, end)
-        clear_availability: if True, delete all busy_hours for this user
     Returns:
         Dict summary of updated profile
     """
@@ -145,7 +144,7 @@ async def update_user_profile_db(
     remove_preferences = remove_preferences or []
     add_availability = add_availability or []
 
-    async with aiosqlite.connect(DB_PATH) as conn:
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
         # Ensure user exists
         now = datetime.utcnow().isoformat()
         await conn.execute(
@@ -180,32 +179,10 @@ async def update_user_profile_db(
             "UPDATE users SET preferences = ? WHERE telegram_id = ?",
             (prefs_serialized, telegram_id),
         )
-
-        # Update availability
-        if clear_availability:
-            await conn.execute("DELETE FROM busy_hours WHERE user_id = ?", (telegram_id,))
-
-        for slot in add_availability:
-            # We store start as "YYYY-MM-DD HH:MM" and duration as "HH:MM"
-            start = f"{slot.date} {slot.start}"
-            duration = slot.end  # or compute time difference if needed
-            await conn.execute(
-                "INSERT INTO busy_hours (user_id, start, duration) VALUES (?, ?, ?)",
-                (telegram_id, start, duration),
-            )
-
-        await conn.commit()
-
-        # Summarize
-        async with conn.execute(
-            "SELECT DISTINCT date(start) FROM busy_hours WHERE user_id = ?", (telegram_id,)
-        ) as cur:
-            days = [r[0] for r in await cur.fetchall()]
-
+        
         summary = {
-            "user_id": telegram_id,
+            "telegram_id": telegram_id,
             "preferences": sorted(existing_prefs),
-            "availability_days": sorted(days),
         }
         return summary
 
@@ -220,11 +197,11 @@ async def get_personal_event_suggestions_db(
 
     Returns:
         {
-            "user_id": telegram_id,
+            "telegram_id": telegram_id,
             "events": [ {event_dict}, ... ]
         }
     """
-    async with aiosqlite.connect(DB_PATH) as conn:
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
         async with conn.execute("SELECT preferences FROM users WHERE telegram_id = ?", (telegram_id,)) as cur:
             row = await cur.fetchone()
             prefs = set()
@@ -234,8 +211,9 @@ async def get_personal_event_suggestions_db(
                 except Exception:
                     prefs = set(row[0].split(","))
 
-        async with conn.execute("SELECT start, duration FROM busy_hours WHERE user_id = ?", (telegram_id,)) as cur:
-            rows = await cur.fetchall()
+        async with aiosqlite.connect(DB_PATH_BUSYHOURS) as conn:
+            async with conn.execute("SELECT start, duration FROM busy_hours WHERE telegram_id = ?", (telegram_id,)) as cur:
+                rows = await cur.fetchall()
 
         # Build a dict: {date: [(start, end)]}
         availability: Dict[str, List[List[str]]] = {}
@@ -248,8 +226,9 @@ async def get_personal_event_suggestions_db(
             t_end = duration
             availability.setdefault(date, []).append([t_start, t_end])
 
-        async with conn.execute("SELECT id, name, date, tags, start, duration FROM events") as cur:
-            all_events = await cur.fetchall()
+        async with aiosqlite.connect(DB_PATH_EVENTS) as conn:
+            async with conn.execute("SELECT id, name, date, tags, start, duration FROM events") as cur:
+                all_events = await cur.fetchall()
 
         # Normalize events into dicts
         events: List[Dict] = []
@@ -286,7 +265,7 @@ async def get_personal_event_suggestions_db(
                     break
 
         return {
-            "user_id": telegram_id,
+            "telegram_id": telegram_id,
             "events": matches,
         }
 
@@ -294,7 +273,7 @@ async def get_personal_event_suggestions_db(
 
 @tool
 async def get_joint_event_suggestions_db(
-    user_ids: List[int],
+    telegram_ids: List[int],
 ) -> Dict:
     """
     Suggest events suitable for ALL given users (async + DB-based).
@@ -307,12 +286,12 @@ async def get_joint_event_suggestions_db(
       5. Return only those events that match shared preferences AND overlap
          with shared availability windows.
     """
-    if len(user_ids) < 2:
-        return {"error": "Provide at least two user_ids to get joint suggestions."}
+    if len(telegram_ids) < 2:
+        return {"error": "Provide at least two telegram_ids to get joint suggestions."}
 
-    async with aiosqlite.connect(DB_PATH) as conn:
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
         prefs_sets: List[Set[str]] = []
-        for uid in user_ids:
+        for uid in telegram_ids:
             async with conn.execute("SELECT preferences FROM users WHERE telegram_id = ?", (uid,)) as cur:
                 row = await cur.fetchone()
                 prefs = set()
@@ -325,10 +304,11 @@ async def get_joint_event_suggestions_db(
 
         shared_prefs = set.intersection(*prefs_sets) if all(prefs_sets) else set()
 
-        common_av = await find_common_availability(conn, user_ids)
+        common_av = await find_common_availability(conn, telegram_ids)
 
-        async with conn.execute("SELECT id, name, date, tags, start, duration FROM events") as cur:
-            rows = await cur.fetchall()
+        async with aiosqlite.connect(DB_PATH_EVENTS) as conn:
+            async with conn.execute("SELECT id, name, date, tags, start, duration FROM events") as cur:
+                rows = await cur.fetchall()
 
         events = []
         for eid, name, date, tags, start, duration in rows:
@@ -363,7 +343,7 @@ async def get_joint_event_suggestions_db(
                     break
 
         return {
-            "user_ids": user_ids,
+            "telegram_ids": telegram_ids,
             "shared_preferences": sorted(shared_prefs),
             "shared_availability_days": sorted(common_av.keys()),
             "events": matches,
@@ -389,19 +369,19 @@ async def update_busy_hours(
     """
     add_slots = add_slots or []
 
-    async with aiosqlite.connect(DB_PATH) as db:
+    async with aiosqlite.connect(DB_PATH_BUSYHOURS) as db:
         # Optionally clear existing records
         if clear_existing:
-            await db.execute("DELETE FROM busy_hours WHERE user_id = ?", (telegram_id,))
+            await db.execute("DELETE FROM busy_hours WHERE telegram_id = ?", (telegram_id,))
             await db.commit()
 
         # Insert new slots
         for slot in add_slots:
             # Combine date and start time into single string
             start_dt = f"{slot.date} {slot.start}"
-            duration = slot.end  # stored as string "HH:MM"
+            duration = slot.duration  # stored as string "HH:MM"
             await db.execute(
-                "INSERT INTO busy_hours (user_id, start, duration) VALUES (?, ?, ?)",
+                "INSERT INTO busy_hours (telegram_id, start, duration) VALUES (?, ?, ?)",
                 (telegram_id, start_dt, duration),
             )
 
@@ -409,16 +389,18 @@ async def update_busy_hours(
 
         # Return updated summary
         async with db.execute(
-            "SELECT id, start, duration FROM busy_hours WHERE user_id = ? ORDER BY start",
+            "SELECT id, start, duration FROM busy_hours WHERE telegram_id = ? ORDER BY start",
             (telegram_id,),
         ) as cur:
             rows = await cur.fetchall()
 
         summary = {
-            "user_id": telegram_id,
+            "telegram_id": telegram_id,
             "busy_hours_count": len(rows),
             "busy_hours": [{"start": r[1], "end": r[2]} for r in rows],
         }
+
+        print(summary)
 
         return summary
 

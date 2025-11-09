@@ -27,32 +27,32 @@ ASSISTANT_SYSTEM_PROMPT = (
     "- Allow casual small talk and conversation when the user just chats.\n\n"
     "TOOLS USAGE GUIDELINES:\n"
     "- When the user tells you about what they like and when they are free,\n"
-    "  call `update_user_profile_db` with the active user_id and the extracted data.\n"
+    "  call `update_user_profile_db` with the active telegram_id and the extracted data.\n"
     "- When they ask for events for themselves, call `get_personal_event_suggestions_db`.\n"
     "- When they ask for events with someone else (e.g. \"me and u_alex\"),\n"
-    "  call `get_joint_event_suggestions_db` with a list of all relevant user_ids.\n"
+    "  call `get_joint_event_suggestions_db` with a list of all relevant telegram_ids.\n"
     "- Use `refresh_events_catalog` if the user asks you to refresh the events.\n"
     "- If the user only wants a casual chat, you can reply directly without calling tools.\n\n"
     "IMPORTANT:\n"
-    "- The active user_id for this conversation is provided separately; you are told it explicitly.\n"
-    "- When you call tools that require a user_id for the current user, ALWAYS use that exact string.\n"
+    "- The active telegram_id for this conversation is provided separately; you are told it explicitly.\n"
+    "- When you call tools that require a telegram_id for the current user, ALWAYS use that exact string.\n"
 )
 
 
-def assistant_node(state: AgentState):
+async def assistant_node(state: AgentState):
     """Main LLM reasoning step: decides whether to call tools or just chat."""
-    user_id = state["user_id"]
+    telegram_id = state["telegram_id"]
 
     system = SystemMessage(
         content=ASSISTANT_SYSTEM_PROMPT
-        + f"\nThe active user_id for this conversation is '{user_id}'."
+        + f"\nThe active telegram_id for this conversation is '{telegram_id}'."
     )
 
     conversation = [system] + state["messages"]
 
-    log_state("ASSISTANT_NODE INPUT", {"user_id": user_id, "messages_count": len(state["messages"])})
+    log_state("ASSISTANT_NODE INPUT", {"telegram_id": telegram_id, "messages_count": len(state["messages"])})
 
-    ai_msg: AIMessage = llm_with_tools.invoke(conversation)
+    ai_msg: AIMessage = await llm_with_tools.ainvoke(conversation)  # ✅ Use ainvoke
 
     log_state("ASSISTANT_NODE OUTPUT", {"content": ai_msg.content, "tool_calls": getattr(ai_msg, "tool_calls", None)})
 

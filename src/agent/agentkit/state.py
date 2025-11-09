@@ -8,5 +8,5 @@ from langchain.messages import AnyMessage
 
 class AgentState(TypedDict):
     messages: Annotated[List[AnyMessage], operator.add]
-    user_id: str
+    telegram_id: str
     llm_calls: int

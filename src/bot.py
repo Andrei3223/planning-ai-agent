@@ -88,10 +88,10 @@ CREATE TABLE IF NOT EXISTS events (
 CREATE_BUSYHOURS_SQL = """
 CREATE TABLE IF NOT EXISTS busy_hours (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
+    telegram_id INTEGER NOT NULL,
     start TEXT NOT NULL,
     duration TEXT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (telegram_id)
+    FOREIGN KEY (telegram_id) REFERENCES users (telegram_id)
 );
 """
 
@@ -271,7 +271,7 @@ async def on_free_text(message: types.Message, state: FSMContext):
     # Build the agent payload
     payload = {
         "messages": [HumanMessage(content=text)],
-        "user_id": str(message.from_user.id),
+        "telegram_id": str(message.from_user.id),
         "llm_calls": 0,  # change this if you track per-user LLM usage
     }
 
