@@ -1,5 +1,6 @@
 import json
 from typing import List, Literal
+from datetime import datetime
 
 from pydantic import ValidationError
 
@@ -15,6 +16,7 @@ from .debug_logger import log_state
 
 # Model Setup 
 llm_with_tools = llm.bind_tools(TOOLS)
+current_datatime = datetime.now()
 
 ASSISTANT_SYSTEM_PROMPT = (
     "You are an event planning assistant.\n"
@@ -36,6 +38,7 @@ ASSISTANT_SYSTEM_PROMPT = (
     "IMPORTANT:\n"
     "- The active telegram_id for this conversation is provided separately; you are told it explicitly.\n"
     "- When you call tools that require a telegram_id for the current user, ALWAYS use that exact string.\n"
+    f"- Current Date and Time: {current_datatime} so you can use it to estimate the relative dates"
 )
 
 

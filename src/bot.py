@@ -24,14 +24,14 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 # DBS
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-DB_PATH_EVENTS = os.getenv("DB_PATH_EVENTS", "events.sqlite")
-DB_PATH_BUSYHOURS = os.getenv("DB_PATH_BUSYHOURS", "busyhours.sqlite")
-DB_PATH_USERS = os.getenv("DB_PATH_USERS", "users.sqlite")
-DB_PATH_TEAMS = os.getenv("DB_PATH_TEAMS", "teams.sqlite")
+DB_PATH_EVENTS = "DBs/RAG"
+DB_PATH_BUSYHOURS = "DBs/busyhours.sqlite"
+DB_PATH_USERS = "DBs/users.sqlite"
+DB_PATH_TEAMS = "DBs/teams.sqlite"
 
 # EMBEDING
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
-OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-o4-mini")
+EMBEDDING_MODEL = "text-embedding-3-small"
+OPENAI_MODEL = "gpt-o4-mini"
 
 if not TELEGRAM_BOT_TOKEN:
     raise RuntimeError("Set TELEGRAM_BOT_TOKEN in .env")
@@ -120,10 +120,10 @@ async def init_db():
         await db.commit()
 # ------------- DB HELPERS -------------
 
-    create_chromium_db()
+    create_chromium_db(persist_directory=DB_PATH_EVENTS)
 
 async def ensure_user(conn: aiosqlite.Connection, tg_id: int):
-    await conn.execute(INSERT_USER_SQL, (tg_id, datetime.now(timezone.utc).isoformat()))
+    await conn.execute(INSERT_USER_SQL, (tg_id,))
     await conn.commit()
 
 async def get_user(conn: aiosqlite.Connection, tg_id: int):

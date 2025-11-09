@@ -3,7 +3,6 @@ import ast
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
-from dotenv import load_dotenv
 
 
 def dict_to_langchain_document(data_dict: dict) -> Document:
@@ -25,7 +24,7 @@ def dict_to_langchain_document(data_dict: dict) -> Document:
     return Document(page_content=page_content, metadata=metadata)
 
 
-def create_chromium_db(file_path: str = "./data/data.txt"):
+def create_chromium_db(file_path: str = "src/rag/data/data.txt", persist_directory: str = "DBs/RAG"):
     """
     Reads a text file containing one or more Python-style dictionaries,
     converts them into LangChain Documents, and stores them in a Chroma DB.
@@ -57,9 +56,6 @@ def create_chromium_db(file_path: str = "./data/data.txt"):
         api_key=os.getenv('OPENAI_API_KEY_KIRILL')
     )
 
-    persist_directory = './data/chroma_store'
-
-
     vector_store = Chroma.from_documents(
         documents=langchain_documents,
         embedding=embedding_model,
@@ -70,7 +66,3 @@ def create_chromium_db(file_path: str = "./data/data.txt"):
     print("ChromaDB indexing complete.")
     return retriever
 
-
-if __name__ == "__main__":
-    load_dotenv(override=True)
-    create_chromium_db()
