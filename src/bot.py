@@ -13,6 +13,9 @@ from langchain_core.messages import HumanMessage  # for agent.invoke payloads
 from agent.agentkit.graph import agent
 from rag.create_chromium_db import create_chromium_db
 from dotenv import load_dotenv
+import random
+import re
+
 
 # OpenAI (async)
 from openai import AsyncOpenAI, APIConnectionError, APIError, RateLimitError
@@ -73,6 +76,8 @@ def team_root_kb() -> types.ReplyKeyboardMarkup:
     )
 
 
+class TeamStates(StatesGroup):
+    WAITING_TEAM_CODE = State()
 
 
 WELCOME_TEXT = (
@@ -213,6 +218,75 @@ bot = Bot(token=TELEGRAM_BOT_TOKEN)
 dp = Dispatcher()
 
 # ------------- HANDLERS -------------
+TEAM_CODE_RE = re.compile(r"^\d{6}$")
+
+async def generate_unique_team_code() -> int:
+    """Generate a unique 6-digit numeric code not already used in teams.team_id."""
+    while True:
+        code = random.randint(100000, 999999)
+        async with aiosqlite.connect(DB_PATH_TEAMS) as db:
+            async with db.execute("SELECT 1 FROM teams WHERE team_id = ?;", (code,)) as cur:
+                if await cur.fetchone() is None:
+                    return code
+
+async def create_team_and_assign(tg_id: int) -> int:
+    """
+    Create a team with a unique 6-digit team_id and a random team_key,
+    insert into DBs/teams.sqlite, and assign the creating user in DBs/users.sqlite.
+    Returns the 6-digit team_id (code) shown to the user.
+    """
+    team_code = await generate_unique_team_code()
+    # simple random key for future use
+    team_key = os.urandom(9).hex()  # 18 hex chars
+
+    # 1) Create team (teams.sqlite)
+    async with aiosqlite.connect(DB_PATH_TEAMS) as tdb:
+        await tdb.execute(
+            "INSERT INTO teams (team_id, team_key) VALUES (?, ?);",
+            (team_code, team_key)
+        )
+        await tdb.commit()
+        # fetch internal PK id for FK in users table
+        async with tdb.execute("SELECT id FROM teams WHERE team_id = ?;", (team_code,)) as cur:
+            row = await cur.fetchone()
+            if not row:
+                raise RuntimeError("Team creation failed unexpectedly.")
+            team_row_id = row[0]
+
+    # 2) Assign user (users.sqlite) -> users.team_id stores teams.id (FK to teams.id)
+    async with aiosqlite.connect(DB_PATH_USERS) as udb:
+        await ensure_user(udb, tg_id)
+        await udb.execute(
+            "UPDATE users SET team_id = ? WHERE telegram_id = ?;",
+            (team_row_id, tg_id)
+        )
+        await udb.commit()
+
+    return team_code
+
+async def find_team_row_id_by_code(team_code_text: str) -> int | None:
+    """Return teams.id if a team with the given 6-digit code exists, else None."""
+    if not TEAM_CODE_RE.match(team_code_text):
+        return None
+    code = int(team_code_text)
+    async with aiosqlite.connect(DB_PATH_TEAMS) as tdb:
+        async with tdb.execute("SELECT id FROM teams WHERE team_id = ?;", (code,)) as cur:
+            row = await cur.fetchone()
+            return row[0] if row else None
+
+async def assign_user_to_team_row_id(tg_id: int, team_row_id: int) -> None:
+    async with aiosqlite.connect(DB_PATH_USERS) as udb:
+        await ensure_user(udb, tg_id)
+        await udb.execute(
+            "UPDATE users SET team_id = ? WHERE telegram_id = ?;",
+            (team_row_id, tg_id)
+        )
+        await udb.commit()
+
+
+
+
+
 @dp.message(CommandStart())
 async def on_start(message: types.Message, state: FSMContext):
     tg_id = message.from_user.id
@@ -244,59 +318,86 @@ async def on_back_clicked(message: types.Message):
     # Return to the main menu keyboard
     await message.answer("Back to menu.", reply_markup=main_menu_kb())
 
-# (Optional) For now, other team buttons do nothing special.
-# Prevent them from falling into your agent; gently nudge user to Back.
-@dp.message(F.text.in_({"Create Team", "Assign Team", "Find Team Events", "Find my Events"}))
-async def on_team_buttons_disabled(message: types.Message):
-    await message.answer("🚧 Not available yet. Tap ⬅️ Back to return to the menu.")
+
+@dp.message(F.text == "Create Team")
+async def on_create_team(message: types.Message, state: FSMContext):
+    tg_id = message.from_user.id
+    try:
+        team_code = await create_team_and_assign(tg_id)
+        await message.answer(
+            f"✅ Team created!\n\n"
+            f"Your team code is: **{team_code}**\n"
+            f"Share this 6-digit code with your friends so they can join.\n\n"
+            f"You have been assigned to this team.",
+            reply_markup=team_root_kb(),
+            parse_mode="Markdown"
+        )
+        await state.clear()
+    except Exception as e:
+        log.exception("Create team failed: %s", e)
+        await message.answer(
+            "Sorry, something went wrong while creating the team. Please try again.",
+            reply_markup=team_root_kb()
+        )
+
+@dp.message(F.text == "Assign Team")
+async def on_assign_team(message: types.Message, state: FSMContext):
+    # Ask user for code and switch state
+    await state.set_state(TeamStates.WAITING_TEAM_CODE)
+    await message.answer(
+        "Please send the 6-digit team ID you received (e.g., 123456).\n"
+        "Send only the number.",
+        reply_markup=types.ReplyKeyboardRemove()
+    )
+
+@dp.message(TeamStates.WAITING_TEAM_CODE)
+async def on_assign_team_code_input(message: types.Message, state: FSMContext):
+    tg_id = message.from_user.id
+    code_text = (message.text or "").strip()
+
+    # Validate format first
+    if not TEAM_CODE_RE.match(code_text):
+        await state.clear()
+        await message.answer(
+            "❌ The team ID format is incorrect. It must be exactly 6 digits.\n\n"
+            "Please tap **Assign Team** and try again.",
+            reply_markup=team_root_kb(),
+            parse_mode="Markdown"
+        )
+        return
+
+    # Check existence
+    team_row_id = await find_team_row_id_by_code(code_text)
+    if team_row_id is None:
+        await state.clear()
+        await message.answer(
+            "❌ This team ID does not exist.\n\n"
+            "Please tap **Assign Team** and try again.",
+            reply_markup=team_root_kb(),
+            parse_mode="Markdown"
+        )
+        return
+
+    # Assign
+    try:
+        await assign_user_to_team_row_id(tg_id, team_row_id)
+        await state.clear()
+        await message.answer(
+            "✅ You have been assigned to the team.",
+            reply_markup=team_root_kb()
+        )
+    except Exception as e:
+        log.exception("Assign team failed: %s", e)
+        await state.clear()
+        await message.answer(
+            "Sorry, something went wrong while assigning you to the team. Please try again.",
+            reply_markup=team_root_kb()
+        )
 
 
 
-# @dp.message(PrefStates.WAITING_PREFERENCES)
-# async def receive_preferences(message: types.Message, state: FSMContext):
-#     tg_id = message.from_user.id
-#     prefs = message.text.strip() if message.text else ""
-
-#     if not prefs:
-#         await message.answer("Please send some text for your preferences 🙂")
-#         return
-
-#     async with aiosqlite.connect(DB_PATH_USERS) as conn:
-#         # 🔍 Check if user already has preferences
-#         async with conn.execute(
-#             "SELECT preferences FROM users WHERE telegram_id = ?;",
-#             (tg_id,)
-#         ) as cur:
-#             row = await cur.fetchone()
-
-#         if row and row[0]:
-#             old_prefs = row[0]
-#             await message.answer(
-#                 f"You already have saved preferences:\n\n“{old_prefs}”\n\n"
-#                 "Do you want to overwrite them? Send 'yes' to confirm or type new ones to replace."
-#             )
-#             # if you prefer, you could require explicit confirmation here
-#             # but if user sends new prefs directly, we can overwrite automatically below
-
-#         # 💾 Update or insert new preferences
-#         await conn.execute(
-#             "UPDATE users SET preferences = ? WHERE telegram_id = ?;",
-#             (prefs, tg_id)
-#         )
-#         await conn.commit()
-
-#     await state.clear()
-#     await message.answer(
-#         f"✅ Preferences saved:\n\n“{prefs}”"
-#     )
 
 
-# ------------- FREE-TEXT → AGENT FALLBACK -------------
-# Any user message that is NOT a callback (button) and NOT in the preferences state
-# will land here and be forwarded to your agent.
-
-# If your 'agent' is defined in another module, import it above:
-# from my_agent_module import agent
 
 @dp.message(F.text)
 async def on_free_text(message: types.Message, state: FSMContext):
