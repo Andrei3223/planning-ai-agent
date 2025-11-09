@@ -601,7 +601,7 @@ async def broadcast_team_events(bot: Bot, result: Dict, requesting_user_id: int)
                 event_count += 1
                 message += f"🎪 **{event['event_title']}**\n"
                 if event.get('description'):
-                    desc = event['description'][:150] + "..." if len(event['description']) > 150 else event['description']
+                    desc = event['description'].split('URL:')[0]  # first line only
                     message += f"   {desc}\n"
                 if event.get('source_url'):
                     message += f"   🔗 {event['source_url']}\n"
