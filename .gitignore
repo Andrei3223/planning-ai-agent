@@ -3,3 +3,22 @@ test.ipynb
 .vscode
 .env
 venv
+*.sqlite
+__pycache__/
+*.pyc
+.DS_Store
+logs/
+src/telegram_bot/logs/
+# Ignore old database file
+old_database.sqlite
+src/telegram_bot/old_database.sqlite
+# Ignore temporary files
+*.tmp
+*.log
+# Ignore IDE specific files
+.idea/
+*.iml
+# Ignore system files
+Thumbs.db
+Desktop.ini
+.venv
