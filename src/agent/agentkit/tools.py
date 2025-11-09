@@ -9,11 +9,15 @@ from langchain.tools import tool
 from pydantic import BaseModel
 import os
 
-# Database paths from environment
-DB_PATH_EVENTS = os.getenv("DB_PATH_EVENTS", "events.sqlite")
-DB_PATH_BUSYHOURS = os.getenv("DB_PATH_BUSYHOURS", "busyhours.sqlite")
-DB_PATH_USERS = os.getenv("DB_PATH_USERS", "users.sqlite")
+# custom imports 
+from .model import llm
+from .get_nearest import get_nearest_events
 
+# Database paths from environment
+DB_PATH_EVENTS = "DBs/RAG"
+DB_PATH_BUSYHOURS = "DBs/busyhours.sqlite"
+DB_PATH_USERS = "DBs/users.sqlite"
+DB_PATH_TEAMS = "DBs/teams.sqlite"
 
 
 class Slot(BaseModel):
@@ -120,7 +124,6 @@ async def find_common_availability(conn: aiosqlite.Connection, telegram_ids: Lis
 
 
 
-
 @tool
 async def update_user_profile_db(
     telegram_id: int,
@@ -149,8 +152,8 @@ async def update_user_profile_db(
         now = datetime.utcnow().isoformat()
         await conn.execute(
             """
-            INSERT OR IGNORE INTO users (telegram_id, preferences, created_at)
-            VALUES (?, '', ?)
+            INSERT OR IGNORE INTO users (telegram_id, preferences)
+            VALUES (?, '')
             """,
             (telegram_id, now),
         )
@@ -193,13 +196,7 @@ async def get_personal_event_suggestions_db(
 ) -> Dict:
     """
     Suggest events for a single user based on their preferences and availability.
-    Uses `users`, `events`, and `busy_hours` tables.
-
-    Returns:
-        {
-            "telegram_id": telegram_id,
-            "events": [ {event_dict}, ... ]
-        }
+    Integrates SQLite for user info + busy hours, and Chroma vector search for events.
     """
     async with aiosqlite.connect(DB_PATH_USERS) as conn:
         async with conn.execute("SELECT preferences FROM users WHERE telegram_id = ?", (telegram_id,)) as cur:
@@ -211,9 +208,9 @@ async def get_personal_event_suggestions_db(
                 except Exception:
                     prefs = set(row[0].split(","))
 
-        async with aiosqlite.connect(DB_PATH_BUSYHOURS) as conn:
-            async with conn.execute("SELECT start, duration FROM busy_hours WHERE telegram_id = ?", (telegram_id,)) as cur:
-                rows = await cur.fetchall()
+    async with aiosqlite.connect(DB_PATH_BUSYHOURS) as conn:
+        async with conn.execute("SELECT start, duration FROM busy_hours WHERE user_id = ?", (telegram_id,)) as cur:
+            rows = await cur.fetchall()
 
         # Build a dict: {date: [(start, end)]}
         availability: Dict[str, List[List[str]]] = {}
@@ -226,48 +223,29 @@ async def get_personal_event_suggestions_db(
             t_end = duration
             availability.setdefault(date, []).append([t_start, t_end])
 
-        async with aiosqlite.connect(DB_PATH_EVENTS) as conn:
-            async with conn.execute("SELECT id, name, date, tags, start, duration FROM events") as cur:
-                all_events = await cur.fetchall()
+    # Build busy intervals per date
+    busy_by_date: Dict[str, List[List[str]]] = {}
+    for start, duration in rows:
+        if " " in start:
+            date, t_start = start.split(" ", 1)
+        else:
+            date, t_start = "unknown", start
+        t_end = duration
+        busy_by_date.setdefault(date, []).append([t_start, t_end])
 
-        # Normalize events into dicts
-        events: List[Dict] = []
-        for eid, name, date, tags, start, duration in all_events:
-            tag_list = []
-            if tags:
-                tag_list = json.loads(tags) if tags.startswith("[") else [t.strip().lower() for t in tags.split(",")]
-            events.append(
-                {
-                    "id": eid,
-                    "name": name,
-                    "date": date,
-                    "tags": tag_list,
-                    "start": start,
-                    "end": duration,  # keep naming consistent (duration acts as end time)
-                }
-            )
+    preferences_str = ", ".join(sorted(prefs)) if prefs else "general events"
+    query = f"Find upcoming {preferences_str} events."
 
-        matches: List[Dict] = []
-        for e in events:
-            # Filter by preference intersection
-            if prefs and not prefs.intersection(e["tags"]):
-                continue
+    rag_result = get_nearest_events(llm, query, persist_directory=DB_PATH_EVENTS)
 
-            # Date filter
-            day = e["date"]
-            if day not in availability:
-                continue
-
-            # Time overlap
-            for s, end_ in availability[day]:
-                if not (e["end"] <= s or end_ <= e["start"]):
-                    matches.append(e)
-                    break
-
-        return {
-            "telegram_id": telegram_id,
-            "events": matches,
-        }
+    # Build return structure
+    return {
+        "telegram_id": telegram_id,
+        "preferences": sorted(prefs),
+        "busy_days": sorted(busy_by_date.keys()),
+        "suggestions_query": query,
+        "rag_result": rag_result,  # text result from the vector retriever
+    }
 
 
 
@@ -276,15 +254,14 @@ async def get_joint_event_suggestions_db(
     telegram_ids: List[int],
 ) -> Dict:
     """
-    Suggest events suitable for ALL given users (async + DB-based).
+    Suggest events suitable for ALL given users (async + RAG-based).
+    Combines preferences from SQLite and uses vector search via Chroma.
 
     Logic:
       1. Load all users' preferences.
       2. Compute shared preferences (intersection).
-      3. Compute shared availability using find_common_availability().
-      4. Load events from DB.
-      5. Return only those events that match shared preferences AND overlap
-         with shared availability windows.
+      3. Compute shared free days using find_common_availability().
+      4. Retrieve matching events from Chroma RAG store.
     """
     if len(telegram_ids) < 2:
         return {"error": "Provide at least two telegram_ids to get joint suggestions."}
@@ -302,52 +279,30 @@ async def get_joint_event_suggestions_db(
                         prefs = set(row[0].split(","))
                 prefs_sets.append(prefs)
 
-        shared_prefs = set.intersection(*prefs_sets) if all(prefs_sets) else set()
+    shared_prefs = set.intersection(*prefs_sets) if all(prefs_sets) else set()
 
+
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
         common_av = await find_common_availability(conn, telegram_ids)
 
-        async with aiosqlite.connect(DB_PATH_EVENTS) as conn:
-            async with conn.execute("SELECT id, name, date, tags, start, duration FROM events") as cur:
-                rows = await cur.fetchall()
+    prefs_text = ", ".join(sorted(shared_prefs)) if shared_prefs else "general interests"
+    query = f"Find upcoming events related to {prefs_text} that fit all users' shared free time."
 
-        events = []
-        for eid, name, date, tags, start, duration in rows:
-            tag_list = []
-            if tags:
-                tag_list = json.loads(tags) if tags.startswith("[") else [t.strip().lower() for t in tags.split(",")]
-            events.append(
-                {
-                    "id": eid,
-                    "name": name,
-                    "date": date,
-                    "tags": tag_list,
-                    "start": start,
-                    "end": duration,  # using duration as end time
-                }
-            )
+    if common_av:
+        earliest_day = sorted(common_av.keys())[0]
+        query += f" Preferably after {earliest_day}."
 
-        matches: List[Dict] = []
-        for e in events:
-            # Filter by shared preferences (if any)
-            if shared_prefs and not shared_prefs.intersection(e["tags"]):
-                continue
+    # Retrieve events from Chroma RAG
+    rag_result = get_nearest_events(llm, query, persist_directory=DB_PATH_EVENTS)
 
-            day = e["date"]
-            if day not in common_av:
-                continue
-
-            # Check if any shared availability window overlaps event time
-            for s, end_ in common_av[day]:
-                if not (e["end"] <= s or end_ <= e["start"]):
-                    matches.append(e)
-                    break
-
-        return {
-            "telegram_ids": telegram_ids,
-            "shared_preferences": sorted(shared_prefs),
-            "shared_availability_days": sorted(common_av.keys()),
-            "events": matches,
-        }
+    # Return structured output
+    return {
+        "telegram_ids": telegram_ids,
+        "shared_preferences": sorted(shared_prefs),
+        "shared_availability_days": sorted(common_av.keys()),
+        "query_used": query,
+        "rag_result": rag_result,  # textual recommendations from vector DB
+    }
 
 
 @tool
@@ -404,7 +359,106 @@ async def update_busy_hours(
 
         return summary
 
+
+@tool
+async def get_team_members_db(team_id: int) -> Dict:
+    """
+    Retrieve all team members for a given team based on the new schema:
+      - users(team_id) references teams(id)
+      - teams(id, team_id, team_key)
+
+    Args:
+        team_id (int): The team_id value from the 'teams' table (NOT the internal PK id).
+
+    Returns:
+        {
+            "team_id": int,
+            "members": [ {"telegram_id": int}, ... ],
+            "count": int
+        }
+    """
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
+        # First, get the internal 'id' of the team based on its public team_id
+        async with conn.execute(
+            "SELECT id FROM teams WHERE team_id = ?", (team_id,)
+        ) as cur:
+            team_row = await cur.fetchone()
+
+        if not team_row:
+            return {"error": f"No team found with team_id={team_id}"}
+
+        internal_team_pk = team_row[0]
+
+        # Get all users belonging to that team
+        async with conn.execute(
+            "SELECT telegram_id FROM users WHERE team_id = ?", (internal_team_pk,)
+        ) as cur:
+            rows = await cur.fetchall()
+
+    members = [r[0] for r in rows]
+    return {
+        "team_id": team_id,
+        "members": [{"telegram_id": t} for t in members],
+        "count": len(members),
+    }
+
+
+@tool
+async def get_user_busy_hours_db(telegram_id: int) -> Dict:
+    """
+    Return all busy hours for a given user from `busy_hours.sqlite`.
+
+    Returns:
+        {
+            "telegram_id": int,
+            "busy_hours": [
+                {"start": "YYYY-MM-DD HH:MM", "end": "HH:MM"},
+                ...
+            ]
+        }
+    """
+    async with aiosqlite.connect(DB_PATH_BUSYHOURS) as conn:
+        async with conn.execute(
+            "SELECT start, duration FROM busy_hours WHERE telegram_id = ? ORDER BY start",
+            (telegram_id,),
+        ) as cur:
+            rows = await cur.fetchall()
+
+    busy_hours = [{"start": s, "end": d} for s, d in rows]
+    return {"telegram_id": telegram_id, "busy_hours_count": len(busy_hours), "busy_hours": busy_hours}
+
+
+@tool
+async def get_user_preferences_db(telegram_id: int) -> Dict:
+    """
+    Retrieve a user's stored preferences from `users.sqlite`.
+
+    Returns:
+        {
+            "telegram_id": int,
+            "preferences": [str, ...]
+        }
+    """
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
+        async with conn.execute(
+            "SELECT preferences FROM users WHERE telegram_id = ?", (telegram_id,)
+        ) as cur:
+            row = await cur.fetchone()
+
+    prefs = []
+    if row and row[0]:
+        try:
+            prefs = json.loads(row[0]) if row[0].startswith("[") else [p.strip() for p in row[0].split(",") if p.strip()]
+        except Exception:
+            prefs = [p.strip() for p in row[0].split(",") if p.strip()]
+
+    return {"telegram_id": telegram_id, "preferences": sorted(prefs)}
+
+
 TOOLS = [
+    get_team_members_db,
+    get_user_busy_hours_db,
+    get_user_preferences_db,
     update_user_profile_db,
     update_busy_hours,
     get_personal_event_suggestions_db,

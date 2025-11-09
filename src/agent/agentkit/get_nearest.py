@@ -8,10 +8,11 @@ from langchain_openai import ChatOpenAI
 
 
 
+
 load_dotenv(override=True)
 
 
-def load_chroma_retriever(persist_directory: str = "./data/chroma_store"):
+def load_chroma_retriever(persist_directory: str = "./DBs/RAG"):
     """
     Loads a previously persisted Chroma vector store and returns a retriever.
     """
@@ -31,19 +32,10 @@ def load_chroma_retriever(persist_directory: str = "./data/chroma_store"):
         search_kwargs={"k": 5}
     )
 
-    print("Retriever loaded from Chroma DB.")
     return retriever
 
-def get_nearest_events(query: str):
-    retriever = load_chroma_retriever()
-
-    llm = ChatOpenAI(
-        model_name=os.getenv("MODEL", "gpt-5-nano"),
-        # base_url=os.getenv('API_URL'),
-        api_key=os.getenv('OPENAI_API_KEY_KIRILL'),
-        temperature=0.0,
-        # api_key=os.getenv('OPENAI_API_KEY')
-    )
+def get_nearest_events(llm, query: str, persist_directory: str):
+    retriever = load_chroma_retriever(persist_directory=persist_directory)
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
         retriever=retriever,
@@ -56,7 +48,3 @@ def get_nearest_events(query: str):
     return result
 
 
-if __name__ == "__main__":
-    query = "Tell me about the most recent events related to AI."
-    response = get_nearest_events(query)
-    print(response)

@@ -11,6 +11,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from langchain_core.messages import HumanMessage  # for agent.invoke payloads
 from agent.agentkit.graph import agent
+from rag.create_chromium_db import create_chromium_db
 from dotenv import load_dotenv
 
 # OpenAI (async)
@@ -18,19 +19,19 @@ from openai import AsyncOpenAI, APIConnectionError, APIError, RateLimitError
 
 # ------------- ENV -------------
 load_dotenv()
+# BOT
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-print(TELEGRAM_BOT_TOKEN)
+
+# DBS
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+DB_PATH_EVENTS = "DBs/RAG"
+DB_PATH_BUSYHOURS = "DBs/busyhours.sqlite"
+DB_PATH_USERS = "DBs/users.sqlite"
+DB_PATH_TEAMS = "DBs/teams.sqlite"
 
-
-DB_PATH_EVENTS = os.getenv("DB_PATH_EVENTS", "events.sqlite")
-DB_PATH_BUSYHOURS = os.getenv("DB_PATH_BUSYHOURS", "busyhours.sqlite")
-DB_PATH_USERS = os.getenv("DB_PATH_USERS", "users.sqlite")
-DB_PATH_TEAMS = os.getenv("DB_PATH_TEAMS", "teams.sqlite")
-
-
-
-OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-o4-mini")
+# EMBEDING
+EMBEDDING_MODEL = "text-embedding-3-small"
+OPENAI_MODEL = "gpt-o4-mini"
 
 if not TELEGRAM_BOT_TOKEN:
     raise RuntimeError("Set TELEGRAM_BOT_TOKEN in .env")
@@ -104,17 +105,6 @@ CREATE TABLE IF NOT EXISTS teams (
 );
 """
 
-CREATE_EVENTS_SQL = """
-CREATE TABLE IF NOT EXISTS events (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    date TEXT NOT NULL,
-    tags TEXT,
-    start TEXT NOT NULL,
-    duration TEXT NOT NULL
-);
-"""
-
 CREATE_BUSYHOURS_SQL = """
 CREATE TABLE IF NOT EXISTS busy_hours (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -144,15 +134,13 @@ async def init_db():
     async with aiosqlite.connect(DB_PATH_USERS) as db:
         await db.execute(CREATE_USERS_SQL)
         await db.commit()
-    
-    async with aiosqlite.connect(DB_PATH_EVENTS) as db:
-        await db.execute(CREATE_EVENTS_SQL)
-        await db.commit()
 
     async with aiosqlite.connect(DB_PATH_BUSYHOURS) as db:
         await db.execute(CREATE_BUSYHOURS_SQL)
         await db.commit()
 # ------------- DB HELPERS -------------
+
+    create_chromium_db(persist_directory=DB_PATH_EVENTS)
 
 async def ensure_user(conn: aiosqlite.Connection, tg_id: int):
     await conn.execute(INSERT_USER_SQL, (tg_id,))

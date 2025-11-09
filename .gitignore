@@ -22,3 +22,5 @@ src/telegram_bot/old_database.sqlite
 Thumbs.db
 Desktop.ini
 .venv
+src/rag/data
+DBs
