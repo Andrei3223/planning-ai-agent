@@ -1,0 +1,456 @@
+{'url': 'https://www.eventbrite.nl/e/stomp-line-dancing-party-huis-van-iemand-anders-tickets-1909128497729', 'title': 'STOMP - Line Dancing Party @ Huis Van Iemand Anders', 'date': 'Wed, Nov 19, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/haagse-fietslichtjesparade-tickets-1695673086849', 'title': 'Haagse Fietslichtjesparade', 'date': 'Thu, Dec 11, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/hip-kinderworkshop-papier-marmeren-tickets-1730165604899', 'title': 'HIP kinderworkshop: papier marmeren', 'date': 'Wed, Dec 3, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/exclusieve-avond-voor-de-reisprof-met-style-in-travel-tickets-1640724554309', 'title': 'Exclusieve avond voor De Reisprof met Style in Travel', 'date': 'Wed, Nov 19, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/arabic-courses-in-amsterdam-start-the-week-of-10-november-tickets-1933690964729', 'title': 'Arabic courses in Amsterdam | start the week of 10 November', 'date': 'Monday at 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/internationals-get-together-on-the-new-terrace-of-meet-berlage-tickets-1933925395919', 'title': 'Internationals get together on the new terrace of MEET BERLAGE', 'date': 'Sat, Nov 29, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/cooling-down-gewoon-doen-in-eindhoven-over-gevolgen-klimaatopwarming-tickets-1764207876249', 'title': 'COOLING DOWN. Gewoon doen. In Eindhoven over gevolgen klimaatopwarming', 'date': 'Mon, Nov 10, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/ruimte-en-energie-anders-denken-inspiratie-uit-het-oosten-van-nederland-tickets-1954294570669', 'title': 'Ruimte en energie anders denken - inspiratie uit het oosten van Nederland', 'date': 'Thu, Dec 4, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-mandala-tekenen-kersteditie-tickets-1964090320019', 'title': 'Workshop Mandala tekenen (kersteditie)', 'date': 'Thu, Dec 18, 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/ai-builders-amsterdam-pizza-demos-networking-tickets-1095530253479', 'title': 'AI Builders Amsterdam :: Pizza + Demos + Networking', 'date': 'Fri, Nov 21, 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/dutch-courses-start-the-week-of-10-november-tickets-1933650293079', 'title': 'Dutch courses start the week of 10 November', 'date': 'Monday at 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/liberating-structures-meetup-1-2-4-all-tickets-1793001017309', 'title': 'Liberating Structures Meetup: 1-2-4-ALL', 'date': 'Fri, Nov 21, 1:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/dse-it-services-ontdek-hoe-microsoft-365-copilot-en-security-samenkomen-tickets-1956260661299', 'title': 'DSE-IT Services | Ontdek hoe Microsoft 365, Copilot en Security samenkomen', 'date': 'Thu, Feb 5, 3:00 PM'}
+{'url': 'https://www.eventbrite.com/e/open-day-learn-dutch-the-fun-way-tickets-1906624979639', 'title': 'Open Day – Learn Dutch the fun way', 'date': 'Tue, Dec 2, 6:45 PM'}
+{'url': 'https://www.eventbrite.nl/e/poetry-playground-draw-rhyme-it-out-tickets-1960110275599', 'title': 'Poetry Playground: Draw & Rhyme It Out!', 'date': 'Wednesday at 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/holy-spirit-night-hilversum-schud-de-plaatsen-tickets-1870585143519', 'title': 'Holy Spirit night Hilversum - Schud de Plaatsen', 'date': 'Thu, Nov 20, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/impact-werkplaats-amsterdam-tickets-1964524340185', 'title': 'Impact werkplaats | Amsterdam', 'date': 'Friday at 1:00 PM'}
+{'url': 'https://www.eventbrite.com/e/lapyx-4-prototype-reveal-event-tickets-1819951196019', 'title': 'Lapyx 4 Prototype Reveal Event', 'date': 'Wednesday at 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/stadsberaad-rotterdam-tickets-1682659282209', 'title': 'Stadsberaad Rotterdam', 'date': 'Thu, Dec 11, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/als-ik-hier-druk-heb-ik-daar-pijn-tickets-1941385388959', 'title': '‘Als ik hier druk, heb ik daar pijn’', 'date': 'Thu, Nov 20, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/lunch-learn-3-zakelijk-tekenen-tickets-1395979104079', 'title': 'Lunch & Learn #3: Zakelijk Tekenen', 'date': 'Mon, Nov 24, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/kerstontbijt-tickets-1936737416749', 'title': 'Kerstontbijt', 'date': 'Sat, Dec 20, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/young-adults-meet-up-tickets-1781468342769', 'title': 'Young Adults Meet-up', 'date': 'Mon, Nov 10, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/female-tech-heroes-monday-meetup-tickets-1295637740359', 'title': 'Fe+male Tech Heroes Monday Meetup', 'date': 'Monday at 3:30 PM'}
+{'url': 'https://www.eventbrite.com/e/high-tea-mujer-disruptiva-tickets-1892967880889', 'title': 'HIGH TEA: MUJER DISRUPTIVA', 'date': 'Sat, Nov 15, 11:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/srefidensi-dey-suriname-50-jaar-onafhankelijk-tickets-1818985668099', 'title': 'Srefidensi Dey: Suriname 50 jaar onafhankelijk', 'date': 'Tue, Nov 25, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/uitnodiging-fungi-anarchistische-ontwerpers-tickets-1828097682379', 'title': 'UITNODIGING: FUNGI. Anarchistische ontwerpers', 'date': 'Thu, Nov 20, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/winter-party-tickets-1395988562369', 'title': 'Winter party', 'date': 'Thu, Dec 11, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/liberating-structures-meetup-nine-whys-tickets-1923617815669', 'title': 'Liberating Structures Meetup: Nine Whys', 'date': 'Fri, Feb 6, 1:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/internationals-get-together-drinks-and-party-marina-i-dock-tickets-1925050059549', 'title': 'Internationals get together: Drinks and party @Marina I-Dock', 'date': 'Sat, Nov 22, 8:00 PM'}
+{'url': 'https://www.eventbrite.com/e/release-party-lovely-4-tickets-1964373165016', 'title': 'RELEASE PARTY LOVELY #4', 'date': 'Fri, Nov 28, 9:00 PM'}
+{'url': 'https://www.eventbrite.com/e/bruiloft-mn-tickets-1722316096809', 'title': 'Bruiloft M&N', 'date': 'Sat, Dec 27, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/kijk-hij-komt-tickets-1704204404249', 'title': 'Kijk Hij Komt', 'date': 'Sat, Dec 6, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/club-diaspora-tickets-1734923535999', 'title': 'Club Diaspora', 'date': 'Thu, Nov 20, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/mannenontbijt-2025-tickets-1939169952529', 'title': 'Mannenontbijt 2025', 'date': 'Sat, Dec 13, 8:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/hollands-hitpodium-tv-opnamen-tickets-1696586699489', 'title': 'HOLLANDS HITPODIUM TV-OPNAMEN', 'date': 'Sun, Nov 16, 2:00 PM'}
+{'url': 'https://www.eventbrite.com/e/flying-solo-molen-de-roos-tour-with-experts-tickets-1689482731329', 'title': 'Flying Solo:  Molen de Roos tour with experts', 'date': 'Wednesday at 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/hip-workshop-naaldbinden-tickets-1819113149399', 'title': 'HIP Workshop: Naaldbinden', 'date': 'Tue, Nov 25, 10:30 AM'}
+{'url': 'https://www.eventbrite.com/e/1940037788249', 'title': 'МУЗ ЛОТО В АМСТЕРДАМЕ', 'date': 'Thu, Nov 27, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/lezing-jean-pierre-geelen-en-saskia-van-loenen-tickets-1954024623249', 'title': 'Lezing Jean-Pierre Geelen en Saskia van Loenen', 'date': 'Fri, Jan 30, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/lead-to-project-to-invoice-tickets-1829808308909', 'title': 'lead to project to invoice', 'date': 'Tue, Nov 18, 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/het-kennisevenement-voor-informatieprofessionals-tickets-1849008136109', 'title': 'Het kennisevenement voor informatieprofessionals', 'date': 'Tue, Nov 25, 12:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/hoe-genees-je-de-zieken-schud-de-plaatsen-tickets-1864427505859', 'title': 'Hoe genees je de zieken?  - Schud de Plaatsen', 'date': 'Thu, Nov 27, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/an-afternoon-with-colleen-geske-stuff-dutch-people-hate-abc-the-hague-tickets-1913770963469', 'title': 'An afternoon with Colleen Geske : Stuff Dutch People Hate @ ABC The Hague', 'date': 'Sat, Nov 29, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/praise-avond-de-bovenzaal-tickets-1436256244089', 'title': 'Praise avond - De Bovenzaal', 'date': 'Sat, Feb 28, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/free-drag-show-in-amsterdam-slay-the-night-away-with-shae-gday-tickets-1559462156289', 'title': "Free Drag Show in Amsterdam | Slay The Night Away! with Shae G'Day", 'date': 'Sat, Dec 6, 10:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-building-people-power-tickets-1964370141974', 'title': 'Workshop Building People Power', 'date': 'Tue, Dec 2, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/the-brainfreeze-club-26-11-the-sprint-by-paralympic-kimberley-alkemade-tickets-1351708639929', 'title': 'The Brainfreeze Club, 26-11 - The Sprint by paralympic Kimberley Alkemade', 'date': 'Wed, Nov 26, 7:15 PM'}
+{'url': 'https://www.eventbrite.nl/e/the-monday-mic-tickets-1913124810809', 'title': 'THE MONDAY MIC', 'date': 'Monday at 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/de-storm-2009-tickets-1964237824208', 'title': 'De Storm (2009)', 'date': 'Fri, Nov 14, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/tilburg-bitcoin-meetup-tickets-1774391746479', 'title': 'Tilburg Bitcoin Meetup', 'date': 'Wed, Feb 4, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/warehouse-sale-weltevree-tickets-1959384053449', 'title': 'Warehouse Sale Weltevree', 'date': 'Sat, Dec 13, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/rewire-open-sounds-tickets-1077633212949', 'title': 'Rewire: Open Sounds', 'date': 'Fri, Nov 14, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/liefde-in-de-praktijk-tickets-1837735509379', 'title': 'Liefde in de Praktijk', 'date': 'Tuesday at 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/data-transformers-awards-2025-show-tickets-1785992183699', 'title': 'Data Transformers Awards 2025 Show', 'date': 'Thursday at 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/tilburg-aan-zet-van-herkenning-naar-herstel-tickets-1904252312929', 'title': 'Tilburg aan Zet: van (H)erkenning naar Herstel', 'date': 'Thursday at 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/shieldnxg-2025-iam-cybersecurity-seminar-tickets-1780655651989', 'title': 'ShieldNXG 2025: IAM & Cybersecurity Seminar', 'date': 'Wed, Nov 19, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/de-wilde-noordzee-filmvertoning-tickets-1819562794299', 'title': 'De Wilde Noordzee filmvertoning', 'date': 'Friday at 3:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/wandeling-langs-het-postkoloniale-verleden-van-tilb-tickets-1960734231869', 'title': 'Wandeling langs het (post)koloniale verleden van Tilb', 'date': 'Thu, Nov 27, 1:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/lezing-titanic-fashion-the-last-dance-tickets-1785892355109', 'title': 'Lezing: Titanic & Fashion - The Last Dance', 'date': 'Tuesday at 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/amsterdam-grand-opening-proost-tickets-1962747410340', 'title': 'Amsterdam Grand Opening: Proost!', 'date': 'Sat, Nov 22, 6:00 PM'}
+{'url': 'https://www.eventbrite.com/e/beginners-open-mornings-junior-school-leidschenveen-tickets-1832937709029', 'title': 'Beginners Open Mornings | Junior School Leidschenveen', 'date': 'Tue, Nov 18, 8:45 AM'}
+{'url': 'https://www.eventbrite.nl/e/queer-notes-x-faluma-sense-of-belonging-tickets-1900458204649', 'title': 'Queer Notes x Faluma: Sense of belonging', 'date': 'Mon, Nov 10, 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/founder-sessions-amsterdam-19-november-2025-tickets-1478256698579', 'title': 'Founder Sessions Amsterdam / 19 November 2025', 'date': 'Wed, Nov 19, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/revival-dienst-met-ashvien-jitan-en-abraham-laisina-tickets-1922369010459', 'title': 'Revival dienst  met Ashvien Jitan en Abraham Laisina', 'date': 'Sat, Nov 15, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/sranantongo-en-strips-met-stimofo-tickets-1960097246629', 'title': 'Sranantongo en strips met Stimofo', 'date': 'Wed, Nov 19, 2:00 PM'}
+{'url': 'https://www.eventbrite.com/e/artificial-intelligence-ai-workshop-tickets-1917577559099', 'title': 'Artificial Intelligence (AI) workshop', 'date': 'Wed, Nov 19, 4:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/de-ai-breakout-room-tickets-1776967169639', 'title': 'De AI breakout room', 'date': 'Tue, Jan 20, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/ai-in-actie-tickets-1845920611239', 'title': 'AI in Actie', 'date': 'Monday at 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/free-self-protection-mindset-workshop-tickets-1964980879707', 'title': 'Free Self-Protection & Mindset Workshop', 'date': 'Sun, Nov 16, 12:00 PM'}
+{'url': 'https://www.eventbrite.com/e/vloeibaar-goud-event-tickets-1851133121999', 'title': 'Vloeibaar Goud event', 'date': 'Sat, Dec 13, 2:30 PM'}
+{'url': 'https://www.eventbrite.com/e/verlaag-uw-kosten-groei-sneller-ontgrendel-de-europese-e-commerce-vanuit-tickets-1666760488489', 'title': 'Verlaag uw kosten, groei sneller: Ontgrendel de Europese e-commerce vanuit', 'date': 'Wed, Dec 3, 8:00 AM'}
+{'url': 'https://www.eventbrite.com/e/amsterdam-screening-of-film-against-war-tickets-1964166088645', 'title': 'AMSTERDAM SCREENING OF FILM AGAINST WAR', 'date': 'Sat, Nov 15, 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/internationals-get-together-sinterklaas-edition-at-leidseplein-tickets-1962512502725', 'title': 'Internationals get together: Sinterklaas edition at Leidseplein', 'date': 'Sat, Dec 6, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/businessclub-de-reisprof-aan-tafel-tijdens-het-reisgala-tickets-1598695434079', 'title': 'Businessclub De Reisprof – Aan tafel tijdens het Reisgala', 'date': 'Sat, Jan 31, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-teken-en-schildertechnieken-tickets-1839326969479', 'title': 'Workshop teken- en schildertechnieken', 'date': 'Sat, Nov 22, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/bevrijdingsdienst-nijkerk-schud-de-plaatsen-tickets-1771677066799', 'title': 'Bevrijdingsdienst Nijkerk - Schud de Plaatsen', 'date': 'Sat, Nov 29, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/kunstcafe-over-onderdrukking-en-verzet-tickets-1866269003829', 'title': 'Kunstcafé: over onderdrukking en verzet', 'date': 'Mon, Nov 10, 3:00 PM'}
+{'url': 'https://www.eventbrite.com/e/marathon-de-priere-tickets-1963190442461', 'title': 'Marathon de prière', 'date': 'Sat, Nov 29, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/special-leesbevordering-3-meer-dan-taal-tickets-1813723599109', 'title': 'Special leesbevordering #3: Meer dan taal', 'date': 'Mon, Nov 17, 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/one-movement-groningen-breng-jezus-naar-de-straat-tickets-1687788263129', 'title': 'One Movement Groningen – Breng Jezus naar de straat', 'date': 'Sat, Nov 29, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/filmvertoning-de-wilde-noordzee-tickets-1733864929679', 'title': 'Filmvertoning: De wilde Noordzee', 'date': 'Wednesday at 6:30 PM'}
+{'url': 'https://www.eventbrite.com/e/vssr-roadshow-utrecht-12-februari-2026-tickets-1817876279889', 'title': 'VSSR roadshow - Utrecht - 12 februari  2026', 'date': 'Thu, Feb 12, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/the-tiktok-playbook-tickets-1738155352449', 'title': 'The TikTok Playbook', 'date': 'Thu, Nov 20, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/yoga-vasistha-tickets-1963618277126', 'title': 'Yoga Vasistha', 'date': 'Wednesday at 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/spritecloud-x-browserstack-qa-meet-up-november-26th-2025-tickets-1913348680409', 'title': 'spriteCloud x BrowserStack QA Meet Up - November 26th, 2025', 'date': 'Wed, Nov 26, 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/write-2-speak-tickets-1764262248879', 'title': 'Write 2 Speak', 'date': 'Fri, Nov 14, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/peuterpret-plus-met-aymar-torres-tickets-1802448996469', 'title': 'PeuterPret Plus met Aymar Torres', 'date': 'Wednesday at 10:15 AM'}
+{'url': 'https://www.eventbrite.nl/e/interfacing-private-law-lecture-series-with-with-ernest-lim-tickets-1594487387699', 'title': 'Interfacing Private Law lecture series with with Ernest Lim', 'date': 'Mon, Nov 24, 3:30 PM'}
+{'url': 'https://www.eventbrite.com/e/let-your-light-sparkle-tickets-1955635290799', 'title': 'Let your light sparkle', 'date': 'Mon, Dec 1, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/committing-to-wind-discuss-with-experts-closing-reception-tickets-1745365237409', 'title': '‘Committing to Wind’ Discuss with Experts & Closing Reception', 'date': 'Mon, Dec 15, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/masterclass-langhe-region-door-jc-viens-tickets-1795926176539', 'title': 'Masterclass Langhe Region door JC Viens', 'date': 'Friday at 2:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/coderdojo-voor-het-eggie-2025-2-tickets-1889295817649', 'title': "Coderdojo voor het 'eggie' 2025-2", 'date': 'Mon, Dec 29, 1:00 PM'}
+{'url': 'https://www.eventbrite.com/e/beyond-business-as-usual-tickets-1819034734859', 'title': 'Beyond Business as Usual', 'date': 'Fri, Nov 28, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/holy-spirit-night-coevorden-schud-de-plaatsen-tickets-1850980766299', 'title': 'Holy Spirit night Coevorden - Schud de Plaatsen', 'date': 'Wed, Nov 26, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/middagsymposium-avg-ai-cookiecompliance-tickets-1933802387999', 'title': 'Middagsymposium: AVG, AI & Cookiecompliance', 'date': 'Tue, Nov 25, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/huisartsen-nascholing-even-polsen-wat-er-aan-de-hand-is-rozendaal-tickets-1764396640849', 'title': 'Huisartsen nascholing: Even polsen wat er aan de hand is (Rozendaal)', 'date': 'Tuesday at 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/verdiepingsavond-den-haag-tickets-1858249637689', 'title': 'Verdiepingsavond Den Haag', 'date': 'Tue, Dec 9, 6:00 PM'}
+{'url': 'https://www.eventbrite.com/e/a-slice-of-digital-first-2-tickets-1757545799799', 'title': 'A Slice Of: Digital First #2', 'date': 'Thu, Nov 20, 4:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/netwerkbijeenkomst-utrecht-tickets-1718917892689', 'title': 'Netwerkbijeenkomst Utrecht', 'date': 'Wednesday at 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/all-creatures-breathe-the-same-air-are-we-so-different-tickets-1953825166669', 'title': 'All creatures breathe the same air – are we so different?', 'date': 'Tue, Dec 9, 5:00 PM'}
+{'url': 'https://www.eventbrite.com/e/going-back-to-the-future-art-exhibition-by-novus-arte-x-studio-cantatore-tickets-1747855064549', 'title': 'Going Back to the Future – Art Exhibition by Novus Arte X Studio Cantatore', 'date': 'Mon, Nov 10, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/bijeenkomst-pandeigenaren-biz-reinkenstraat-tickets-1829256618789', 'title': 'Bijeenkomst pandeigenaren BIZ Reinkenstraat', 'date': 'Mon, Dec 1, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/kerst-knutselochtend-tickets-1913708486599', 'title': 'KERST: Knutselochtend!', 'date': 'Mon, Dec 15, 9:00 AM'}
+{'url': 'https://www.eventbrite.com/e/horizon-hub-brengt-jongeren-stichtingen-en-beleidsmakers-samen-tickets-1965585367747', 'title': 'Horizon Hub - brengt jongeren, stichtingen en beleidsmakers samen', 'date': 'Thu, Nov 20, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/praise-concert-a-festival-of-thanksgiving-tickets-1937401523109', 'title': 'Praise concert: A festival of thanksgiving.', 'date': 'Sat, Dec 6, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/sg-kiting-huddle-write-for-the-wind-tickets-1682970322539', 'title': 'SG Kiting Huddle: Write for the Wind', 'date': 'Thursday at 12:45 PM'}
+{'url': 'https://www.eventbrite.nl/e/operation-freedom-monster-tickets-1849013662639', 'title': 'Operation Freedom Monster', 'date': 'Sat, Nov 29, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/instaprondleiding-tickets-1728712047269', 'title': 'Instaprondleiding', 'date': 'Sun, Nov 16, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/what-it-takes-for-teams-to-thrive-a-deep-democracy-session-tickets-1963262240210', 'title': 'What it takes for teams to thrive: a deep democracy session', 'date': 'Fri, Nov 21, 6:00 PM'}
+{'url': 'https://www.eventbrite.com/e/deventer-expats-meetup-tickets-672982086537', 'title': 'Deventer Expats Meetup', 'date': 'Thu, Dec 4, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/harderwijker-nieuwjaarsduik-2025-tickets-1812137735749', 'title': 'Harderwijker Nieuwjaarsduik 2025', 'date': 'Sat, Jan 3, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/schrijftafel-voor-creatieven-werk-aan-je-socials-projectplan-en-begroting-registration-1687549258259', 'title': 'Schrijftafel voor creatieven: werk aan je socials, projectplan en begroting', 'date': 'Fri, Dec 12, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/ontwerpend-onderzoek-over-water-bij-cooperatieve-gebiedsontwikkeling-tickets-1851983415249', 'title': 'Ontwerpend onderzoek over water bij  coöperatieve gebiedsontwikkeling', 'date': 'Mon, Nov 24, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/ontdek-de-wereld-van-ai-tickets-1838768188149', 'title': 'Ontdek de wereld van AI', 'date': 'Friday at 2:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/mannenpraatsessie-twee-generaties-twee-werelden-een-verhaal-20-tickets-1810890585489', 'title': 'Mannenpraatsessie: Twee generaties, twee werelden, één verhaal 2.0', 'date': 'Wed, Nov 19, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/nice-here-with-donica-tickets-1895126697969', 'title': 'nice here, with #Donica', 'date': 'Thursday at 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/openingsavond-expositie-niets-zonder-ons-tickets-1756080667549', 'title': 'Openingsavond expositie: Niets zonder ons', 'date': 'Thu, Nov 20, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/aham-session-for-mindful-sustainable-living-tickets-1914211982569', 'title': 'AHAM Session For Mindful Sustainable Living', 'date': 'Friday at 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/ai4all-den-haag-circle-ai-for-good-tickets-1763994658509', 'title': 'AI4ALL Den Haag Circle - AI for Good', 'date': 'Tue, Nov 18, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/bijeenkomst-pandeigenaren-biz-keizerstraat-tickets-1829165867349', 'title': 'Bijeenkomst Pandeigenaren BIZ Keizerstraat', 'date': 'Thu, Nov 27, 4:15 PM'}
+{'url': 'https://www.eventbrite.nl/e/mig-makers-in-gesprek-tickets-1861958069709', 'title': 'Mig | Makers in gesprek', 'date': 'Sun, Nov 16, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/creatief-open-atelier-maak-je-eigen-papieren-kerstkrans-tickets-1795542278289', 'title': 'Creatief Open Atelier – Maak je eigen papieren kerstkrans ✂️✨', 'date': 'Thu, Dec 4, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/transitie-expeditie-10-werken-vanuit-het-nieuwe-normaal-tickets-1855401087599', 'title': 'Transitie-Expeditie #10 - Werken vanuit het nieuwe normaal', 'date': 'Tue, Nov 18, 8:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/fall-into-fashion-tickets-1775763318889', 'title': 'Fall into fashion', 'date': 'Sat, Nov 29, 2:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/holy-spirit-night-putten-schud-de-plaatsen-tickets-1827287990569', 'title': 'Holy Spirit night Putten - Schud de Plaatsen', 'date': 'Mon, Nov 17, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/kerst-sing-along-in-de-abdijkerk-donderdag-18-december-2025-tickets-1963397936080', 'title': 'Kerst-sing-along in de Abdijkerk - donderdag 18 december 2025', 'date': 'Thu, Dec 18, 8:00 PM'}
+{'url': 'https://www.eventbrite.com/e/samen-lopen-we-voorop-tickets-1856533534779', 'title': 'Samen lopen we voorop.', 'date': 'Thu, Apr 2, 9:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/diner-at-nieuwe-vide-29112025-1800-tickets-1769132606249', 'title': 'Diner at Nieuwe Vide - 29.11.2025 - 18:00', 'date': 'Sat, Nov 29, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/dr-catharine-van-tussenbroek-fonds-100-years-lustrum-tickets-1719927883599', 'title': 'Dr. Catharine van Tussenbroek Fonds 100 years LUSTRUM', 'date': 'Fri, Apr 24, 11:00 AM'}
+{'url': 'https://www.eventbrite.com/e/sinterklaasshow-1-tickets-1445987751289', 'title': 'Sinterklaasshow 1', 'date': 'Sat, Nov 15, 1:30 PM'}
+{'url': 'https://www.eventbrite.com/e/natsarim-bijeenkomst-tickets-1859585543419', 'title': 'Natsarim bijeenkomst', 'date': 'Sun, Nov 16, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/po-netwerkbijeenkomst-actualiteiten-arbeidsrecht-tickets-1437237940369', 'title': 'P&O Netwerkbijeenkomst – Actualiteiten Arbeidsrecht', 'date': 'Tue, Nov 18, 9:00 AM'}
+{'url': 'https://www.eventbrite.com/e/vvao-en-orange-the-world-10-december-2025-leiden-tickets-1659777973599', 'title': 'VVAO en Orange the World 10 december 2025 Leiden', 'date': 'Wed, Dec 10, 6:45 PM'}
+{'url': 'https://www.eventbrite.nl/e/vredesconferentie-2025-de-relatie-tussen-vrede-religie-tickets-1880278998099', 'title': 'Vredesconferentie 2025 | De relatie tussen Vrede & Religie', 'date': 'Friday at 4:30 PM'}
+{'url': 'https://www.eventbrite.com/e/an-afternoon-with-susan-knecht-the-art-collectors-wife-tickets-1710284499979', 'title': "An afternoon with Susan Knecht: The Art Collector's Wife", 'date': 'Sun, Nov 16, 4:00 PM'}
+{'url': 'https://www.eventbrite.com/e/join-prmia-netherlands-for-cyber-risk-ai-is-the-blue-team-falling-behind-tickets-1962589727707', 'title': 'Join PRMIA Netherlands for Cyber Risk + AI: Is the Blue Team Falling Behind', 'date': 'Wed, Nov 26, 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/heel-nederland-leest-onder-de-paramariboom-b1-tickets-1746709708759', 'title': 'Heel Nederland Leest: Onder de paramariboom (B1)', 'date': 'Thu, Nov 27, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/comedy-try-out-ygor-uit-poperingen-tickets-1856782369049', 'title': 'Comedy try out: Ygor uit Poperingen', 'date': 'Thursday at 8:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/the-art-of-listening-workshop-tickets-1827654105629', 'title': 'The Art of Listening Workshop', 'date': 'Wed, Nov 19, 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/huisartsen-nascholing-letsels-van-de-hand-en-pols-hilversum-tickets-1916130340429', 'title': 'Huisartsen nascholing: Letsels van de hand en pols - Hilversum', 'date': 'Wed, Dec 10, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/information-meeting-for-parents-in-english-tickets-109805075938', 'title': 'Information meeting for parents (in English)', 'date': 'Thursday at 9:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/gsni-lecture-series-how-to-prepare-yourself-for-internships-interviews-tickets-1835565789689', 'title': 'GSNI Lecture Series: How to prepare yourself for internships & interviews', 'date': 'Thursday at 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-kerstkaarten-maken-met-monoprint-tickets-1759939449269', 'title': 'Workshop kerstkaarten maken met monoprint', 'date': 'Thu, Dec 4, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/experiencexl-is-back-tickets-1849009269499', 'title': 'ExperienceXL is back!', 'date': 'Thu, Nov 27, 1:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/boek-presentatie-de-kracht-van-verlies-tickets-1914604657069', 'title': 'Boek presentatie : "De Kracht van Verlies!"', 'date': 'Sun, Nov 16, 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/awaken-tickets-1699140748719', 'title': 'AWAKEN', 'date': 'Sat, Dec 6, 6:00 PM'}
+{'url': 'https://www.eventbrite.com/e/orvins-birthday-bowling-party-tickets-1719551628209', 'title': "Orvin's Birthday Bowling Party", 'date': 'Sat, Nov 22, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/poezie-en-spoken-word-met-jasper-albinus-tickets-1771679193159', 'title': 'Poëzie -en Spoken Word met Jasper Albinus', 'date': 'Thursday at 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/huisartsen-nascholing-artrose-aan-de-heup-en-knie-almere-tickets-1765445467919', 'title': 'Huisartsen nascholing: Artrose aan de heup en knie (Almere)', 'date': 'Thu, Dec 4, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-eigen-schetsboeknotitieboek-maken-tickets-1839354361409', 'title': 'Workshop eigen schetsboek/notitieboek maken', 'date': 'Sat, Nov 29, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/exclusive-invite-just-like-water-private-screening-at-black-soil-tickets-1965601182048', 'title': 'Exclusive Invite: “Just Like Water” Private Screening at Black Soil', 'date': 'Fri, Dec 12, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/revival-nights-den-ham-schud-de-plaatsen-tickets-1811415936829', 'title': 'Revival nights Den Ham - Schud de Plaatsen', 'date': 'Fri, Feb 6, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/impact-werkplaats-groningen-tickets-1922848203739', 'title': 'Impact werkplaats | Groningen', 'date': 'Friday at 9:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/buurttafel-tickets-1909143592879', 'title': 'Buurttafel', 'date': 'Fri, Nov 28, 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/de-verhuizing-van-de-grootste-huiskamer-van-rotterdam-tickets-1907609995849', 'title': 'De verhuizing van de grootste huiskamer van Rotterdam', 'date': 'Fri, Nov 28, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-2-fotografie-tickets-1926525903839', 'title': 'Workshop 2; FOTOGRAFIE', 'date': 'Mon, Nov 17, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/nlmwc-event-scaling-impact-where-sustainability-meets-sovereignty-tickets-1777638948949', 'title': 'NL@MWC event: Scaling Impact: Where Sustainability Meets Sovereignty', 'date': 'Wed, Nov 19, 2:00 PM'}
+{'url': 'https://www.eventbrite.com/e/golden-years-festival-tickets-1752782251899', 'title': 'Golden Years Festival', 'date': 'Sat, May 9, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/nederlandstalige-boekenclub-4-20-45-jaar-tickets-1963125492193', 'title': 'Nederlandstalige Boekenclub 4 (20-45 jaar)', 'date': 'Sat, Dec 20, 11:00 AM'}
+{'url': 'https://www.eventbrite.com/e/kickstart-weekend-amsterdam-tickets-1718877531969', 'title': 'Kickstart weekend Amsterdam', 'date': 'Sun, Nov 9, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/universeel-soefisme-viering-amersfoort-tickets-1963874352053', 'title': 'Universeel soefisme viering Amersfoort', 'date': 'Sun, Nov 16, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/story-of-my-life-nathalia-tickets-1962493616235', 'title': 'Story of my Life “Nathalia”', 'date': 'Mon, Dec 1, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/werewolves-of-rotterdam-tickets-1820210702209', 'title': 'Werewolves of Rotterdam', 'date': 'Sun, Nov 30, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/24h-worship-prayer-utrecht-2025-tickets-1952083236509', 'title': '24H Worship & Prayer Utrecht 2025', 'date': 'Fri, Nov 21, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/common-grounds-how-do-we-balance-safety-and-freedom-tickets-1954285924809', 'title': 'Common Grounds: How do we balance safety and freedom?', 'date': 'Wed, Dec 10, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/beterbusiness-bijeenkomst-met-hr-directeur-britt-breure-van-afas-tickets-1742991106319', 'title': 'BeterBusiness bijeenkomst met HR directeur Britt Breure van AFAS', 'date': 'Tue, Nov 25, 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/nienke-s-gravemade-over-sociale-media-en-het-nieuwe-normaal-online-tickets-1898853294319', 'title': 'Nienke ’s Gravemade over sociale media en het nieuwe normaal online', 'date': 'Sat, Nov 15, 2:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/bdaw-conference-2026-my-radical-fire-the-hague-tickets-1309532570169', 'title': 'BDAW  Conference 2026 | My Radical Fire (The Hague)', 'date': 'Sat, Mar 21, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/holy-spirit-conference-2026-schud-de-plaatsen-tickets-1345028148399', 'title': 'HOLY SPIRIT CONFERENCE 2026 - SCHUD DE PLAATSEN', 'date': 'Fri, Jan 30, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/school-voor-geestelijk-inzicht-3-avonden-onderwijs-en-impartatie-tickets-1743233571539', 'title': 'School voor Geestelijk Inzicht - 3 avonden Onderwijs en Impartatie', 'date': 'Monday at 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/workshop-eerlijke-ongelijkheid-tickets-1492380814189', 'title': 'Workshop Eerlijke Ongelijkheid', 'date': 'Sun, Dec 7, 12:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/free-improv-comedy-show-tickets-1862721523219', 'title': 'Free Improv Comedy Show', 'date': 'Thursday at 8:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/petra-jordan-skin-hungry-album-release-concert-tickets-1777829579129', 'title': 'Petra Jordan - "Skin Hungry" - Album Release Concert', 'date': 'Mon, Nov 10, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/algemene-ledenvergadering-vno-ncw-midden-tickets-1850434622769', 'title': 'Algemene Ledenvergadering VNO-NCW Midden', 'date': 'Thu, Nov 27, 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/free-drag-show-in-amsterdam-slay-the-night-away-with-pixxie-colada-tickets-1566386276519', 'title': 'Free Drag Show in Amsterdam | Slay The Night Away! with Pixxie Colada', 'date': 'Sat, Dec 20, 10:00 PM'}
+{'url': 'https://www.eventbrite.com/e/an-afternoon-with-dim-junius-brick-tickets-1864858785829', 'title': 'An afternoon with Dim Junius: Brick', 'date': 'Thursday at 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-gender-in-vrijheid-verkennen-tickets-1757739830149', 'title': 'Workshop gender in vrijheid verkennen', 'date': 'Thu, Nov 27, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/kick-off-event-jeugdestafette-tickets-1859790325929', 'title': 'Kick-off event Jeugdestafette', 'date': 'Fri, Nov 21, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/book-swap-circle-time-traveller-edition-tickets-1965920653596', 'title': 'Book Swap Circle - Time Traveller Edition', 'date': 'Thu, Dec 18, 6:00 PM'}
+{'url': 'https://www.eventbrite.com/e/house-feeling-glow-eindhoven-special-tickets-1964537654007', 'title': 'House Feeling GLOW Eindhoven Special', 'date': 'Fri, Nov 14, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/verhalen-anders-doen-op-zoek-naar-een-nieuw-verhaal-tickets-1766048100409', 'title': 'Verhalen anders doen: Op zoek naar een nieuw verhaal', 'date': 'Thu, Dec 4, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/female-founders-panel-networking-mixer-tickets-1906296958519', 'title': 'Female Founders Panel & Networking Mixer', 'date': 'Tue, Nov 25, 6:00 PM'}
+{'url': 'https://www.eventbrite.com/e/one-aperture-networking-event-workshop-tickets-1964549263732', 'title': 'One Aperture Networking event /workshop', 'date': 'Sun, Nov 30, 12:00 PM'}
+{'url': 'https://www.eventbrite.com/e/shivyog-shree-lalita-rudra-trishati-initiation-level-1-tickets-1947994797879', 'title': 'ShivYog Shree Lalita Rudra Trishati Initiation - Level 1', 'date': 'Sat, Nov 22, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/mechanics-workshop-winter-tlc-tickets-1917193640789', 'title': 'Mechanics Workshop: Winter TLC', 'date': 'Thu, Nov 20, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/informatieavond-lesbische-stellen-bewust-alleenstaande-vrouwen-bam-tickets-1363880927569', 'title': 'Informatieavond |  Lesbische stellen & bewust alleenstaande vrouwen (BAM)', 'date': 'Thu, Dec 11, 6:45 PM'}
+{'url': 'https://www.eventbrite.com/e/jbl-experience-day-tickets-1859602564329', 'title': 'JBL Experience Day', 'date': 'Wed, Nov 19, 4:00 PM'}
+{'url': 'https://www.eventbrite.com/e/digital-society-school-showcase-january-2026-tickets-1699970600829', 'title': 'Digital Society School Showcase | January 2026', 'date': 'Wed, Jan 21, 5:00 PM'}
+{'url': 'https://www.eventbrite.com/e/bnd-jubileumfeest-tickets-1771454812029', 'title': 'BND Jubileumfeest', 'date': 'Thu, Nov 20, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/kom-puzzelen-met-veenweide-4-tickets-1742213891649', 'title': 'Kom puzzelen met veenweide! #4', 'date': 'Tue, Dec 16, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/leiderschap-in-een-ai-tijdperk-tickets-1715287012629', 'title': 'Leiderschap in een AI-tijdperk', 'date': 'Thu, Nov 27, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/myrunspiration-run-club-amsterdam-noord-tickets-1557631169759', 'title': 'Myrunspiration Run Club - Amsterdam Noord', 'date': 'Sun, Jan 4, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/nieuwe-app-digitale-wandeling-langs-het-postkoloniale-verleden-van-tilb-tickets-1906169025869', 'title': 'Nieuwe app - Digitale wandeling langs het (post)koloniale verleden van Tilb', 'date': 'Thu, Nov 27, 11:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-misbruik-tickets-1853486942339', 'title': 'Workshop Misbruik', 'date': 'Sat, Nov 22, 1:00 PM'}
+{'url': 'https://www.eventbrite.com/e/pie-ai-the-hague-education-in-the-age-of-ai-tickets-1961437214509', 'title': 'Pie & AI: The Hague- Education in the Age of AI', 'date': 'Thu, Nov 27, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/kom-puzzelen-met-veenweide-3-tickets-1742167653349', 'title': 'Kom puzzelen met veenweide! #3', 'date': 'Wed, Nov 26, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/collectief-kapitaal-dh-op-het-stadmakersfestival-tickets-1818279004449', 'title': 'Collectief Kapitaal DH op het Stadmakersfestival', 'date': 'Fri, Nov 21, 5:00 PM'}
+{'url': 'https://www.eventbrite.com/e/beyond-business-as-usual-the-unexpected-table-tickets-1832549056559', 'title': 'Beyond Business as Usual: The Unexpected Table', 'date': 'Fri, Nov 28, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/buurttafel-kerst-editie-tickets-1936731990519', 'title': 'Buurttafel Kerst editie', 'date': 'Fri, Dec 19, 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/kunsttour-erasmus-medisch-centrum-tickets-1914505490459', 'title': 'Kunsttour Erasmus Medisch Centrum', 'date': 'Tue, Nov 18, 10:30 AM'}
+{'url': 'https://www.eventbrite.com/e/media-coding-industry-forum-event-during-ibc-tickets-1956749603739', 'title': 'Media Coding Industry Forum Event during IBC', 'date': 'Sat, Dec 13, 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/miracle-winter-academy-1-tickets-1549083804359', 'title': 'MIRACLE Winter Academy 1', 'date': 'Mon, Jan 19, 9:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/we-dont-need-to-talk-solo-show-by-fabienne-francotte-tickets-1964374736717', 'title': "We don't need to talk, Solo Show by Fabienne Francotte", 'date': 'Fri, Dec 12, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/profetische-avond-ashvien-jitan-en-abraham-laisina-tickets-1922312681979', 'title': 'Profetische avond Ashvien Jitan en Abraham Laisina', 'date': 'Fri, Nov 14, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/kingdom-business-fellowship-tickets-1764931891799', 'title': 'Kingdom Business Fellowship', 'date': 'Wednesday at 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/wachters-van-gelderland-sta-op-tickets-1940874440699', 'title': 'Wachters van Gelderland, sta op!', 'date': 'Sat, Nov 29, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/jaap-de-groot-het-leukste-uit-kijk-eens-wat-vaker-omhoog-tickets-1469558893209', 'title': 'Jaap de Groot  HET LEUKSTE UIT ‘KIJK EENS WAT VAKER OMHOOG’’', 'date': 'Sun, Nov 30, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/bluecity-townhall-circular-community-meetup-december-tickets-1140205067049', 'title': 'BlueCity Townhall: Circular Community Meetup (december)', 'date': 'Thu, Dec 4, 4:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/in-house-open-day-at-abbey-road-institute-amsterdam-15112025-tickets-1795575327139', 'title': 'In-house Open Day at Abbey Road Institute Amsterdam 15.11.2025', 'date': 'Sat, Nov 15, 11:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/leren-bij-de-lunch-de-nieuwe-regels-rond-loon-en-mobiliteit-brasschaat-tickets-1795385208489', 'title': 'Leren bij de lunch: de nieuwe regels rond loon en mobiliteit - Brasschaat', 'date': 'Tue, Dec 9, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/nice-here-with-nick-tickets-1924009286569', 'title': 'nice here, with #Nick', 'date': 'Thu, Dec 4, 6:00 PM'}
+{'url': 'https://www.eventbrite.com/e/overdrachtsdienst-tickets-1566776262979', 'title': 'Overdrachtsdienst', 'date': 'Sat, Nov 22, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/manageengine-shield-nxg-2025-iam-and-cybersecurity-seminarnetherlands-tickets-1777400415489', 'title': 'ManageEngine Shield NxG 2025 : IAM and Cybersecurity Seminar,Netherlands', 'date': 'Wed, Nov 19, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/duckdb-developer-meeting-1-tickets-1850334944629', 'title': 'DuckDB Developer Meeting #1', 'date': 'Fri, Jan 30, 4:00 PM'}
+{'url': 'https://www.eventbrite.com/e/microsoft-integration-user-group-i8c-tickets-1662680495119', 'title': 'Microsoft Integration User Group (@i8c)', 'date': 'Monday at 4:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/queer-book-club-tickets-1324939362299', 'title': 'Queer Book Club', 'date': 'Mon, Nov 17, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/jongeren-inspreekavond-tickets-1953446774889', 'title': 'Jongeren inspreekavond', 'date': 'Thu, Nov 20, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/wtc-40-hour-hackathon-ai-builders-tickets-1900600068969', 'title': 'WTC 40 Hour Hackathon - AI Builders', 'date': 'Wed, Nov 19, 9:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/craft-evening-at-the-clay-table-tickets-1775214627739', 'title': 'Craft Evening at The Clay Table', 'date': 'Wed, Dec 3, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/trendwatch-software-quality-tickets-1964927367651', 'title': 'Trendwatch Software Quality', 'date': 'Thu, Nov 27, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/kinderworkshop-egalus-met-de-afvaljuf-4-tm7-jaar-tickets-1931363011759', 'title': 'Kinderworkshop: Egalus met De Afvaljuf (4 t/m7 jaar)', 'date': 'Sat, Nov 29, 11:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/maak-je-eigen-magische-schatkaart-6-tickets-1870571582959', 'title': 'Maak je eigen magische schatkaart (6+)', 'date': 'Wed, Nov 26, 2:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/locatiedag-zevenaar-tickets-1733242688539', 'title': 'Locatiedag Zevenaar', 'date': 'Sat, Apr 25, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/goal-3-foundation-impact-event-tickets-1850971498579', 'title': 'GOAL 3 Foundation Impact Event!', 'date': 'Fri, Dec 19, 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/free-drag-show-in-amsterdam-slay-the-night-away-with-sania-cruize-tickets-1914907823849', 'title': 'Free Drag Show in Amsterdam | Slay The Night Away! with Sania Cruize', 'date': 'Sat, Jan 17, 10:00 PM'}
+{'url': 'https://www.eventbrite.com/e/introduction-to-reasearch-data-management-at-eemcs-tickets-1643929109219', 'title': 'Introduction to Reasearch Data Management at EEMCS', 'date': 'Tuesday at 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/free-drag-show-in-amsterdam-slay-the-night-away-with-aj-heartstone-tickets-1559574622679', 'title': 'Free Drag Show in Amsterdam | Slay The Night Away! with AJ Heartstone', 'date': 'Fri, Nov 21, 10:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/signeersessie-miljuschka-ik-zag-wel-dat-je-naar-mn-cheesecake-tickets-1904258009969', 'title': "Signeersessie Miljuschka 'Ik zag wel dat je naar m'n cheesecake'", 'date': 'Tue, Dec 2, 4:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/feeding-tomorrow-film-en-netwerk-tickets-1793278577499', 'title': "'Feeding Tomorrow' film en netwerk", 'date': 'Sun, Nov 30, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/spanish-courses-in-amsterdam-and-online-tickets-1954361651309', 'title': 'Spanish courses in Amsterdam and online', 'date': 'Monday at 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/the-secret-place-tickets-1803093724869', 'title': 'The Secret Place', 'date': 'Sat, Nov 22, 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/dga-talks-design-thinking-in-applied-game-design-and-beyond-tickets-1818967062449', 'title': 'DGA TALKS: Design Thinking in Applied Game Design and Beyond', 'date': 'Thu, Nov 20, 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/lezing-titanic-fashion-the-last-dance-tickets-1802879263409', 'title': 'Lezing : TITANIC & FASHION – The last Dance', 'date': 'Tue, Nov 18, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/dcwc-roundtable-xxxi-hague-security-delta-edition-tickets-1813689848159', 'title': 'DCWC Roundtable XXXI - Hague Security Delta edition', 'date': 'Thu, Dec 4, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/re-imagining-education-in-the-age-of-ai-tickets-1776973769379', 'title': 'Re-imagining Education in the Age of AI', 'date': 'Thu, Nov 27, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/opening-jumpin3-group-exhibition-13-november-at-capital-c-amsterdam-tickets-1907609925639', 'title': 'Opening JumpIn3 group exhibition, 13 November at Capital C, Amsterdam', 'date': 'Thursday at 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/open-coffee-gouda-tickets-1710761697289', 'title': 'Open Coffee Gouda', 'date': 'Fri, Dec 5, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/vrouwenspecial-2-goud-met-priscilla-docter-tickets-1851849314149', 'title': 'Vrouwenspecial 2 GOUD met Priscilla Docter', 'date': 'Thu, Dec 11, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/impact-talk-2025-11-december-2025-tickets-1814774371999', 'title': 'Impact Talk 2025 - 11 december 2025', 'date': 'Thu, Dec 11, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/seminarie-de-waarheid-over-motivatie-in-jouw-kantoor-brasschaat-tickets-1857045867179', 'title': 'Seminarie - De waarheid over motivatie in jouw kantoor - Brasschaat', 'date': 'Fri, Nov 28, 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/flying-solo-kitepower-tour-tickets-1693655381839', 'title': 'Flying Solo:  Kitepower tour', 'date': 'Thu, Nov 20, 1:00 PM'}
+{'url': 'https://www.eventbrite.com/e/dare-to-be-the-first-tickets-1768147419529', 'title': 'DARE TO BE THE FIRST', 'date': 'Thu, Nov 20, 11:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/presteren-zonder-te-verliezen-tickets-1964390095656', 'title': 'Presteren zonder te verliezen', 'date': 'Thu, Dec 18, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/creativithe-novembre-tickets-1962570089970', 'title': 'Créativithé (novembre)', 'date': 'Wed, Nov 26, 10:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-tegeltjeswijsheid-tickets-1780757797509', 'title': 'Workshop Tegeltjeswijsheid', 'date': 'Thu, Dec 4, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/dpa-talk-34-naturally-artificial-tickets-1503998703609', 'title': 'DPA Talk #34 Naturally Artificial?', 'date': 'Thu, Nov 20, 5:00 PM'}
+{'url': 'https://www.eventbrite.com/e/het-wijkse-stadfeest-tickets-1741553024979', 'title': 'Het Wijkse Stadfeest', 'date': 'Sat, Apr 18, 11:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/de-stamtafel-tickets-1815610803789', 'title': 'De Stamtafel', 'date': 'Thursday at 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/good-kids-exhibition-opening-tickets-1766986176219', 'title': 'GOOD KIDS (Exhibition Opening)', 'date': 'Sat, Dec 13, 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/running-dinner-tickets-1752776474619', 'title': 'Running dinner', 'date': 'Fri, Jun 12, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/blyss-x-ntt-music-fashion-show-tickets-1848596103709', 'title': 'BLYSS X NTT: MUSIC +  FASHION SHOW', 'date': 'Sat, Nov 22, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/de-toekomst-van-de-maakindustrie-tickets-1953090870369', 'title': 'De toekomst van de maakindustrie', 'date': 'Thu, Jan 22, 12:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/language-exchange-meetup-marina-i-dock-tickets-1802986614499', 'title': 'Language Exchange Meetup @ Marina I-Dock', 'date': 'Tuesday at 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/hello-world-amersfoort-tickets-1796318008519', 'title': 'Hello World - Amersfoort', 'date': 'Thu, Nov 20, 8:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/klimaatweek-de-wilde-noordzee-tickets-1684123411459', 'title': 'Klimaatweek: De Wilde Noordzee', 'date': 'Friday at 10:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/rotterdam-remembering-forward-w-hilde-sennema-and-mitchel-sam-sin-tickets-1905118303129', 'title': 'Rotterdam: Remembering Forward w/ Hilde Sennema and Mitchel Sam-Sin', 'date': 'Thursday at 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/bolingo-kids-ontdekt-democratische-republiek-congo-angola-tickets-1682884144779', 'title': 'Bolingo Kids ontdekt: Democratische Republiek Congo & Angola', 'date': 'Sat, Feb 21, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/rugby-open-party-tickets-1961558667779', 'title': 'Rugby Open Party', 'date': 'Fri, Nov 28, 10:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/house-of-miracles-huisgemeente-zaltbommel-vanaf-7-september-tickets-1648071529309', 'title': 'HOUSE OF MIRACLES huisgemeente Zaltbommel vanaf 7 September', 'date': 'Mon, Nov 10, 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/huisartsen-nascholing-traumatische-schouderklachten-en-artrose-hilversum-tickets-1765540452019', 'title': 'Huisartsen nascholing: Traumatische schouderklachten en artrose (Hilversum)', 'date': 'Mon, Dec 15, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/liberating-structures-meetup-impromptu-networking-tickets-1895399062619', 'title': 'Liberating Structures Meetup: Impromptu Networking', 'date': 'Fri, Jan 9, 1:30 PM'}
+{'url': 'https://www.eventbrite.com/e/flying-solo-future-blades-circular-materials-upcycling-for-turbines-tickets-1689525228439', 'title': "Flying Solo: 'Future Blades: circular materials & upcycling for turbines’", 'date': 'Mon, Dec 8, 12:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/zondagmorgendienst-met-ashvien-jitan-en-abraham-laisina-tickets-1922416271819', 'title': 'Zondagmorgendienst met Ashvien Jitan en Abraham Laisina', 'date': 'Sun, Nov 16, 10:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/isbep-info-event-2025-2026-semester-2-tickets-1473714542869', 'title': 'ISBEP Info event 2025-2026  semester 2', 'date': 'Fri, Nov 28, 12:35 PM'}
+{'url': 'https://www.eventbrite.nl/e/brewing-permacomputing-collectives-tickets-1962221700929', 'title': 'Brewing Permacomputing Collectives', 'date': 'Fri, Nov 28, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-1-fashion-tickets-1926488391639', 'title': 'Workshop 1; FASHION', 'date': 'Mon, Nov 17, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/sint-knutselochtend-tickets-1913587685279', 'title': 'SINT: Knutselochtend!', 'date': 'Mon, Nov 24, 9:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/books-jingles-tickets-1752994456609', 'title': 'Books & Jingles', 'date': 'Sat, Dec 13, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/mkal-crafternoon-grand-finale-tickets-1906356667109', 'title': 'MKAL Crafternoon - Grand finale', 'date': 'Thursday at 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/amsterdams-expat-board-games-sunday-tickets-1962527181630', 'title': "Amsterdam's Expat Board Games Sunday", 'date': 'Sun, Dec 7, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/sranan-identity-talks-the-power-of-community-tickets-1741476074819', 'title': 'Sranan Identity Talks: The Power of Community', 'date': 'Sun, Nov 23, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/borrel-nootjes-winter-2025-tickets-1851719887029', 'title': 'Borrel & Nootjes • Winter 2025', 'date': 'Fri, Nov 28, 3:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/open-dag-tiny-oevers-tickets-1832523520179', 'title': 'OPEN DAG TINY OEVERS', 'date': 'Friday at 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/cultuurhaven-x-the-ecobody-collective-6-tickets-1922575518129', 'title': 'Cultuurhaven x The EcoBody Collective #6', 'date': 'Thursday at 6:00 PM'}
+{'url': 'https://www.eventbrite.com/e/executive-mba-event-in-amsterdam-tickets-1896518992359', 'title': 'Executive MBA Event in Amsterdam', 'date': 'Mon, Nov 17, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/vcf-techcon-2025-tickets-1735488766619', 'title': 'VCF Techcon 2025', 'date': 'Tue, Dec 2, 9:00 AM'}
+{'url': 'https://www.eventbrite.com/e/an-afternoon-with-colleen-geske-stuff-dutch-people-hate-abc-amsterdam-tickets-1915095575419', 'title': 'An afternoon with Colleen Geske : Stuff Dutch People Hate @ ABC Amsterdam', 'date': 'Sun, Nov 30, 4:00 PM'}
+{'url': 'https://www.eventbrite.com/e/conscious-leadership-in-action-empowering-self-organizing-teams-tickets-1533942616659', 'title': 'Conscious Leadership in Action: Empowering Self-Organizing Teams', 'date': 'Mon, May 4, 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/rondleiding-door-hulp-warmte-centrale-waalsprong-pieter-wiersma-tickets-1777674394969', 'title': 'Rondleiding door Hulp Warmte Centrale Waalsprong (‘Pieter Wiersma’):', 'date': 'Wednesday at 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-mindful-kunst-kijken-tickets-1836894433699', 'title': 'workshop Mindful kunst kijken', 'date': 'Friday at 11:00 AM'}
+{'url': 'https://www.eventbrite.com/e/women-in-e-commerce-groningen-tickets-1673036861289', 'title': 'Women in E-commerce Groningen', 'date': 'Thursday at 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/learn-farsi-persian-in-amsterdam-farsi-courses-conversation-tickets-1954569462879', 'title': 'Learn Farsi (Persian) in Amsterdam – Farsi Courses Conversation', 'date': 'Tuesday at 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/italian-courses-in-amsterdam-and-online-tickets-1933787673989', 'title': 'Italian courses in Amsterdam and online', 'date': 'Monday at 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/buitenbios-kesteditie-tickets-1936744397629', 'title': 'Buitenbios Kesteditie', 'date': 'Fri, Dec 19, 8:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/ego2eco-congres-2025-tickets-1765445708639', 'title': 'EGO2ECO Congres 2025', 'date': 'Wednesday at 8:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/kennissessie-anders-zijn-een-frisse-blik-tickets-1856986188679', 'title': 'kennissessie: ”Anders zijn” – een frisse blik', 'date': 'Wednesday at 3:30 PM'}
+{'url': 'https://www.eventbrite.com/e/international-meet-up-friesland-3-edition-tickets-1838537036769', 'title': 'International Meet Up Friesland - #3 edition', 'date': 'Thursday at 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/forward-amsterdam-winter-event-tickets-1769099818179', 'title': 'FORWARD Amsterdam Winter Event', 'date': 'Thursday at 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/lezing-ontdek-het-canon-eos-r-systeem-tickets-1427956328819', 'title': 'Lezing: Ontdek het Canon EOS R-systeem', 'date': 'Sat, Nov 15, 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/vmbo-in-bedrijf-tickets-1953619982959', 'title': 'VMBO in bedrijf', 'date': 'Tue, Nov 18, 8:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/invite-only-sefron-nindo-tickets-1776970910829', 'title': 'Invite Only: Sefron & Nindo', 'date': 'Fri, Dec 12, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/masterclasses-hvc-tickets-1915783723689', 'title': 'Masterclasses HVC', 'date': 'Wed, Nov 19, 3:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/community-connect-tickets-1863377926539', 'title': 'Community Connect', 'date': 'Wed, Dec 3, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/todaysport-rooftop-training-tickets-1234532011479', 'title': 'Todaysport rooftop training', 'date': 'Sat, Nov 22, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/free-improv-comedy-show-tickets-1862610300549', 'title': 'Free Improv Comedy Show', 'date': 'Thu, Nov 20, 8:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/learn-turkish-at-taalhuis-amsterdam-tickets-1954119386689', 'title': 'Learn Turkish at Taalhuis Amsterdam', 'date': 'Tuesday at 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/sample-sale-muchachomalo-outlet-store-haarlem-tickets-1801162869629', 'title': 'Sample Sale Muchachomalo Outlet Store Haarlem', 'date': 'Thu, Nov 6, 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/iliad-2025-new-perspectives-on-light-lighting-and-ili-tickets-1812877026989', 'title': 'ILIAD 2025- New perspectives on light, lighting, and ILI', 'date': 'Tue, Dec 9, 9:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/huisartsen-nascholing-knie-trauma-amstelveen-tickets-1785181739639', 'title': 'Huisartsen nascholing: Knie trauma - Amstelveen', 'date': 'Mon, Nov 17, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/utrecht-college-tour-x-broed-met-bart-rutten-tickets-1706438626869', 'title': 'Utrecht College Tour X BROED met Bart Rutten', 'date': 'Mon, Nov 24, 7:45 PM'}
+{'url': 'https://www.eventbrite.nl/e/projection-fashion-photography-event-tickets-1815103426209', 'title': 'Projection Fashion Photography Event', 'date': 'Fri, Nov 21, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/isbep-pitch-event-2025-2026-semester-2-tickets-1473584192989', 'title': 'ISBEP Pitch event 2025-2026 Semester 2', 'date': 'Tue, Dec 9, 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/ouderavond-ism-kikid-over-mentale-gezondheid-tickets-1897969540989', 'title': 'Ouderavond ism Kikid over mentale gezondheid', 'date': 'Mon, Nov 17, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/hsv-de-honingbij-friends-elixer-tickets-1715377202389', 'title': 'HSV De Honingbij & Friends @ Elixer', 'date': 'Sat, Dec 20, 8:00 PM'}
+{'url': 'https://www.eventbrite.com/e/lancering-shift-business-boeklancering-gods-koninkrijk-in-jouw-bedrijf-tickets-1776063486699', 'title': "Lancering Shift Business + Boeklancering 'Gods koninkrijk in jouw bedrijf'", 'date': 'Fri, Nov 21, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/bomenwandeling-rond-de-groene-afslag-tickets-1849198395179', 'title': 'Bomenwandeling rond De Groene Afslag', 'date': 'Wednesday at 1:30 PM'}
+{'url': 'https://www.eventbrite.com/e/ben-wel-content-tickets-1837425662619', 'title': 'ben wel CONTENT', 'date': 'Thu, Nov 20, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/horizon-hub-brengt-jongeren-stichtingen-en-beleidsmakers-samen-tickets-1965304074391', 'title': 'Horizon Hub - brengt jongeren, stichtingen en beleidsmakers samen', 'date': 'Wed, Nov 19, 11:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/make-socials-social-again-tickets-1778583102939', 'title': 'Make Socials Social Again', 'date': 'Mon, Nov 10, 2:00 PM'}
+{'url': 'https://www.eventbrite.com/e/newscamp-tickets-1819566064079', 'title': 'NewsCamp', 'date': 'Sat, Nov 22, 11:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/fireplace-chat-with-pallavi-singh-and-shivangi-kalra-tickets-1915919710429', 'title': 'Fireplace Chat with Pallavi Singh and Shivangi Kalra', 'date': 'Thu, Nov 27, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/cafe-zzp-creer-votre-zzp-et-gerer-votre-comptabilite-tickets-1827052365809', 'title': 'Café ZZP - Créer votre ZZP et gérer votre comptabilité', 'date': 'Friday at 9:00 AM'}
+{'url': 'https://www.eventbrite.com/e/albion-x-maats-repair-roadshow-tickets-1964208429287', 'title': 'Albion x Maats Repair Roadshow', 'date': 'Tue, Nov 25, 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/intersct-round-table-on-iot-product-security-tickets-1962495861952', 'title': 'INTERSCT. Round Table on IoT Product Security', 'date': 'Tue, Nov 25, 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/day-1-carriers-of-the-glory-conference-the-manifestation-of-gods-power-tickets-1932342170449', 'title': 'Day 1: Carriers of the Glory Conference: The Manifestation of God’s Power', 'date': 'Sat, Dec 6, 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/research-nights-epistemic-futures-tickets-1856652661089', 'title': 'Research Nights: Epistemic Futures', 'date': 'Thu, Nov 27, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/expert-in-leesonderwijs-tickets-1412530218909', 'title': 'Expert in leesonderwijs', 'date': 'Wed, Feb 4, 12:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/united-in-poetry-europa-in-woorden-2025-tickets-1758354909869', 'title': '‘United in Poetry’ Europa in woorden 2025.', 'date': 'Friday at 2:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/knutselochtend-tickets-1913500785359', 'title': 'Knutselochtend!', 'date': 'Mon, Nov 17, 9:00 AM'}
+{'url': 'https://www.eventbrite.com/e/bunker-rave-nijmegen-14-november-2025-tickets-1963416998095', 'title': 'Bunker Rave Nijmegen 14 November 2025', 'date': 'Fri, Nov 14, 11:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/where-there-is-a-willow-there-is-a-way-tickets-1869500198419', 'title': 'Where there is a Willow, there is a way', 'date': 'Sat, Nov 22, 11:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/french-courses-in-amsterdam-learn-french-from-native-speakers-tickets-1954424669799', 'title': 'French Courses in Amsterdam – Learn French from Native Speakers', 'date': 'Monday at 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/kerstkrans-knutselen-bij-het-kinder-kunst-atelier-gezellig-en-creatief-tickets-1795665577079', 'title': 'Kerstkrans knutselen bij het Kinder Kunst Atelier – gezellig en creatief', 'date': 'Thu, Dec 4, 3:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/technology-thanksgiving-day-tickets-1964252283456', 'title': 'Technology Thanksgiving Day', 'date': 'Thu, Nov 27, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/free-drag-show-in-amsterdam-slay-the-night-away-with-queen-asteria-tickets-1566401401759', 'title': 'Free Drag Show in Amsterdam | Slay The Night Away! with Queen Asteria', 'date': 'Sat, Nov 29, 10:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/customer-sessions-amsterdam-19-november-tickets-1692394630899', 'title': 'Customer Sessions Amsterdam / 19 November', 'date': 'Wed, Nov 19, 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/swap-sint-tickets-1813751522629', 'title': 'Swap Sint', 'date': 'Tue, Nov 18, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/lezing-250-jaar-jane-austen-wie-was-jane-tickets-1933567405159', 'title': 'Lezing: 250 jaar Jane Austen - Wie was Jane?', 'date': 'Tue, Dec 16, 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/openheaven-worship-night-tickets-1813871752239', 'title': 'OpenHeaven - Worship Night', 'date': 'Sat, Jan 31, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/ondernemersontbijt-leidschendam-voorburg-tickets-1768880522259', 'title': 'Ondernemersontbijt Leidschendam Voorburg', 'date': 'Fri, Nov 21, 8:00 AM'}
+{'url': 'https://www.eventbrite.com/e/bridal-night-at-the-antwerp-love-hub-by-maudart-christmas-stories-tickets-1965883137384', 'title': 'Bridal night at the Antwerp Love Hub by Maudart Christmas stories', 'date': 'Fri, Dec 19, 6:00 PM'}
+{'url': 'https://www.eventbrite.com/e/the-human-edge-redefining-success-in-the-age-of-ai-overload-tickets-1954150058429', 'title': 'The Human Edge : Redefining success in the age of AI & overload', 'date': 'Thu, Nov 27, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/language-exchange-meetup-meet-berlage-tickets-1933031963639', 'title': 'Language Exchange Meetup @Meet Berlage', 'date': 'Tue, Nov 25, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/sint-maarten-knutselochtend-tickets-1913332933309', 'title': 'Sint Maarten: Knutselochtend', 'date': 'Monday at 9:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/jazz-op-zondag-met-het-ilia-gurianov-trio-tickets-1940347123479', 'title': 'Jazz op Zondag met het Ilia Gurianov Trio', 'date': 'Sun, Nov 23, 2:00 PM'}
+{'url': 'https://www.eventbrite.com/e/free-english-stand-up-open-mic-colins-comedy-clubs-tickets-1923935415619', 'title': "Free English Stand-up Open Mic @ Colin's Comedy Club's", 'date': 'Wednesday at 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/genezingsdienst-heerde-schud-de-plaatsen-tickets-1827099988249', 'title': 'Genezingsdienst Heerde - Schud de Plaatsen', 'date': 'Mon, Jan 5, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/free-drag-show-in-amsterdam-slay-the-night-away-with-house-of-sky-tickets-1566553055359', 'title': 'Free Drag Show in Amsterdam | Slay The Night Away! with House of Sky', 'date': 'Fri, Nov 28, 10:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/bolingo-kids-x-iafrica-kinderfilmfestival-22-november-2025-tickets-1682915819519', 'title': 'Bolingo Kids x iAfrica Kinderfilmfestival – 22 november 2025', 'date': 'Sat, Nov 22, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/hr-bridge-consulting-amsterdam-launch-breakfast-tickets-1935597687789', 'title': 'HR Bridge Consulting Amsterdam Launch - Breakfast', 'date': 'Thu, Nov 20, 8:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/profetische-avond-in-andijk-tickets-1773348686659', 'title': 'Profetische avond in Andijk', 'date': 'Wednesday at 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/unicorn-of-the-jungle-all-female-lineup-edition-tickets-1851995581639', 'title': 'Unicorn of the Jungle - All female lineup edition', 'date': 'Fri, Dec 12, 12:00 AM'}
+{'url': 'https://www.eventbrite.com/e/the-roar-conference-tickets-1716817018919', 'title': 'The Roar Conference', 'date': 'Fri, Dec 5, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/jumpin3-tickets-1745883888709', 'title': 'JumpIn3', 'date': 'Thursday at 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/kinderworkshop-briljante-planten-8-12-jaar-tickets-1865535850949', 'title': 'Kinderworkshop Briljante Planten (8-12 jaar)', 'date': 'Sat, Nov 22, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/greek-courses-in-amsterdam-tickets-1954623464399', 'title': 'Greek Courses in Amsterdam', 'date': 'Monday at 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/lezing-heeft-ook-flevoland-een-slavernijverleden-tickets-1833359691189', 'title': 'Lezing "Heeft ook Flevoland een slavernijverleden?"', 'date': 'Fri, Nov 28, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/succes-anders-doen-sparren-met-onze-huisfilosoof-tickets-1753816485319', 'title': 'Succes anders doen: sparren met onze Huisfilosoof', 'date': 'Tuesday at 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/open-day-at-taalhuis-amsterdam-free-level-intakes-and-trial-lessons-tickets-1954258181829', 'title': 'Open Day at Taalhuis Amsterdam - Free level intakes and trial lessons', 'date': 'Sat, Dec 13, 1:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/the-brainfreeze-club-december-17-end-of-the-year-special-tickets-1351712972889', 'title': 'The Brainfreeze Club, December 17 - End of the year special', 'date': 'Sun, Dec 14, 1:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/elevate-hrlm-20-december-christmas-ugly-sweater-party-tickets-1859945941379', 'title': 'ELEVATE HRLM - 20 december - Christmas Ugly Sweater Party.', 'date': 'Sat, Dec 20, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/masterclass-literaire-gesprekken-tickets-1382768641229', 'title': 'Masterclass literaire gesprekken', 'date': 'Wed, Mar 25, 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/exhibition-talk-elise-zoetmulder-about-renee-gailhoustet-tickets-1849010974599', 'title': 'Exhibition talk: Elise Zoetmulder about Renée Gailhoustet', 'date': 'Thursday at 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-verbeeld-jouw-queer-space-tickets-1757923318969', 'title': 'Workshop verbeeld jouw queer space', 'date': 'Thu, Dec 4, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/jbsc-conference-networks-of-exchange-tickets-1858027282619', 'title': 'JBSC Conference: Networks of (Ex)Change', 'date': 'Wed, Nov 26, 1:00 PM'}
+{'url': 'https://www.eventbrite.com/e/rise-up-free-prophetic-training-workshop-amsterdam-tickets-1571754573239', 'title': 'RISE UP - FREE Prophetic Training Workshop AMSTERDAM', 'date': 'Sat, Nov 15, 12:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/verhalenmiddag-de-smaken-van-thuis-tickets-1780034494089', 'title': 'Verhalenmiddag: De Smaken van Thuis', 'date': 'Tuesday at 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/one-movement-nijkerk-breng-jezus-naar-de-straat-tickets-1687608706069', 'title': 'One Movement Nijkerk  – Breng Jezus naar de straat', 'date': 'Sat, Nov 15, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/talles-esp-aprender-a-poner-l-imites-como-decir-no-sin-culpa-tickets-1960102983789', 'title': 'Talles ESP "Aprender a poner l´imites: Cómo decir No sin culpa"', 'date': 'Tuesday at 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/yusu-festival-tickets-1754128398259', 'title': 'YUSU! Festival', 'date': 'Sun, Dec 7, 1:00 PM'}
+{'url': 'https://www.eventbrite.com/e/nyenrode-meets-by-the-nyenrode-incubator-tickets-1236959522229', 'title': 'Nyenrode MEETS by the Nyenrode Incubator', 'date': 'Thu, Nov 27, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/bijpraten-bij-happy-tosti-tickets-1858226849529', 'title': 'Bijpraten bij Happy Tosti', 'date': 'Sat, Dec 6, 10:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/boekpresentatie-originele-kopieen-tickets-1672976480689', 'title': 'Boekpresentatie Originele kopieën', 'date': 'Thu, Nov 27, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/regiobezoek-logistieke-innovatie-utrecht-tickets-1857027101049', 'title': 'Regiobezoek Logistieke Innovatie Utrecht', 'date': 'Fri, Nov 21, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/kinderworkshop-titanic-schip-vol-dromen-7-tickets-1794562798639', 'title': 'Kinderworkshop Titanic: Schip vol dromen (7+)', 'date': 'Wed, Nov 19, 2:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/assembly-in-motion-filmmakers-creatives-sip-socialize-tickets-1906813553669', 'title': 'Assembly in Motion: Filmmakers / Creatives Sip & Socialize', 'date': 'Wed, Nov 19, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/bedrijfsbezoek-seco-tools-jabro-tickets-1841021096659', 'title': 'Bedrijfsbezoek Seco Tools (Jabro)', 'date': 'Thursday at 4:00 PM'}
+{'url': 'https://www.eventbrite.com/e/regenerative-visions-podcast-workshop-for-young-creators-tickets-1908181254499', 'title': 'Regenerative Visions: Podcast Workshop for Young Creators', 'date': 'Tue, Nov 18, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/free-drag-show-in-amsterdam-slay-the-night-away-with-little-angel-tickets-1845865997889', 'title': 'Free Drag Show in Amsterdam | Slay The Night Away! with Little Angel', 'date': 'Sat, Nov 15, 10:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/bedrijfsbezoek-econowind-tickets-1851586327549', 'title': 'Bedrijfsbezoek Econowind', 'date': 'Thursday at 3:30 PM'}
+{'url': 'https://www.eventbrite.com/e/women-forward-18-19-nov-money-mindset-tickets-1952384748339', 'title': 'Women Forward - 18+ | 19 nov | Money Mindset', 'date': 'Wed, Nov 19, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/story-of-my-life-daniel-tickets-1962492000402', 'title': 'Story of my Life “Daniël”', 'date': 'Mon, Dec 15, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-kalligrafie-voor-beginners-tickets-1814733018309', 'title': 'Workshop Kalligrafie voor beginners', 'date': 'Thu, Nov 27, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-afro-surinaamse-voorouders-tickets-1707868674179', 'title': 'Workshop: Afro-Surinaamse voorouders', 'date': 'Sat, Nov 15, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/atelje-pop-up-sunday-morning-5-km-run-fueled-by-nespresso-tickets-1962506277104', 'title': 'Ateljé pop-up:  Sunday morning 5 KM run fueled by Nespresso', 'date': 'Sun, Nov 23, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/together-we-celebrate-tsj-tickets-1715891320129', 'title': 'TOGETHER WE CELEBRATE -TSJ', 'date': 'Fri, Nov 21, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/wine-cheese-pairing-at-kanteen25-amsterdam-tickets-1904583643949', 'title': 'Wine & Cheese Pairing at Kanteen25 Amsterdam', 'date': 'Monday at 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/verhalen-van-de-stad-x-boze-bitches-boekenclub-tickets-1827340708249', 'title': 'Verhalen van de Stad X Boze Bitches Boekenclub', 'date': 'Mon, Nov 10, 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/informatieavond-fulltime-revival-ministry-school-tickets-1769041052409', 'title': 'Informatieavond Fulltime Revival & Ministry School', 'date': 'Wed, Jan 28, 8:00 PM'}
+{'url': 'https://www.eventbrite.com/e/stijl-skincare-snacks-tickets-1961685166139', 'title': 'STIJL, SKINCARE & SNACKS', 'date': 'Sun, Dec 7, 11:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/kerstnacht-2025-kom-maar-bij-mij-tickets-1857255915439', 'title': 'Kerstnacht 2025 | Kom maar bij mij', 'date': 'Wed, Dec 24, 6:30 PM'}
+{'url': 'https://www.eventbrite.com/e/inloop-les-streetdance-hiphop-tickets-1679221610039', 'title': 'Inloop les Streetdance, HipHop', 'date': 'Thu, Dec 11, 4:30 PM'}
+{'url': 'https://www.eventbrite.com/e/de-herontdekking-van-de-gemeenschap-tickets-1837274279829', 'title': 'De herontdekking van de gemeenschap', 'date': 'Thursday at 2:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/expats-connect-career-switch-networking-tickets-1839093681709', 'title': 'Expats Connect: Career Switch + Networking', 'date': 'Thursday at 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/international-life-beyond-the-40s-the-college-hotel-tickets-1865379232499', 'title': "International Life Beyond the 40's @ The College Hotel", 'date': 'Sat, Nov 15, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/workshop-cultuurverschillen-op-de-seh-tickets-1681431219039', 'title': 'Workshop: Cultuurverschillen op de SEH', 'date': 'Wed, Dec 3, 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/december-4th-how-to-hour-building-a-funding-roadmap-tickets-1755853106909', 'title': 'December 4th | How-to-Hour; Building a funding roadmap', 'date': 'Thu, Dec 4, 2:00 PM'}
+{'url': 'https://www.eventbrite.com/e/restored-resilient-a-journey-into-emotional-and-mental-wellbeing-tickets-1963474742811', 'title': 'Restored & Resilient: A Journey into Emotional and Mental Wellbeing', 'date': 'Sat, Nov 22, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/vox-book-club-notes-from-underground-tickets-1953282563729', 'title': 'VOX Book Club: Notes from Underground', 'date': 'Wed, Nov 19, 12:45 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-gedichten-voor-beginners-tickets-1916162125499', 'title': 'Workshop Gedichten voor beginners', 'date': 'Thursday at 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/de-villa-mondriaan-kunst-quiz-tickets-1837221301369', 'title': 'De Villa Mondriaan Kunst Quiz', 'date': 'Fri, Nov 14, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/master-thesis-competition-in-competition-law-tickets-1906085024619', 'title': 'Master Thesis Competition in Competition Law', 'date': 'Fri, Nov 28, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/duurzame-dinsdag-storytelling-over-duurzaamheid-tickets-1394465577079', 'title': 'Duurzame dinsdag: storytelling over duurzaamheid', 'date': 'Tue, Dec 2, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/november-13th-how-to-hour-crafting-a-deck-that-attracts-investors-tickets-1720425100789', 'title': 'November 13th | How-to-Hour; Crafting a deck that attracts investors.', 'date': 'Thursday at 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/help-de-saldering-stopt-wat-nu-tickets-1862612757899', 'title': 'Help! De saldering stopt, wat nu?', 'date': 'Wednesday at 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/oud-leerlingenavond-de-resonant-tickets-1863330113529', 'title': 'Oud-leerlingenavond De Resonant', 'date': 'Fri, Feb 27, 5:00 PM'}
+{'url': 'https://www.eventbrite.com/e/energieke-netwerken-voor-warmte-en-koude-tickets-1934290758729', 'title': 'ENERGIEKE NETWERKEN voor warmte en koude', 'date': 'Friday at 12:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/uitreiking-van-de-blastprijs-stad-in-een-park-tickets-1745679978809', 'title': 'Uitreiking van de BLAStprijs | Stad in een Park', 'date': 'Wed, Nov 26, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/heilige-geest-avond-tickets-1922460805019', 'title': 'Heilige Geest avond', 'date': 'Sun, Nov 16, 7:00 PM'}
+{'url': 'https://www.eventbrite.com/e/the-evolving-agency-series-amsterdam-tickets-1814511234949', 'title': 'The Evolving Agency Series | Amsterdam', 'date': 'Thu, Nov 27, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/community-night-tickets-1707882746269', 'title': 'Community night', 'date': 'Fri, Nov 21, 6:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/fotosessie-arts-assistenten-najaar-2025-tickets-1764149752399', 'title': 'Fotosessie Arts-assistenten Najaar 2025', 'date': 'Tuesday at 11:00 AM'}
+{'url': 'https://www.eventbrite.com/e/grote-nijmeegse-energie-pubquiz-14-november-om-2000-in-de-looimolen-tickets-1857128594619', 'title': 'Grote Nijmeegse Energie Pubquiz: 14 november om 20:00 in de Looimolen', 'date': 'Fri, Nov 14, 8:00 PM'}
+{'url': 'https://www.eventbrite.com/e/2025-intersct-workshop-on-cyber-security-of-internet-of-things-tickets-1962466282479', 'title': '2025 INTERSCT. Workshop on cyber security of Internet-of-Things', 'date': 'Mon, Nov 17, 9:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/dag-van-de-ondernemer-2025-tickets-1964087237800', 'title': 'Dag van de ondernemer 2025', 'date': 'Fri, Nov 21, 12:45 PM'}
+{'url': 'https://www.eventbrite.nl/e/expats-dog-lovers-join-the-paws-pals-walk-tickets-1788049697779', 'title': 'Expats Dog lovers: Join the Paws & Pals Walk!', 'date': 'Mon, Nov 10, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/moskeedag-tickets-1931074960189', 'title': 'Moskeedag', 'date': 'Sun, Nov 30, 2:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/dutch-debate-club-b2-in-amsterdam-improve-your-speaking-listening-sk-tickets-1954392363169', 'title': 'Dutch Debate Club (B2+) in Amsterdam – Improve Your Speaking & Listening Sk', 'date': 'Tuesday at 8:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/one-body-in-christ-throne-room-tickets-1914163006079', 'title': 'ONE BODY IN CHRIST | "Throne Room"', 'date': 'Fri, Nov 28, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/aot-november-tickets-1813741452509', 'title': 'AoT November', 'date': 'Monday at 8:15 PM'}
+{'url': 'https://www.eventbrite.nl/e/voorleesvoorstelling-op-muzikale-reis-met-jeritza-toney-tickets-1913444236219', 'title': 'Voorleesvoorstelling  - Op muzikale reis met Jeritza Toney', 'date': 'Wed, Dec 10, 1:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/bigiyari-met-bodil-de-la-parra-jeffrey-spalburg-en-meer-tickets-1857327268859', 'title': 'Bigiyari met Bodil de la Parra, Jeffrey Spalburg en meer', 'date': 'Sat, Nov 15, 2:00 PM'}
+{'url': 'https://www.eventbrite.com/e/office-warming-aurora-vita-x-studio-giorno-tickets-1866616824169', 'title': 'Office warming Aurora Vita X Studio Giorno', 'date': 'Sat, Jan 24, 3:00 PM'}
+{'url': 'https://www.eventbrite.com/e/alphathetapioneer-dj-cdj-3000x-introductie-tickets-1963263448825', 'title': 'AlphaTheta/Pioneer DJ CDJ-3000x Introductie', 'date': 'Mon, Nov 17, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/safe-space-interactieve-theatervoorstelling-over-sociale-veiligheid-tickets-1918213611549', 'title': 'SAFE SPACE – interactieve theatervoorstelling over sociale veiligheid', 'date': 'Thu, Dec 4, 2:00 PM'}
+{'url': 'https://www.eventbrite.com/e/taste-the-vibes-gusto-after-work-christmas-edition-tickets-1845920972319', 'title': 'Taste the Vibes - Gusto After Work - Christmas Edition', 'date': 'Thu, Dec 4, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/literair-atelier-a-gogo-tickets-1786423644209', 'title': 'Literair Atelier à GoGo', 'date': 'Fri, Dec 5, 10:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/tech-leaders-20-november-2025-tickets-1354971699829', 'title': 'Tech Leaders 20 november 2025', 'date': 'Thu, Nov 20, 1:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/opo-strey-vergeten-strijdliederen-tickets-1801881910299', 'title': 'Opo Strey: Vergeten strijdliederen', 'date': 'Thu, Nov 20, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/veeam-usergroup-nederland-meetup-tickets-1836916279039', 'title': 'Veeam UserGroup Nederland meetup', 'date': 'Fri, Nov 28, 9:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/repair-cafe-xxl-tickets-1870347954079', 'title': 'Repair cafe XXL', 'date': 'Mon, Nov 17, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/bedrijfsbezoek-slingeland-ziekenhuis-tickets-1776798685699', 'title': 'Bedrijfsbezoek Slingeland Ziekenhuis', 'date': 'Monday at 3:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/data-as-a-strategic-asset-tickets-1951943558729', 'title': 'Data as a Strategic Asset', 'date': 'Wed, Dec 3, 2:00 PM'}
+{'url': 'https://www.eventbrite.com/e/zenggi-trvl-drss-archive-sale-tickets-1964753060293', 'title': 'ZENGGI & TRVL DRSS | Archive Sale', 'date': 'Friday at 10:00 AM'}
+{'url': 'https://www.eventbrite.com/e/5e-community-of-practice-cop-voor-ai-tickets-1354831550639', 'title': '5e Community of Practice (CoP) voor A.I.', 'date': 'Mon, Dec 1, 2:15 PM'}
+{'url': 'https://www.eventbrite.com/e/nexpace-meet-the-neighbors-tickets-1848010682699', 'title': "NEXPACE: 'Meet The Neighbors'", 'date': 'Wed, Nov 26, 5:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/free-drag-show-in-amsterdam-valentines-day-with-sania-cruize-tickets-1914956900639', 'title': "Free Drag Show in Amsterdam | Valentine's Day with Sania Cruize", 'date': 'Sat, Feb 14, 10:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/pizzas-programming-in-rust-safe-fast-and-fun-open-hack-night-tickets-1739219916589', 'title': "Pizza's & Programming in Rust: safe, fast and fun! - Open Hack Night", 'date': 'Wed, Nov 26, 6:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/boekpresentatie-suriname-in-beeld-fotografie-in-suriname-18451975-tickets-1914192333799', 'title': 'Boekpresentatie “Suriname in beeld – fotografie in Suriname 1845–1975”', 'date': 'Thu, Nov 20, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/weerter-tour-tickets-1962703207127', 'title': 'Weerter Tour', 'date': 'Fri, Nov 14, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/finder-the-amsterdam-co-founder-match-event-meet-match-master-tickets-1923977541619', 'title': 'Finder: The Amsterdam Co-Founder Match Event — Meet. Match. Master.', 'date': 'Tue, Dec 2, 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/tekenworkshop-met-illustrator-micky-dirkzwager-tickets-1964793911480', 'title': 'Tekenworkshop met illustrator Micky Dirkzwager', 'date': 'Mon, Dec 8, 3:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/from-red-flags-to-real-talk-love-power-equality-tickets-1842063003029', 'title': 'From Red Flags to Real Talk: Love, Power & Equality', 'date': 'Wed, Dec 10, 6:30 AM'}
+{'url': 'https://www.eventbrite.nl/e/mahjong-movie-reclaiming-dragons-tickets-1851570991679', 'title': 'Mahjong & Movie: Reclaiming Dragons', 'date': 'Sat, Dec 6, 3:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/acle-seminar-adriana-robertson-university-of-chicago-law-school-tickets-1906612482259', 'title': 'ACLE Seminar: Adriana Robertson (University of Chicago Law School)', 'date': 'Tue, Nov 18, 1:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/wat-blijft-er-over-als-hoop-verdwijnt-tickets-1773236260389', 'title': 'Wat blijft er over als hoop verdwijnt?', 'date': 'Thu, Nov 27, 8:00 PM'}
+{'url': 'https://www.eventbrite.com/e/kerstmarkt-tickets-1820178265189', 'title': 'Kerstmarkt', 'date': 'Tue, Dec 16, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/hip-kinderworkshop-op-art-kubus-maken-tickets-1729781937339', 'title': 'HIP kinderworkshop: Op-Art kubus maken', 'date': 'Wednesday at 2:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/workshop-voor-families-titanic-dromen-van-de-toekomst-tickets-1780273278299', 'title': 'Workshop voor families: TITANIC dromen van de toekomst', 'date': 'Wednesday at 2:00 PM'}
+{'url': 'https://www.eventbrite.com/e/kickstart-weekend-etten-leur-tickets-1754952814109', 'title': 'Kickstart weekend Etten-Leur', 'date': 'Fri, Dec 5, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/optometristen-nascholing-keratitis-bij-contactlensgebruik-zeist-tickets-1794604021939', 'title': 'Optometristen nascholing: Keratitis bij contactlensgebruik (Zeist)', 'date': 'Mon, Nov 17, 5:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/koerdische-verhalen-boekenclub-tickets-1779556123269', 'title': 'Koerdische verhalen boekenclub', 'date': 'Wed, Dec 17, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/water-in-de-delta-door-grootouders-voor-het-klimaat-met-maarten-ouboter-tickets-1813161347399', 'title': 'Water in de Delta door Grootouders voor het Klimaat met Maarten Ouboter', 'date': 'Wednesday at 3:00 PM'}
+{'url': 'https://www.eventbrite.com/e/vida-fest-2026-vida-maakt-ruimte-29-januari-2026-tickets-1913836940809', 'title': 'VIDA FEST 2026 – VIDA MAAKT RUIMTE – 29 januari 2026', 'date': 'Thu, Jan 29, 4:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/holy-spirit-night-tickets-1907311623409', 'title': 'Holy Spirit Night', 'date': 'Fri, Nov 14, 7:30 PM'}
+{'url': 'https://www.eventbrite.com/e/iiex-europe-2026-insight-innovation-exchange-tickets-1664597749679', 'title': 'IIEX Europe 2026 – Insight Innovation Exchange', 'date': 'Tue, Jun 23, 10:00 AM'}
+{'url': 'https://www.eventbrite.nl/e/poezie-en-spoken-word-met-jasper-albinus-tickets-1802310532319', 'title': 'Poëzie -en Spoken Word met Jasper Albinus', 'date': 'Fri, Nov 21, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/open-huis-jongereninitiatieven-tickets-1716672125539', 'title': 'Open Huis Jongereninitiatieven', 'date': 'Thu, Nov 27, 4:00 PM'}
+{'url': 'https://www.eventbrite.com/e/global-entrepreneurship-week-skills-1-idea-tickets-1907591721189', 'title': 'Global Entrepreneurship Week: Skills #1 - Idea!', 'date': 'Mon, Nov 17, 12:45 PM'}
+{'url': 'https://www.eventbrite.nl/e/win-winterfest-2025-tickets-1734408264809', 'title': 'Win-Winterfest 2025', 'date': 'Thu, Nov 27, 5:00 PM'}
+{'url': 'https://www.eventbrite.com/e/christmas-carol-worship-miracles-tickets-1953462361509', 'title': 'Christmas Carol - Worship & Miracles', 'date': 'Sun, Dec 21, 7:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/story-of-my-life-zuzia-tickets-1759939639839', 'title': 'Story of my Life “Zuzia”', 'date': 'Wed, Dec 10, 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/fun-for-expats-karaoke-night-tickets-1933597535279', 'title': 'Fun for expats: Karaoke night', 'date': 'Thu, Nov 27, 8:00 PM'}
+{'url': 'https://www.eventbrite.nl/e/homeopathy-awareness-evening-in-person-bergen-nh-online-zoom-tickets-1777960350269', 'title': 'Homeopathy Awareness Evening – In Person (Bergen NH) & Online (Zoom)', 'date': 'Wednesday at 7:30 PM'}
+{'url': 'https://www.eventbrite.nl/e/koo-workshop-wintertafereel-schilderen-tickets-1964845674304', 'title': 'KOO workshop Wintertafereel schilderen', 'date': 'Tue, Dec 9, 3:30 PM'}
