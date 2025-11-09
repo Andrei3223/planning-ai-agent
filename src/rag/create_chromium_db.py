@@ -62,8 +62,7 @@ def create_chromium_db(file_path: str = "src/rag/data/data_desription.txt", pers
     langchain_documents = [dict_to_langchain_document(d) for d in data_list]
 
     embedding_model = OpenAIEmbeddings(
-        model=os.getenv('EMBEDDING_MODEL', 'text-embedding-3-small'),
-        # base_url=os.getenv('API_URL'),
+        model='text-embedding-3-small',
         api_key=os.getenv('OPENAI_API_KEY_KIRILL')
     )
 

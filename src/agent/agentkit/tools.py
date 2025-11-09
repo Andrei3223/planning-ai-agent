@@ -222,9 +222,12 @@ async def get_personal_event_suggestions_db(
     """
     Suggest events for a single user based on their preferences and availability.
     Integrates SQLite for user info + busy hours, and Chroma vector search for events.
+    Groups results by event_date.
     """
     async with aiosqlite.connect(DB_PATH_USERS) as conn:
-        async with conn.execute("SELECT preferences FROM users WHERE telegram_id = ?", (telegram_id,)) as cur:
+        async with conn.execute(
+            "SELECT preferences FROM users WHERE telegram_id = ?", (telegram_id,)
+        ) as cur:
             row = await cur.fetchone()
             prefs = set()
             if row and row[0]:
@@ -234,19 +237,10 @@ async def get_personal_event_suggestions_db(
                     prefs = set(row[0].split(","))
 
     async with aiosqlite.connect(DB_PATH_BUSYHOURS) as conn:
-        async with conn.execute("SELECT start, duration FROM busy_hours WHERE user_id = ?", (telegram_id,)) as cur:
+        async with conn.execute(
+            "SELECT start, duration FROM busy_hours WHERE telegram_id = ?", (telegram_id,)
+        ) as cur:
             rows = await cur.fetchall()
-
-        # Build a dict: {date: [(start, end)]}
-        availability: Dict[str, List[List[str]]] = {}
-        for start, duration in rows:
-            # Expected format: start = "YYYY-MM-DD HH:MM", duration = "HH:MM"
-            if " " in start:
-                date, t_start = start.split(" ", 1)
-            else:
-                date, t_start = "unknown", start
-            t_end = duration
-            availability.setdefault(date, []).append([t_start, t_end])
 
     # Build busy intervals per date
     busy_by_date: Dict[str, List[List[str]]] = {}
@@ -259,19 +253,52 @@ async def get_personal_event_suggestions_db(
         busy_by_date.setdefault(date, []).append([t_start, t_end])
 
     preferences_str = ", ".join(sorted(prefs)) if prefs else "general events"
-    query = f"Find upcoming {preferences_str} events."
+    query = f"{preferences_str}"
 
-    rag_result = get_nearest_events(llm, query, persist_directory=DB_PATH_EVENTS)
+    rag_result = get_nearest_events(query, persist_directory=DB_PATH_EVENTS)
 
-    # Build return structure
+    seen = set()
+    unique_events = []
+
+    for result in rag_result:
+        meta = result.get("metadata", {})
+        event_title = meta.get("event_title", "Unknown Event")
+        event_date = meta.get("event_date", "Unknown Date")
+        unique_key = (event_title.strip().lower(), event_date.strip().lower())
+
+        if unique_key in seen:
+            continue  # skip duplicates
+        seen.add(unique_key)
+
+        unique_events.append(
+            {
+                "event_title": event_title,
+                "event_date": event_date,
+                "source_url": meta.get("source_url", ""),
+                "description": result.get("content", ""),
+                "similarity_score": round(result.get("score", 0), 4),
+            }
+        )
+
+    def parse_date_safe(date_str: str):
+        try:
+            return datetime.strptime(date_str, "%a, %b %d, %I:%M %p")
+        except Exception:
+            return date_str  # fallback to lexicographic order if unparseable
+
+    unique_events.sort(key=lambda x: parse_date_safe(x["event_date"]))
+
+    grouped_by_date = {}
+    for ev in unique_events:
+        grouped_by_date.setdefault(ev["event_date"], []).append(ev)
+
     return {
         "telegram_id": telegram_id,
         "preferences": sorted(prefs),
         "busy_days": sorted(busy_by_date.keys()),
         "suggestions_query": query,
-        "rag_result": rag_result,  # text result from the vector retriever
+        "grouped_events": grouped_by_date,  # grouped and deduplicated
     }
-
 
 
 @tool
@@ -287,6 +314,7 @@ async def get_joint_event_suggestions_db(
       2. Compute shared preferences (intersection).
       3. Compute shared free days using find_common_availability().
       4. Retrieve matching events from Chroma RAG store.
+      5. Group events by date and return structured output.
     """
     if len(telegram_ids) < 2:
         return {"error": "Provide at least two telegram_ids to get joint suggestions."}
@@ -306,29 +334,62 @@ async def get_joint_event_suggestions_db(
 
     shared_prefs = set.intersection(*prefs_sets) if all(prefs_sets) else set()
 
-
     async with aiosqlite.connect(DB_PATH_USERS) as conn:
         common_av = await find_common_availability(conn, telegram_ids)
 
     prefs_text = ", ".join(sorted(shared_prefs)) if shared_prefs else "general interests"
-    query = f"Find upcoming events related to {prefs_text} that fit all users' shared free time."
+    query = f"Find upcoming events related to {prefs_text}"
 
     if common_av:
         earliest_day = sorted(common_av.keys())[0]
-        query += f" Preferably after {earliest_day}."
+        query += f" preferably after {earliest_day}."
 
-    # Retrieve events from Chroma RAG
-    rag_result = get_nearest_events(llm, query, persist_directory=DB_PATH_EVENTS)
 
-    # Return structured output
+    rag_results = get_nearest_events(query, persist_directory=DB_PATH_EVENTS)
+
+    # Use a dict to deduplicate by (event_title, event_date)
+    unique_events: Dict[tuple, Dict] = {}
+
+    for result in rag_results:
+        meta = result.get("metadata", {})
+        event_title = meta.get("event_title", "Unknown Event")
+        event_date = meta.get("event_date", "Unknown Date")
+        key = (event_title.strip().lower(), event_date.strip().lower())
+
+        # Keep the highest similarity version if duplicate
+        score = round(result.get("score", 0), 4)
+        if key not in unique_events or score > unique_events[key]["similarity_score"]:
+            unique_events[key] = {
+                "event_title": event_title,
+                "event_date": event_date,
+                "source_url": meta.get("source_url", ""),
+                "description": result.get("content", ""),
+                "similarity_score": score,
+            }
+
+    # Convert back to list
+    deduped_events = list(unique_events.values())
+
+    # Sort by similarity descending, then by date (lexicographically)
+    deduped_events.sort(
+        key=lambda x: (-x["similarity_score"], x["event_date"])
+    )
+
+    # Group by event_date
+    grouped_events: Dict[str, List[Dict]] = {}
+    for ev in deduped_events:
+        grouped_events.setdefault(ev["event_date"], []).append(ev)
+
+    # Sort event_date keys
+    grouped_events = dict(sorted(grouped_events.items(), key=lambda x: x[0]))
+
     return {
         "telegram_ids": telegram_ids,
         "shared_preferences": sorted(shared_prefs),
         "shared_availability_days": sorted(common_av.keys()),
         "query_used": query,
-        "rag_result": rag_result,  # textual recommendations from vector DB
+        "grouped_events": grouped_events,  # deduplicated + grouped by date
     }
-
 
 
 @tool
