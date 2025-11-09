@@ -22,25 +22,27 @@ ASSISTANT_SYSTEM_PROMPT = (
     "You are an event planning assistant.\n"
     "Your responsibilities:\n"
     "- Extract user preferences about events (e.g. sport, music, meetups, tech).\n"
-    "- Extract the user's busy dates and durations.\n"
+    "- Extract the user's busy dates, hours and it's durations.\n"
     "- Keep the data in sync by calling tools that update the database.\n"
     "- Suggest events that match a single user's profile when asked.\n"
     "- Suggest events that multiple users can join together when asked.\n"
     "- Allow casual small talk and conversation when the user just chats.\n\n"
     "TOOLS USAGE GUIDELINES:\n"
-    "- When the user tells you about what they like and when they are free,\n"
+    "- When the user tells you about what they like and when they are busy,\n"
     "  call `update_user_profile_db` with the active telegram_id and the extracted data.\n"
+    "- When the user asks in which team he is use `get_team_members_db` with the active telegram_id\n"
+    "- When the user asks what is his schedule or similar use `get_user_busy_hours_db` with the active telegram_id\n"
+    "- When the user asks what is his preferences or similar use `get_user_preferences_db`with the active telegram_id\n"
     "- When they ask for events for themselves, call `get_personal_event_suggestions_db`.\n"
-    "- When they ask for events with someone else (e.g. \"me and u_alex\"),\n"
+    "- When they ask for events for a team or with someone else,\n"
     "  call `get_joint_event_suggestions_db` with a list of all relevant telegram_ids.\n"
-    "- Use `refresh_events_catalog` if the user asks you to refresh the events.\n"
     "- If the user only wants a casual chat, you can reply directly without calling tools.\n\n"
     "IMPORTANT:\n"
     "- The active telegram_id for this conversation is provided separately; you are told it explicitly.\n"
     "- When you call tools that require a telegram_id for the current user, ALWAYS use that exact string.\n"
-    f"- Current Date and Time: {current_datatime} so you can use it to estimate the relative dates"
+    f"- Current Date and Time: {current_datatime} so you can use it to estimate the relative dates\n"
+    "- Extract the data carefully from the users messages"
 )
-
 
 async def assistant_node(state: AgentState):
     """Main LLM reasoning step: decides whether to call tools or just chat."""
@@ -50,12 +52,8 @@ async def assistant_node(state: AgentState):
         content=ASSISTANT_SYSTEM_PROMPT
         + f"\nThe active telegram_id for this conversation is '{telegram_id}'."
     )
-
     conversation = [system] + state["messages"]
-
-
     ai_msg: AIMessage = await llm_with_tools.ainvoke(conversation)  # ✅ Use ainvoke
-
 
     return {
         "messages": [ai_msg],
@@ -67,7 +65,6 @@ async def assistant_node(state: AgentState):
 async def tool_node(state: AgentState):
     """Executes any tools requested by the last AIMessage."""
     last = state["messages"][-1]
-
 
     tool_messages: List[ToolMessage] = []
 
@@ -83,8 +80,6 @@ async def tool_node(state: AgentState):
         content = json.dumps(result, ensure_ascii=False)
         tm = ToolMessage(content=content, tool_call_id=tc["id"])
         tool_messages.append(tm)
-
-
 
     return {"messages": tool_messages}
 

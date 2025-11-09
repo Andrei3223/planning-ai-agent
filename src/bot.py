@@ -26,7 +26,7 @@ load_dotenv()
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 # DBS
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.getenv("API_KEY")
 DB_PATH_EVENTS = "DBs/RAG"
 DB_PATH_BUSYHOURS = "DBs/busyhours.sqlite"
 DB_PATH_USERS = "DBs/users.sqlite"

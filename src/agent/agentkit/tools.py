@@ -129,36 +129,42 @@ async def update_user_profile_db(
     telegram_id: int,
     add_preferences: Optional[List[str]] = None,
     remove_preferences: Optional[List[str]] = None,
-    add_availability: Optional[List[Slot]] = None,
-    clear_availability: bool = False,
+    add_business: Optional[List[Slot]] = None,
+    clear_business: bool = False,
 ) -> Dict:
     """
-    Update a user's preferences and availability using aiosqlite database tables:
-      - users
+    Update a user's preferences and busy hours using aiosqlite database tables:
+      - users (for preferences)
+      - busy_hours (for busyness)
 
     Args:
         telegram_id: user's Telegram ID
         add_preferences: list of new tags to add
         remove_preferences: list of tags to remove
+        add_business: list of Slot(date, start, duration) objects to add as busy hours
+        clear_business: if True, remove all existing busy hours for this user
     Returns:
-        Dict summary of updated profile
+        Dict summary of updated profile (preferences + busy_hours_count)
     """
     add_preferences = add_preferences or []
     remove_preferences = remove_preferences or []
-    add_availability = add_availability or []
+    add_business = add_business or []
 
     async with aiosqlite.connect(DB_PATH_USERS) as conn:
 
-        # Load current preferences
+        # Load existing preferences
         async with conn.execute(
             "SELECT preferences FROM users WHERE telegram_id = ?", (telegram_id,)
         ) as cur:
             row = await cur.fetchone()
             existing_prefs = set()
             if row and row[0]:
-                existing_prefs = set(json.loads(row[0])) if row[0].startswith("[") else set(row[0].split(","))
+                try:
+                    existing_prefs = set(json.loads(row[0])) if row[0].startswith("[") else set(row[0].split(","))
+                except Exception:
+                    existing_prefs = set(row[0].split(","))
 
-        # Update preferences
+        # Apply changes
         for p in add_preferences:
             if p:
                 existing_prefs.add(p.lower())
@@ -166,18 +172,47 @@ async def update_user_profile_db(
             if p:
                 existing_prefs.discard(p.lower())
 
-        # Save updated preferences back
+        # Save preferences
         prefs_serialized = json.dumps(sorted(existing_prefs))
         await conn.execute(
             "UPDATE users SET preferences = ? WHERE telegram_id = ?",
             (prefs_serialized, telegram_id),
         )
-        
-        summary = {
-            "telegram_id": telegram_id,
-            "preferences": sorted(existing_prefs),
-        }
-        return summary
+        await conn.commit()
+
+    async with aiosqlite.connect(DB_PATH_BUSYHOURS) as conn:
+        if clear_business:
+            await conn.execute(
+                "DELETE FROM busy_hours WHERE telegram_id = ?", (telegram_id,)
+            )
+            await conn.commit()
+
+        # Add new busy slots
+        for slot in add_business:
+            start_dt = f"{slot.date} {slot.start}"
+            await conn.execute(
+                "INSERT INTO busy_hours (telegram_id, start, duration) VALUES (?, ?, ?)",
+                (telegram_id, start_dt, slot.duration),
+            )
+
+        await conn.commit()
+
+        # Get updated summary
+        async with conn.execute(
+            "SELECT id, start, duration FROM busy_hours WHERE telegram_id = ? ORDER BY start",
+            (telegram_id,),
+        ) as cur:
+            busy_rows = await cur.fetchall()
+
+    summary = {
+        "telegram_id": telegram_id,
+        "preferences": sorted(existing_prefs),
+        "busy_hours_count": len(busy_rows),
+        "busy_hours": [{"start": r[1], "end": r[2]} for r in busy_rows],
+    }
+
+    return summary
+
 
 
 @tool
@@ -295,60 +330,6 @@ async def get_joint_event_suggestions_db(
     }
 
 
-@tool
-async def update_busy_hours(
-    telegram_id: int,
-    add_slots: Optional[List[Slot]] = None,
-    clear_existing: bool = False,
-) -> Dict:
-    """
-    Update a user's busy hours in the `busy_hours` table.
-
-    Args:
-        telegram_id: user's Telegram ID
-        add_slots: list of Slot objects to add
-        clear_existing: if True, remove all existing busy hours before inserting new ones
-
-    Returns:
-        Dict summary with total busy hour entries after update
-    """
-    add_slots = add_slots or []
-
-    async with aiosqlite.connect(DB_PATH_BUSYHOURS) as db:
-        # Optionally clear existing records
-        if clear_existing:
-            await db.execute("DELETE FROM busy_hours WHERE telegram_id = ?", (telegram_id,))
-            await db.commit()
-
-        # Insert new slots
-        for slot in add_slots:
-            # Combine date and start time into single string
-            start_dt = f"{slot.date} {slot.start}"
-            duration = slot.duration  # stored as string "HH:MM"
-            await db.execute(
-                "INSERT INTO busy_hours (telegram_id, start, duration) VALUES (?, ?, ?)",
-                (telegram_id, start_dt, duration),
-            )
-
-        await db.commit()
-
-        # Return updated summary
-        async with db.execute(
-            "SELECT id, start, duration FROM busy_hours WHERE telegram_id = ? ORDER BY start",
-            (telegram_id,),
-        ) as cur:
-            rows = await cur.fetchall()
-
-        summary = {
-            "telegram_id": telegram_id,
-            "busy_hours_count": len(rows),
-            "busy_hours": [{"start": r[1], "end": r[2]} for r in rows],
-        }
-
-        print(summary)
-
-        return summary
-
 
 @tool
 async def get_team_members_db(team_id: int) -> Dict:
@@ -449,9 +430,8 @@ TOOLS = [
     get_team_members_db,
     get_user_busy_hours_db,
     get_user_preferences_db,
-    update_user_profile_db,
-    update_busy_hours,
     get_personal_event_suggestions_db,
     get_joint_event_suggestions_db,
+    update_user_profile_db,
 ]
 TOOLS_BY_NAME = {t.name: t for t in TOOLS}
