@@ -9,6 +9,8 @@ from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
+from langchain_core.messages import HumanMessage  # for agent.invoke payloads
+from agent.agentkit.graph import agent
 from dotenv import load_dotenv
 
 # OpenAI (async)
@@ -205,23 +207,6 @@ async def on_start(message: types.Message, state: FSMContext):
             reply_markup=main_menu_kb()
         )
 
-# @dp.message(PrefStates.WAITING_PREFERENCES)
-# async def receive_preferences(message: types.Message, state: FSMContext):
-#     tg_id = message.from_user.id
-#     prefs = message.text or ""
-#     prefs = prefs.strip()
-#     if not prefs:
-#         await message.answer("Please send some text for your preferences 🙂")
-#         return
-
-#     async with aiosqlite.connect(DB_PATH_USERS) as conn:
-#         await set_preferences(conn, tg_id, prefs)
-
-#     await state.clear()
-#     await message.answer(
-#         f"Got it! Saved your preferences:\n\n“{prefs}”",
-#         reply_markup=main_menu_kb()
-#     )
 
 @dp.message(PrefStates.WAITING_PREFERENCES)
 async def receive_preferences(message: types.Message, state: FSMContext):
@@ -263,6 +248,64 @@ async def receive_preferences(message: types.Message, state: FSMContext):
     )
 
 
+# ------------- FREE-TEXT → AGENT FALLBACK -------------
+# Any user message that is NOT a callback (button) and NOT in the preferences state
+# will land here and be forwarded to your agent.
+
+# If your 'agent' is defined in another module, import it above:
+# from my_agent_module import agent
+
+@dp.message(F.text)
+async def on_free_text(message: types.Message, state: FSMContext):
+    # If we're collecting preferences, let the dedicated handler deal with it
+    current_state = await state.get_state()
+    if current_state == PrefStates.WAITING_PREFERENCES.state:
+        return  # receive_preferences() already handles these
+
+    # Only handle genuine free-typed text (callbacks come via @dp.callback_query)
+    text = (message.text or "").strip()
+    if not text:
+        await message.answer("Please send a text message 🙂")
+        return
+
+    # Build the agent payload
+    payload = {
+        "messages": [HumanMessage(content=text)],
+        "user_id": str(message.from_user.id),
+        "llm_calls": 0,  # change this if you track per-user LLM usage
+    }
+
+    # Call your agent (works for both sync .invoke and async .ainvoke)
+    try:
+        if hasattr(agent, "ainvoke"):
+            result = await agent.ainvoke(payload)
+        else:
+            loop = asyncio.get_running_loop()
+            result = await loop.run_in_executor(None, agent.invoke, payload)
+    except Exception as e:
+        log.exception("Agent error: %s", e)
+        await message.answer("Sorry, I couldn't process that just now. Please try again.")
+        return
+
+    # Extract a reasonable text reply from agent result
+    # (Adjust if your agent returns a different structure)
+    reply_text = None
+    if isinstance(result, str):
+        reply_text = result
+    elif isinstance(result, dict):
+        # Common patterns: result["output"], result["answer"], result["messages"][-1].content, etc.
+        reply_text = (
+            result.get("output")
+            or result.get("answer")
+            or (result.get("messages", [])[-1].content if result.get("messages") else None)
+        )
+
+    if not reply_text:
+        reply_text = "I processed your message, but didn't get a readable answer. Try rephrasing?"
+
+    await message.answer(reply_text)
+
+
 
 @dp.callback_query(F.data == "edit_prefs")
 async def on_edit_prefs(cb: types.CallbackQuery, state: FSMContext):
@@ -298,6 +341,10 @@ async def on_find_event_all(cb: types.CallbackQuery):
 
     # Also acknowledge the original chat with buttons again
     await cb.message.answer("Sent the event suggestion to everyone ✅", reply_markup=main_menu_kb())
+
+
+
+
 
 # ------------- MAIN -------------
 async def main():
