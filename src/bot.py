@@ -45,9 +45,7 @@ log = logging.getLogger("tg-bot")
 # ------------- AI CLIENT -------------
 oaiclient = AsyncOpenAI(api_key=OPENAI_API_KEY)
 
-# ------------- STATES -------------
-class PrefStates(StatesGroup):
-    WAITING_PREFERENCES = State()
+
 
 # ------------- UI HELPERS -------------
 
@@ -225,7 +223,6 @@ async def on_start(message: types.Message, state: FSMContext):
 
     prefs = user[2]  # preferences
     if not prefs:
-        await state.set_state(PrefStates.WAITING_PREFERENCES)
         await message.answer(WELCOME_TEXT)  # no reply_markup here -> menu stays
     else:
         await message.answer(
@@ -255,43 +252,43 @@ async def on_team_buttons_disabled(message: types.Message):
 
 
 
-@dp.message(PrefStates.WAITING_PREFERENCES)
-async def receive_preferences(message: types.Message, state: FSMContext):
-    tg_id = message.from_user.id
-    prefs = message.text.strip() if message.text else ""
+# @dp.message(PrefStates.WAITING_PREFERENCES)
+# async def receive_preferences(message: types.Message, state: FSMContext):
+#     tg_id = message.from_user.id
+#     prefs = message.text.strip() if message.text else ""
 
-    if not prefs:
-        await message.answer("Please send some text for your preferences 🙂")
-        return
+#     if not prefs:
+#         await message.answer("Please send some text for your preferences 🙂")
+#         return
 
-    async with aiosqlite.connect(DB_PATH_USERS) as conn:
-        # 🔍 Check if user already has preferences
-        async with conn.execute(
-            "SELECT preferences FROM users WHERE telegram_id = ?;",
-            (tg_id,)
-        ) as cur:
-            row = await cur.fetchone()
+#     async with aiosqlite.connect(DB_PATH_USERS) as conn:
+#         # 🔍 Check if user already has preferences
+#         async with conn.execute(
+#             "SELECT preferences FROM users WHERE telegram_id = ?;",
+#             (tg_id,)
+#         ) as cur:
+#             row = await cur.fetchone()
 
-        if row and row[0]:
-            old_prefs = row[0]
-            await message.answer(
-                f"You already have saved preferences:\n\n“{old_prefs}”\n\n"
-                "Do you want to overwrite them? Send 'yes' to confirm or type new ones to replace."
-            )
-            # if you prefer, you could require explicit confirmation here
-            # but if user sends new prefs directly, we can overwrite automatically below
+#         if row and row[0]:
+#             old_prefs = row[0]
+#             await message.answer(
+#                 f"You already have saved preferences:\n\n“{old_prefs}”\n\n"
+#                 "Do you want to overwrite them? Send 'yes' to confirm or type new ones to replace."
+#             )
+#             # if you prefer, you could require explicit confirmation here
+#             # but if user sends new prefs directly, we can overwrite automatically below
 
-        # 💾 Update or insert new preferences
-        await conn.execute(
-            "UPDATE users SET preferences = ? WHERE telegram_id = ?;",
-            (prefs, tg_id)
-        )
-        await conn.commit()
+#         # 💾 Update or insert new preferences
+#         await conn.execute(
+#             "UPDATE users SET preferences = ? WHERE telegram_id = ?;",
+#             (prefs, tg_id)
+#         )
+#         await conn.commit()
 
-    await state.clear()
-    await message.answer(
-        f"✅ Preferences saved:\n\n“{prefs}”"
-    )
+#     await state.clear()
+#     await message.answer(
+#         f"✅ Preferences saved:\n\n“{prefs}”"
+#     )
 
 
 # ------------- FREE-TEXT → AGENT FALLBACK -------------
@@ -303,10 +300,6 @@ async def receive_preferences(message: types.Message, state: FSMContext):
 
 @dp.message(F.text)
 async def on_free_text(message: types.Message, state: FSMContext):
-    # If we're collecting preferences, let the dedicated handler deal with it
-    current_state = await state.get_state()
-    if current_state == PrefStates.WAITING_PREFERENCES.state:
-        return  # receive_preferences() already handles these
 
     # Only handle genuine free-typed text (callbacks come via @dp.callback_query)
     text = (message.text or "").strip()

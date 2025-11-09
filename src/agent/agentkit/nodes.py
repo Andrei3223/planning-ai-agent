@@ -53,11 +53,9 @@ async def assistant_node(state: AgentState):
 
     conversation = [system] + state["messages"]
 
-    log_state("ASSISTANT_NODE INPUT", {"telegram_id": telegram_id, "messages_count": len(state["messages"])})
 
     ai_msg: AIMessage = await llm_with_tools.ainvoke(conversation)  # ✅ Use ainvoke
 
-    log_state("ASSISTANT_NODE OUTPUT", {"content": ai_msg.content, "tool_calls": getattr(ai_msg, "tool_calls", None)})
 
     return {
         "messages": [ai_msg],
@@ -69,7 +67,7 @@ async def assistant_node(state: AgentState):
 async def tool_node(state: AgentState):
     """Executes any tools requested by the last AIMessage."""
     last = state["messages"][-1]
-    log_state("TOOL_NODE INPUT", {"last_message_type": type(last).__name__})
+
 
     tool_messages: List[ToolMessage] = []
 
@@ -86,7 +84,7 @@ async def tool_node(state: AgentState):
         tm = ToolMessage(content=content, tool_call_id=tc["id"])
         tool_messages.append(tm)
 
-    log_state("TOOL_NODE OUTPUT", {"tool_messages_count": len(tool_messages)})
+
 
     return {"messages": tool_messages}
 

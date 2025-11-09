@@ -148,16 +148,6 @@ async def update_user_profile_db(
     add_availability = add_availability or []
 
     async with aiosqlite.connect(DB_PATH_USERS) as conn:
-        # Ensure user exists
-        now = datetime.utcnow().isoformat()
-        await conn.execute(
-            """
-            INSERT OR IGNORE INTO users (telegram_id, preferences)
-            VALUES (?, '')
-            """,
-            (telegram_id, now),
-        )
-        await conn.commit()
 
         # Load current preferences
         async with conn.execute(
