@@ -49,12 +49,32 @@ class PrefStates(StatesGroup):
     WAITING_PREFERENCES = State()
 
 # ------------- UI HELPERS -------------
-def main_menu_kb() -> types.InlineKeyboardMarkup:
-    kb = InlineKeyboardBuilder()
-    kb.button(text="✏️ Edit preferences", callback_data="edit_prefs")
-    kb.button(text="🎟️ Find event for all users", callback_data="find_event_all")
-    kb.adjust(1)
-    return kb.as_markup()
+
+# ------------- REPLY KEYBOARD (Teams) -------------
+
+def main_menu_kb() -> types.ReplyKeyboardMarkup:
+    # Two buttons: Edit Preferences, Find Event for All
+    return types.ReplyKeyboardMarkup(
+        resize_keyboard=True,
+        keyboard=[
+            [types.KeyboardButton(text="Menu")]
+        ]
+    )
+
+
+def team_root_kb() -> types.ReplyKeyboardMarkup:
+    # One persistent button
+    return types.ReplyKeyboardMarkup(
+        resize_keyboard=True,
+        keyboard=[
+            [types.KeyboardButton(text="Create Team"), types.KeyboardButton(text="Assign Team")],
+            [types.KeyboardButton(text="Find Team Events"), types.KeyboardButton(text="Find my Events")],
+            [types.KeyboardButton(text="⬅️ Back")]
+        ]
+    )
+
+
+
 
 WELCOME_TEXT = (
     "Hi! 👋\n\n"
@@ -106,13 +126,13 @@ CREATE TABLE IF NOT EXISTS busy_hours (
 """
 
 INSERT_USER_SQL = """
-INSERT OR IGNORE INTO users (telegram_id, preferences, created_at)
-VALUES (?, NULL, ?);
+INSERT OR IGNORE INTO users (telegram_id, preferences)
+VALUES (?, NULL);
 """
 
 UPDATE_PREFS_SQL = "UPDATE users SET preferences = ? WHERE telegram_id = ?;"
-GET_USER_SQL = "SELECT id, telegram_id, preferences, created_at FROM users WHERE telegram_id = ?;"
-GET_ALL_USERS_SQL = "SELECT telegram_id, preferences FROM users;"
+GET_USER_SQL = "SELECT id, telegram_id, preferences, team_id FROM users WHERE telegram_id = ?;"
+GET_ALL_USERS_SQL = "SELECT telegram_id, preferences, team_id FROM users;"
 GET_ALL_PREFS_NONEMPTY_SQL = "SELECT telegram_id, preferences FROM users WHERE preferences IS NOT NULL AND TRIM(preferences) <> '';"
 
 async def init_db():
@@ -135,7 +155,7 @@ async def init_db():
 # ------------- DB HELPERS -------------
 
 async def ensure_user(conn: aiosqlite.Connection, tg_id: int):
-    await conn.execute(INSERT_USER_SQL, (tg_id, datetime.now(timezone.utc).isoformat()))
+    await conn.execute(INSERT_USER_SQL, (tg_id,))
     await conn.commit()
 
 async def get_user(conn: aiosqlite.Connection, tg_id: int):
@@ -213,16 +233,36 @@ async def on_start(message: types.Message, state: FSMContext):
         await ensure_user(conn, tg_id)
         user = await get_user(conn, tg_id)
 
-    # If no preferences -> ask now
     prefs = user[2]  # preferences
     if not prefs:
         await state.set_state(PrefStates.WAITING_PREFERENCES)
-        await message.answer(WELCOME_TEXT)
+        await message.answer(WELCOME_TEXT)  # no reply_markup here -> menu stays
     else:
         await message.answer(
-            f"Welcome back! Your current preferences are:\n\n“{prefs}”",
-            reply_markup=main_menu_kb()
+            f"Welcome back! Your current preferences are:\n\n“{prefs}”"
         )
+    
+    # 👇 Ensure the reply keyboard is shown and stays until you change it
+    await message.answer("If you want to create or find a team, click the button below", reply_markup=main_menu_kb())
+
+# ------------- MENU / TEAM KEYBOARD SWITCHING -------------
+
+@dp.message(F.text == "Menu")
+async def on_menu_clicked(message: types.Message):
+    # Switch to team_root_kb when Menu is clicked
+    await message.answer("Team controls:", reply_markup=team_root_kb())
+
+@dp.message(F.text == "⬅️ Back")
+async def on_back_clicked(message: types.Message):
+    # Return to the main menu keyboard
+    await message.answer("Back to menu.", reply_markup=main_menu_kb())
+
+# (Optional) For now, other team buttons do nothing special.
+# Prevent them from falling into your agent; gently nudge user to Back.
+@dp.message(F.text.in_({"Create Team", "Assign Team", "Find Team Events", "Find my Events"}))
+async def on_team_buttons_disabled(message: types.Message):
+    await message.answer("🚧 Not available yet. Tap ⬅️ Back to return to the menu.")
+
 
 
 @dp.message(PrefStates.WAITING_PREFERENCES)
@@ -260,8 +300,7 @@ async def receive_preferences(message: types.Message, state: FSMContext):
 
     await state.clear()
     await message.answer(
-        f"✅ Preferences saved:\n\n“{prefs}”",
-        reply_markup=main_menu_kb()
+        f"✅ Preferences saved:\n\n“{prefs}”"
     )
 
 
@@ -321,46 +360,6 @@ async def on_free_text(message: types.Message, state: FSMContext):
         reply_text = "I processed your message, but didn't get a readable answer. Try rephrasing?"
 
     await message.answer(reply_text)
-
-
-
-@dp.callback_query(F.data == "edit_prefs")
-async def on_edit_prefs(cb: types.CallbackQuery, state: FSMContext):
-    await state.set_state(PrefStates.WAITING_PREFERENCES)
-    await cb.message.edit_text(
-        "Okay! Send your **new** preferences, and I’ll update them.",
-        parse_mode="Markdown"
-    )
-    await cb.answer()
-
-@dp.callback_query(F.data == "find_event_all")
-async def on_find_event_all(cb: types.CallbackQuery):
-    await cb.answer("Collecting everyone’s preferences…")
-    # Fetch all non-empty preferences
-    async with aiosqlite.connect(DB_PATH_USERS) as conn:
-        all_prefs = await get_all_nonempty_preferences(conn)
-
-    # Generate event suggestion (OpenAI)
-    await cb.message.edit_text("🧠 Planning an event that fits the whole group…")
-    suggestion = await fetch_group_event_suggestion(all_prefs)
-
-    # Broadcast to all registered users (even those without prefs—so they see the result)
-    async with aiosqlite.connect(DB_PATH_USERS) as conn:
-        all_users = await get_all_users(conn)
-
-    tasks = []
-    text = "📣 *Group Event Suggestion*\n\n" + suggestion
-    for tg_id, _prefs in all_users:
-        tasks.append(bot.send_message(chat_id=tg_id, text=text, parse_mode="Markdown"))
-
-    # Fire all sends concurrently
-    await asyncio.gather(*tasks, return_exceptions=True)
-
-    # Also acknowledge the original chat with buttons again
-    await cb.message.answer("Sent the event suggestion to everyone ✅", reply_markup=main_menu_kb())
-
-
-
 
 
 # ------------- MAIN -------------
