@@ -27,6 +27,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 DB_PATH_EVENTS = os.getenv("DB_PATH_EVENTS", "events.sqlite")
 DB_PATH_BUSYHOURS = os.getenv("DB_PATH_BUSYHOURS", "busyhours.sqlite")
 DB_PATH_USERS = os.getenv("DB_PATH_USERS", "users.sqlite")
+DB_PATH_TEAMS = os.getenv("DB_PATH_TEAMS", "teams.sqlite")
 
 # EMBEDING
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
@@ -71,7 +72,16 @@ CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     telegram_id INTEGER UNIQUE NOT NULL,
     preferences TEXT,
-    created_at TEXT NOT NULL
+    team_id INTEGER,
+    FOREIGN KEY (team_id) REFERENCES teams(id)
+);
+"""
+
+CREATE_TEAMS_SQL = """
+CREATE TABLE IF NOT EXISTS teams (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    team_id INTEGER UNIQUE NOT NULL,
+    team_key TEXT UNIQUE NOT NULL
 );
 """
 
@@ -96,6 +106,11 @@ GET_ALL_USERS_SQL = "SELECT telegram_id, preferences FROM users;"
 GET_ALL_PREFS_NONEMPTY_SQL = "SELECT telegram_id, preferences FROM users WHERE preferences IS NOT NULL AND TRIM(preferences) <> '';"
 
 async def init_db():
+    """Initializes the SQLite databases and tables."""
+    async with aiosqlite.connect(DB_PATH_TEAMS) as db:
+        await db.execute(CREATE_TEAMS_SQL)
+        await db.commit()
+
     async with aiosqlite.connect(DB_PATH_USERS) as db:
         await db.execute(CREATE_USERS_SQL)
         await db.commit()
@@ -103,6 +118,7 @@ async def init_db():
     async with aiosqlite.connect(DB_PATH_BUSYHOURS) as db:
         await db.execute(CREATE_BUSYHOURS_SQL)
         await db.commit()
+# ------------- DB HELPERS -------------
 
     create_chromium_db()
 
@@ -180,6 +196,7 @@ dp = Dispatcher()
 @dp.message(CommandStart())
 async def on_start(message: types.Message, state: FSMContext):
     tg_id = message.from_user.id
+    print(f"User /start: {tg_id}")
     async with aiosqlite.connect(DB_PATH_USERS) as conn:
         await ensure_user(conn, tg_id)
         user = await get_user(conn, tg_id)
