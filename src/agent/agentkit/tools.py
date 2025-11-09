@@ -330,60 +330,6 @@ async def get_joint_event_suggestions_db(
     }
 
 
-@tool
-async def update_busy_hours(
-    telegram_id: int,
-    add_slots: Optional[List[Slot]] = None,
-    clear_existing: bool = False,
-) -> Dict:
-    """
-    Update a user's busy hours in the `busy_hours` table.
-
-    Args:
-        telegram_id: user's Telegram ID
-        add_slots: list of Slot objects to add
-        clear_existing: if True, remove all existing busy hours before inserting new ones
-
-    Returns:
-        Dict summary with total busy hour entries after update
-    """
-    add_slots = add_slots or []
-
-    async with aiosqlite.connect(DB_PATH_BUSYHOURS) as db:
-        # Optionally clear existing records
-        if clear_existing:
-            await db.execute("DELETE FROM busy_hours WHERE telegram_id = ?", (telegram_id,))
-            await db.commit()
-
-        # Insert new slots
-        for slot in add_slots:
-            # Combine date and start time into single string
-            start_dt = f"{slot.date} {slot.start}"
-            duration = slot.duration  # stored as string "HH:MM"
-            await db.execute(
-                "INSERT INTO busy_hours (telegram_id, start, duration) VALUES (?, ?, ?)",
-                (telegram_id, start_dt, duration),
-            )
-
-        await db.commit()
-
-        # Return updated summary
-        async with db.execute(
-            "SELECT id, start, duration FROM busy_hours WHERE telegram_id = ? ORDER BY start",
-            (telegram_id,),
-        ) as cur:
-            rows = await cur.fetchall()
-
-        summary = {
-            "telegram_id": telegram_id,
-            "busy_hours_count": len(rows),
-            "busy_hours": [{"start": r[1], "end": r[2]} for r in rows],
-        }
-
-        print(summary)
-
-        return summary
-
 
 @tool
 async def get_team_members_db(team_id: int) -> Dict:
@@ -484,9 +430,8 @@ TOOLS = [
     get_team_members_db,
     get_user_busy_hours_db,
     get_user_preferences_db,
-    update_user_profile_db,
-    update_busy_hours,
     get_personal_event_suggestions_db,
     get_joint_event_suggestions_db,
+    update_user_profile_db,
 ]
 TOOLS_BY_NAME = {t.name: t for t in TOOLS}
