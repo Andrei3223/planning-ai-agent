@@ -33,15 +33,17 @@ ASSISTANT_SYSTEM_PROMPT = (
     "- When the user asks in which team he is use `get_team_members_db` with the active telegram_id\n"
     "- When the user asks what is his schedule or similar use `get_user_busy_hours_db` with the active telegram_id\n"
     "- When the user asks what is his preferences or similar use `get_user_preferences_db`with the active telegram_id\n"
-    "- When they ask for events for themselves, call `get_personal_event_suggestions_db`.\n"
-    "- When they ask for events for a team or with someone else,\n"
-    "  call `get_joint_event_suggestions_db` with a list of all relevant telegram_ids.\n"
+    "- When they ask for events for themselves, call `get_personal_event_suggestions_db`, make sure to include links at the end of your message to all events fetched.\n"
+    "- When user aks for events for a team or with someone else,\n"
+    "  call `get_joint_event_suggestions_db` with a telegram_id of this user and when answering make sure to include links at the end of your message to all events fethced.\n"
     "- If the user only wants a casual chat, you can reply directly without calling tools.\n\n"
     "IMPORTANT:\n"
     "- The active telegram_id for this conversation is provided separately; you are told it explicitly.\n"
     "- When you call tools that require a telegram_id for the current user, ALWAYS use that exact string.\n"
     f"- Current Date and Time: {current_datatime} so you can use it to estimate the relative dates\n"
-    "- Extract the data carefully from the users messages"
+    "- Extract the data carefully from the users messages\n"
+    "- BE CONCISE in your answers and DO NOT write any NOTES!\n"
+
 )
 
 async def assistant_node(state: AgentState):

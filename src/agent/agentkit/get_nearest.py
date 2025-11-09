@@ -1,18 +1,12 @@
 import os
 from dotenv import load_dotenv
-from datetime import datetime
-from langchain_openai import OpenAI, OpenAIEmbeddings
-from langchain_classic.chains import RetrievalQA
+from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
-from langchain_openai import ChatOpenAI
-
-
-
 
 load_dotenv(override=True)
 
 
-def load_chroma_retriever(persist_directory: str = "./DBs/RAG"):
+def load_chroma_retriever(persist_directory: str = "./DBs/RAG", k: int = 5):
     """
     Loads a previously persisted Chroma vector store and returns a retriever.
     """
@@ -21,30 +15,39 @@ def load_chroma_retriever(persist_directory: str = "./DBs/RAG"):
         api_key=os.getenv('OPENAI_API_KEY_KIRILL'),
     )
 
-    # Load the existing Chroma DB
     vector_store = Chroma(
         persist_directory=persist_directory,
         embedding_function=embedding_model
     )
 
-    # Create retriever with default search settings
-    retriever = vector_store.as_retriever(
-        search_kwargs={"k": 5}
-    )
-
+    retriever = vector_store.as_retriever(search_kwargs={"k": k})
     return retriever
 
-def get_nearest_events(llm, query: str, persist_directory: str):
-    retriever = load_chroma_retriever(persist_directory=persist_directory)
-    qa_chain = RetrievalQA.from_chain_type(
-        llm=llm,
-        retriever=retriever,
-        # return_source_documents=True,  # optional, if you want to see which docs were used
-    )
 
+def get_nearest_events(query: str, persist_directory: str = "./DBs/RAG", k: int = 5):
+    """
+    Retrieves the top-k most similar documents from the Chroma vector store
+    without involving the LLM.
+
+    Args:
+        query (str): Text query describing what to look for.
+        persist_directory (str): Path to Chroma DB.
+        k (int): Number of documents to retrieve.
+
+    Returns:
+        List[Dict]: Each dict contains 'content', 'metadata', and 'score'.
+    """
+    retriever = load_chroma_retriever(persist_directory=persist_directory, k=k)
+
+    # Perform the similarity search directly on the vector store retriever
+    docs = retriever.vectorstore.similarity_search_with_score(query, k=k)
     
-    result = qa_chain.run(query)
+    results = []
+    for doc, score in docs:
+        results.append({
+            "content": doc.page_content,
+            "metadata": doc.metadata,
+            "score": score,
+        })
 
-    return result
-
-
+    return results
