@@ -19,7 +19,14 @@ load_dotenv()
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 print(TELEGRAM_BOT_TOKEN)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-DB_PATH = os.getenv("DB_PATH", "tg_events.sqlite")
+
+
+DB_PATH_EVENTS = os.getenv("DB_PATH_EVENTS", "events.sqlite")
+DB_PATH_BUSYHOURS = os.getenv("DB_PATH_BUSYHOURS", "busyhours.sqlite")
+DB_PATH_USERS = os.getenv("DB_PATH_USERS", "users.sqlite")
+
+
+
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-o4-mini")
 
 if not TELEGRAM_BOT_TOKEN:
@@ -65,6 +72,27 @@ CREATE TABLE IF NOT EXISTS users (
 );
 """
 
+CREATE_EVENTS_SQL = """
+CREATE TABLE IF NOT EXISTS events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    date TEXT NOT NULL,
+    tags TEXT,
+    start TEXT NOT NULL,
+    duration TEXT NOT NULL
+);
+"""
+
+CREATE_BUSYHOURS_SQL = """
+CREATE TABLE IF NOT EXISTS busy_hours (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    start TEXT NOT NULL,
+    duration TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (telegram_id)
+);
+"""
+
 INSERT_USER_SQL = """
 INSERT OR IGNORE INTO users (telegram_id, preferences, created_at)
 VALUES (?, NULL, ?);
@@ -76,8 +104,16 @@ GET_ALL_USERS_SQL = "SELECT telegram_id, preferences FROM users;"
 GET_ALL_PREFS_NONEMPTY_SQL = "SELECT telegram_id, preferences FROM users WHERE preferences IS NOT NULL AND TRIM(preferences) <> '';"
 
 async def init_db():
-    async with aiosqlite.connect(DB_PATH) as db:
+    async with aiosqlite.connect(DB_PATH_USERS) as db:
         await db.execute(CREATE_USERS_SQL)
+        await db.commit()
+    
+    async with aiosqlite.connect(DB_PATH_EVENTS) as db:
+        await db.execute(CREATE_EVENTS_SQL)
+        await db.commit()
+
+    async with aiosqlite.connect(DB_PATH_BUSYHOURS) as db:
+        await db.execute(CREATE_BUSYHOURS_SQL)
         await db.commit()
 
 async def ensure_user(conn: aiosqlite.Connection, tg_id: int):
@@ -154,7 +190,7 @@ dp = Dispatcher()
 @dp.message(CommandStart())
 async def on_start(message: types.Message, state: FSMContext):
     tg_id = message.from_user.id
-    async with aiosqlite.connect(DB_PATH) as conn:
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
         await ensure_user(conn, tg_id)
         user = await get_user(conn, tg_id)
 
@@ -178,7 +214,7 @@ async def on_start(message: types.Message, state: FSMContext):
 #         await message.answer("Please send some text for your preferences 🙂")
 #         return
 
-#     async with aiosqlite.connect(DB_PATH) as conn:
+#     async with aiosqlite.connect(DB_PATH_USERS) as conn:
 #         await set_preferences(conn, tg_id, prefs)
 
 #     await state.clear()
@@ -196,7 +232,7 @@ async def receive_preferences(message: types.Message, state: FSMContext):
         await message.answer("Please send some text for your preferences 🙂")
         return
 
-    async with aiosqlite.connect(DB_PATH) as conn:
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
         # 🔍 Check if user already has preferences
         async with conn.execute(
             "SELECT preferences FROM users WHERE telegram_id = ?;",
@@ -241,7 +277,7 @@ async def on_edit_prefs(cb: types.CallbackQuery, state: FSMContext):
 async def on_find_event_all(cb: types.CallbackQuery):
     await cb.answer("Collecting everyone’s preferences…")
     # Fetch all non-empty preferences
-    async with aiosqlite.connect(DB_PATH) as conn:
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
         all_prefs = await get_all_nonempty_preferences(conn)
 
     # Generate event suggestion (OpenAI)
@@ -249,7 +285,7 @@ async def on_find_event_all(cb: types.CallbackQuery):
     suggestion = await fetch_group_event_suggestion(all_prefs)
 
     # Broadcast to all registered users (even those without prefs—so they see the result)
-    async with aiosqlite.connect(DB_PATH) as conn:
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
         all_users = await get_all_users(conn)
 
     tasks = []
@@ -266,7 +302,7 @@ async def on_find_event_all(cb: types.CallbackQuery):
 # ------------- MAIN -------------
 async def main():
     await init_db()
-    log.info("DB ready at %s", DB_PATH)
+    log.info("DB ready at %s", DB_PATH_USERS)
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
