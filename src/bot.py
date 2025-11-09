@@ -15,6 +15,7 @@ from rag.create_chromium_db import create_chromium_db
 from dotenv import load_dotenv
 import random
 import re
+import json
 
 
 # OpenAI (async)
@@ -295,12 +296,28 @@ async def on_start(message: types.Message, state: FSMContext):
         await ensure_user(conn, tg_id)
         user = await get_user(conn, tg_id)
 
-    prefs = user[2]  # preferences
-    if not prefs:
+    prefs = user[2]
+
+    if prefs:
+        try:
+            parsed = json.loads(prefs)
+            if isinstance(parsed, list):
+                prefs_str = ", ".join(map(str, parsed))
+            else:
+                prefs_str = str(parsed)
+        except (json.JSONDecodeError, TypeError):
+            prefs_str = str(prefs)
+    else:
+        prefs_str = None
+
+
+
+
+    if not prefs_str:
         await message.answer(WELCOME_TEXT + "\n"
                        "If you want to create or find a team, click the button below", reply_markup=main_menu_kb())
     else:
-        await message.answer(f"Welcome back! Your current preferences are:\n\n“{prefs}”"
+        await message.answer(f"Welcome back! Your current preferences are:\n\n“{prefs_str}”"
             "If you want to create or find a team, click the button below", reply_markup=main_menu_kb())
     
 
