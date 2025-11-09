@@ -303,7 +303,7 @@ async def get_personal_event_suggestions_db(
 
 @tool
 async def get_joint_event_suggestions_db(
-    telegram_ids: List[int],
+    telegram_id: int,
 ) -> Dict:
     """
     Suggest events suitable for ALL given users (async + RAG-based).
@@ -316,8 +316,25 @@ async def get_joint_event_suggestions_db(
       4. Retrieve matching events from Chroma RAG store.
       5. Group events by date and return structured output.
     """
-    if len(telegram_ids) < 2:
-        return {"error": "Provide at least two telegram_ids to get joint suggestions."}
+    async with aiosqlite.connect(DB_PATH_USERS) as conn:
+        async with conn.execute(
+            "SELECT team_id FROM users WHERE telegram_id = ?;",
+            (telegram_id,)
+        ) as cur:
+            team_id = await cur.fetchone()
+
+    async with conn.execute(
+        "SELECT telegram_id FROM users WHERE team_id = ?;",
+        (team_id,)
+    ) as cur:
+        telegram_ids = await cur.fetchall()
+
+    telegram_ids = [r[0] for r in telegram_ids]
+
+
+
+    # if len(telegram_ids) < 2:
+    #     return {"error": "Provide at least two telegram_ids to get joint suggestions."}
 
     async with aiosqlite.connect(DB_PATH_USERS) as conn:
         prefs_sets: List[Set[str]] = []
